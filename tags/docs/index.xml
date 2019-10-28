@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docs on cc的后花园</title>
+    <link>https://xin7c.github.io/tags/docs/</link>
+    <description>Recent content in docs on cc的后花园</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 28 Oct 2019 10:18:05 +0800</lastBuildDate>
+    
+	<atom:link href="https://xin7c.github.io/tags/docs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Adb</title>
+      <link>https://xin7c.github.io/2019/10/adb/</link>
+      <pubDate>Mon, 28 Oct 2019 10:18:05 +0800</pubDate>
+      
+      <guid>https://xin7c.github.io/2019/10/adb/</guid>
+      <description>ADB命令（Android Debug Bridge） 显示系统中全部设备 adb devices 这个命令是查看当前连接的设备, 连接到计算机的android设备或者模拟器将会列出显示  安装一个apk adb install -r (APK路径) -r 代表如果apk已安装，重新安装apk并保留数据和缓存文件。apk路径则可以直接将apk文件拖进cmd窗口，记得加空格  直接卸载 adb uninstall (apk包名) 卸载 app 但保留数据和缓存文件  清除应用数据与缓存 adb shell pm clear （apk包名）  强制停止应用 adb shell am force-stop （apk包名）  重启设备 adb reboot  删除文件 adb shell cd sdcard/model/book ls rm -r 415  pull和push文件 adb push (文件路径) (想要push的路径) adb pull (文件路径) (想要pull的路径)  查看日志 adb logcat -v threadtime  过滤日志 adb logcat -v threadtime | grep (关键字)  投屏(用于电脑控制设备) 打开vysor adb shell am start -n com.</description>
+    </item>
+    
+    <item>
+      <title>Jmeter</title>
+      <link>https://xin7c.github.io/2019/10/jmeter/</link>
+      <pubDate>Mon, 28 Oct 2019 10:17:05 +0800</pubDate>
+      
+      <guid>https://xin7c.github.io/2019/10/jmeter/</guid>
+      <description>下载jmeter最新版  https://jmeter.apache.org/download_jmeter.cgi
+ 修改配置文件 vim apache-jmeter-5.1.1/bin/jmeter.properties   找到server.rmi.ssl.disable 这行，去掉前的#，并且把它的值由默认的False改为true
+找到remote_hosts 这行，去掉前面的#，并且把它的值由默认的127.0.0.1改为10.0.11.200:1099(这是负载机的内网IP)
+ 以下为jmeter5.1的例子  257 # Remote Hosts - comma delimited 258 remote_hosts=10.0.11.200:1099 259 #remote_hosts=localhost:1099,localhost:2010 260 261 # RMI port to be used by the server (must start rmiregistry with same port) 262 #server_port=1099 263 264 # To change the port to (say) 1234: 265 # On the server(s) 266 set server_port=1234 267 start rmiregistry with port 1234  Q &amp;amp; A 自己机器上看不到响应信息怎么办？ 修改配置如下：</description>
+    </item>
+    
+    <item>
+      <title>Jenkins</title>
+      <link>https://xin7c.github.io/2019/10/jenkins/</link>
+      <pubDate>Mon, 28 Oct 2019 10:13:54 +0800</pubDate>
+      
+      <guid>https://xin7c.github.io/2019/10/jenkins/</guid>
+      <description>重要命令 解决报告样式问题执行： System.setProperty(&amp;ldquo;hudson.model.DirectoryBrowserSupport.CSP&amp;rdquo;, &amp;ldquo;&amp;rdquo;) println(Jenkins.instance.pluginManager.plugins)
+mvn向jmeter传递参数的实际命令： pom文件中要添加：
+&amp;lt;!--设置报告生成的路径--&amp;gt; &amp;lt;properties&amp;gt; &amp;lt;project.build.sourceEncoding&amp;gt;UTF-8&amp;lt;/project.build.sourceEncoding&amp;gt; &amp;lt;jmeter.result.jtl.dir&amp;gt;${project.build.directory}\jmeter\results&amp;lt;/jmeter.result.jtl.dir&amp;gt; &amp;lt;jmeter.result.html.dir&amp;gt;${project.build.directory}\jmeter\html&amp;lt;/jmeter.result.html.dir&amp;gt; &amp;lt;performancetest.threadCount&amp;gt;1&amp;lt;/performancetest.threadCount&amp;gt; &amp;lt;performancetest.loopCount&amp;gt;1&amp;lt;/performancetest.loopCount&amp;gt; &amp;lt;performancetest.key&amp;gt;1&amp;lt;/performancetest.key&amp;gt; &amp;lt;/properties&amp;gt;  &amp;lt;!--执行配置文件--&amp;gt; &amp;lt;profiles&amp;gt; &amp;lt;profile&amp;gt; &amp;lt;id&amp;gt;jenkins&amp;lt;/id&amp;gt; &amp;lt;!--&amp;lt;properties&amp;gt;--&amp;gt; &amp;lt;!--&amp;lt;performancetest.threadCount&amp;gt;1&amp;lt;/performancetest.threadCount&amp;gt;--&amp;gt; &amp;lt;!--&amp;lt;performancetest.loopCount&amp;gt;1&amp;lt;/performancetest.loopCount&amp;gt;--&amp;gt; &amp;lt;!--&amp;lt;performancetest.key&amp;gt;1&amp;lt;/performancetest.key&amp;gt;--&amp;gt; &amp;lt;!--&amp;lt;/properties&amp;gt;--&amp;gt; &amp;lt;/profile&amp;gt; &amp;lt;/profiles&amp;gt; &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;com.lazerycode.jmeter&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;jmeter-maven-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.5.0&amp;lt;/version&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;!-- 设置jmeter生成结果文件格式--&amp;gt; &amp;lt;resultsFileFormat&amp;gt;xml&amp;lt;/resultsFileFormat&amp;gt; &amp;lt;!-- 设置忽略失败是否停止运行--&amp;gt; &amp;lt;ignoreResultFailures&amp;gt;true&amp;lt;/ignoreResultFailures&amp;gt; &amp;lt;!--设置结果是否有时间戳--&amp;gt; &amp;lt;testResultsTimestamp&amp;gt;true&amp;lt;/testResultsTimestamp&amp;gt; &amp;lt;testFilesIncluded&amp;gt; &amp;lt;!-- //指定运行的jmeter脚本 --&amp;gt; &amp;lt;jMeterTestFile&amp;gt;*.jmx&amp;lt;/jMeterTestFile&amp;gt; &amp;lt;/testFilesIncluded&amp;gt; &amp;lt;!-- 指定jtl生成目录 --&amp;gt; &amp;lt;resultsDirectory&amp;gt;${jmeter.result.jtl.dir}&amp;lt;/resultsDirectory&amp;gt; &amp;lt;propertiesUser&amp;gt; &amp;lt;threadCount&amp;gt;${performancetest.threadCount}&amp;lt;/threadCount&amp;gt; &amp;lt;loopCount&amp;gt;${performancetest.loopCount}&amp;lt;/loopCount&amp;gt; &amp;lt;key&amp;gt;${performancetest.key}&amp;lt;/key&amp;gt; &amp;lt;/propertiesUser&amp;gt; &amp;lt;/configuration&amp;gt; &amp;lt;executions&amp;gt; &amp;lt;execution&amp;gt; &amp;lt;id&amp;gt;jmeter-tests&amp;lt;/id&amp;gt; &amp;lt;!--脚本所在的文件夹 --&amp;gt; &amp;lt;goals&amp;gt; &amp;lt;goal&amp;gt;jmeter&amp;lt;/goal&amp;gt; &amp;lt;/goals&amp;gt; &amp;lt;/execution&amp;gt; &amp;lt;/executions&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;!</description>
+    </item>
+    
+    <item>
+      <title>Odin</title>
+      <link>https://xin7c.github.io/2019/10/odin/</link>
+      <pubDate>Mon, 28 Oct 2019 10:11:51 +0800</pubDate>
+      
+      <guid>https://xin7c.github.io/2019/10/odin/</guid>
+      <description> 起源 Odin平台起源于cm测试团队的不开源行为 三人分工为1前端，2后端在原来基础上进行了升级。 本项目基于vue-element-admin二次开发，先后破解了登录权限、侧边栏、axios请求拦截等操作。 </description>
+    </item>
+    
+    <item>
+      <title>Govendor</title>
+      <link>https://xin7c.github.io/2019/10/govendor/</link>
+      <pubDate>Mon, 28 Oct 2019 09:56:42 +0800</pubDate>
+      
+      <guid>https://xin7c.github.io/2019/10/govendor/</guid>
+      <description>安装govendor go get -u -v github.com/kardianos/govendor
+运行 govendor 检测安装结果
+govendor
+初始化 govendor init
+收集依赖包 go add +external
+安装部署govendor项目 进入git clone完成后的项目目录下
+govendor sync
+不过貌似也不需要，只要vendor目录在项目目录下即可</description>
+    </item>
+    
+  </channel>
+</rss>

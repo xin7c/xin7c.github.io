@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on cc的后花园</title>
+    <link>https://xin7c.github.io/tags/</link>
+    <description>Recent content in Tags on cc的后花园</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 28 Oct 2019 10:18:05 +0800</lastBuildDate>
+    
+	<atom:link href="https://xin7c.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>docs</title>
+      <link>https://xin7c.github.io/tags/docs/</link>
+      <pubDate>Mon, 28 Oct 2019 10:18:05 +0800</pubDate>
+      
+      <guid>https://xin7c.github.io/tags/docs/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
