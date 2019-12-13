@@ -306,9 +306,11 @@ export default { // -1失败 0未启动 1运行中 2运行完成 3记录不存�
 &emsp;但是数据预览的需求是，不仅要看到IP地址，还要看到host_name、host_type、id这些json数组对象中的其他信息，
 &emsp;我们伟大的后端哥坚决不想提供映射的配置信息，所以我···用到了： :value=&ldquo;item&rdquo; 可是这里要注意，此时的item是一个对象，那么在外层的select中，要添加这个属性 value-key=&ldquo;public_ip&rdquo; 值应该是item对象里的唯一值，不然你连编译都别想过~
 &emsp;那么现在点击了选项后，select会把数据绑定在我定义的中间变量里 selected_center_or_edge_hosts &emsp;本来这个变量应该是直接在form表单变量中的数组就可以了，但是为了存下所有的item信息，并且提交表单的时候，
-后端哥也懒得处理解析json中的IP地址&mdash;总之就是让我多解析一步都不行···于是就想了一个折中的这个变量，选中的所有值都给它给它给它！
+后端哥也懒得处理解析json中的IP地址&mdash;总之就是让我多解析一步都不行···
+&emsp;于是就想了一个折中的这个变量，选中的所有值都给它给它给它！
 &emsp;所以我绑定了一个方法，当选择的值发生变化，就会执行里面的动作：
-1、先给select绑定方法，传递事件： @change=&ldquo;change_selected_center_or_edge_hosts($event)&rdquo; 2、之后定义执行动作：
+1、先给select绑定方法，传递事件： @change=&ldquo;change_selected_center_or_edge_hosts($event)&rdquo;
+2、之后定义执行动作：
 change_selected_center_or_edge_hosts(e) { this.form.center_or_edge_hosts = this.selected_center_or_edge_hosts.map(x =&gt; { return x.public_ip }) // 生成数组 }  这里就很明显了，我把选中的item数组中的public_ip取出来，赋值给了form表单里的原本该传的数组。
 处理预览 &emsp;至于预览，在select外层包裹一个popover + table的组件就可以了，但是这样的话一定要记得在select上添加这个属性： slot=&ldquo;reference&rdquo; 不然你别想再看到你的select选择器了！
 提交请求后的清空处理 &emsp;当执行了onSubmit之后，正常只要将this.form置空就行了，但是由于有selected_center_or_edge_hosts的存在，
