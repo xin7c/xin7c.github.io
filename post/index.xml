@@ -6,10 +6,23 @@
     <description>Recent content in Posts on cc的后花园</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 13 Dec 2019 11:25:45 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 13 Dec 2019 11:51:04 +0800</lastBuildDate>
     
 	<atom:link href="https://drcoooper.gitee.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>vue过滤器之样式绑定</title>
+      <link>https://drcoooper.gitee.io/2019/12/vue%E8%BF%87%E6%BB%A4%E5%99%A8%E4%B9%8B%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/</link>
+      <pubDate>Fri, 13 Dec 2019 11:51:04 +0800</pubDate>
+      
+      <guid>https://drcoooper.gitee.io/2019/12/vue%E8%BF%87%E6%BB%A4%E5%99%A8%E4%B9%8B%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/</guid>
+      <description>需求 &amp;emsp;业务有个很常用的场景是渲染一个结果列表页时，后端返回的状态码一般只能是数字
+&amp;emsp;但我们在table中渲染的时候只渲染数字显然并不能很直观的反馈给使用者，所以结合tag的type属性绑定，就能配合过滤器来实现颜色标识和文本映射，体验明显更好~
+vue代码 首先vue实例中定义过滤器~
+export default { // -1失败 0未启动 1运行中 2运行完成 3记录不存在 filters: { statusFilter(status) { const statusMap = { &#39;-1&#39;: &#39;失败&#39;, &#39;0&#39;: &#39;未启动&#39;, &#39;1&#39;: &#39;运行中&#39;, &#39;2&#39;: &#39;运行完成&#39;, &#39;3&#39;: &#39;记录不存在&#39; } return statusMap[status] }, typeFilter(status) { const statusMap = { &#39;-1&#39;: &#39;danger&#39;, &#39;0&#39;: &#39;&#39;, &#39;1&#39;: &#39;success&#39;, &#39;2&#39;: &#39;info&#39;, &#39;3&#39;: &#39;warning&#39; } return statusMap[status] } }, }  模板代码 之后在模板里使用就好啦！
+&amp;lt;el-table-column label=&amp;quot;状态&amp;quot; prop=&amp;quot;status&amp;quot; width=&amp;quot;100&amp;quot; &amp;gt; &amp;lt;template slot-scope=&amp;quot;scope&amp;quot;&amp;gt; &amp;lt;el-tag :type=&amp;quot;scope.</description>
+    </item>
     
     <item>
       <title>vue-element-ui下拉框返回对象</title>

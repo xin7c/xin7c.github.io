@@ -212,6 +212,66 @@
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/12/vue%E8%BF%87%E6%BB%A4%E5%99%A8%E4%B9%8B%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/">
+          vue过滤器之样式绑定
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-12-13T11:51:04&#43;08:00">
+        
+  十二月 13, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
+    
+  
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      
+        需求 &emsp;业务有个很常用的场景是渲染一个结果列表页时，后端返回的状态码一般只能是数字
+&emsp;但我们在table中渲染的时候只渲染数字显然并不能很直观的反馈给使用者，所以结合tag的type属性绑定，就能配合过滤器来实现颜色标识和文本映射，体验明显更好~
+vue代码 首先vue实例中定义过滤器~
+export default { // -1失败 0未启动 1运行中 2运行完成 3记录不存在 filters: { statusFilter(status) { const statusMap = { '-1': '失败', '0': '未启动', '1': '运行中', '2': '运行完成', '3': '记录不存在' } return statusMap[status] }, typeFilter(status) { const statusMap = { '-1': 'danger', '0': '', '1': 'success', '2': 'info', '3': 'warning' } return statusMap[status] } }, }  模板代码 之后在模板里使用就好啦！
+&lt;el-table-column label=&quot;状态&quot; prop=&quot;status&quot; width=&quot;100&quot; &gt; &lt;template slot-scope=&quot;scope&quot;&gt; &lt;el-tag :type=&quot;scope.
+      
+      <p>
+        <a href="https://drcoooper.gitee.io/2019/12/vue%E8%BF%87%E6%BB%A4%E5%99%A8%E4%B9%8B%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/" class="postShorten-excerpt_link link">阅读全文</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+          
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/12/vue-element-ui%E4%B8%8B%E6%8B%89%E6%A1%86%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/">
           vue-element-ui下拉框返回对象
         </a>
@@ -549,70 +609,24 @@ mvn向jmeter传递参数的实际命令： pom文件中要添加：
 </article>
 
           
-            
-  
-    
+          
+  <div class="pagination-bar">
+    <ul class="pagination">
       
         
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/10/govendor/">
-          Govendor
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2019-10-28T09:56:42&#43;08:00">
         
-  十月 28, 2019
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
-    
-  
-
+          <li class="pagination-next">
+            <a class="btn btn--default btn--small" href="https://drcoooper.gitee.io/page/2/">
+              <span>下一页</span>
+              <i class="fa fa-angle-right text-base icon-ml"></i>
+            </a>
+          </li>
+        
+      
+      <li class="pagination-number">第 1 页 共 2 页</li>
+    </ul>
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        安装govendor go get -u -v github.com/kardianos/govendor
-运行 govendor 检测安装结果
-govendor
-初始化 govendor init
-收集依赖包 go add +external
-安装部署govendor项目 进入git clone完成后的项目目录下
-govendor sync
-不过貌似也不需要，只要vendor目录在项目目录下即可
-      
-      <p>
-        <a href="https://drcoooper.gitee.io/2019/10/govendor/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
-          
 
         </section>
         <footer id="footer" class="main-content-wrap">
