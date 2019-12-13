@@ -42,7 +42,7 @@
     <title>cc的后花园</title>
 
     <link rel="icon" href="https://drcoooper.gitee.io/favicon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">    
+    
       <link rel="alternate" type="application/rss+xml" title="RSS" href="https://drcoooper.gitee.io/index.xml">
     
 
@@ -194,6 +194,75 @@
                ">
         <section class="postShorten-group main-content-wrap">
           
+          
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/12/vue-element-ui%E4%B8%8B%E6%8B%89%E6%A1%86%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/">
+          vue-element-ui下拉框返回对象
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-12-13T11:25:45&#43;08:00">
+        
+  十二月 13, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
+    
+  
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      
+        起因 &emsp;原本并不需要考虑这种形式，但是无奈和我配合的后端测开提供的接口数据shi的1B。
+需求是在一个form中的select被选择后（具体数据是一个IP地址），以popover的形式显示包含这个IP地址的对象的全部信息。众所周知，select中的option备选项是一个数组，比如我在created()阶段收到的数组元素之一如下：
+{ host_name: &quot;第一台测试服务器&quot;, host_type: 0, id: 1, location: &quot;香港&quot;, private_ip: &quot;10.78.100.5&quot;, public_ip: &quot;100.100.100.100:9527&quot; }  处理选择 &emsp;那么很显然，在option标签中，使用v-for取出item就可以渲染出这些备选项，而select组件已经为我们绑定了表单数据，在之前定义的:value=&ldquo;item.public_ip&rdquo;就代表填充到表单里的值,是我要的IP地址。
+&emsp;但是数据预览的需求是，不仅要看到IP地址，还要看到host_name、host_type、id这些json数组对象中的其他信息，
+&emsp;我们伟大的后端哥坚决不想提供映射的配置信息，所以我···用到了： :value=&ldquo;item&rdquo; 可是这里要注意，此时的item是一个对象，那么在外层的select中，要添加这个属性 value-key=&ldquo;public_ip&rdquo; 值应该是item对象里的唯一值，不然你连编译都别想过~
+&emsp;那么现在点击了选项后，select会把数据绑定在我定义的中间变量里 selected_center_or_edge_hosts &emsp;本来这个变量应该是直接在form表单变量中的数组就可以了，但是为了存下所有的item信息，并且提交表单的时候，
+后端哥也懒得处理解析json中的IP地址&mdash;总之就是让我多解析一步都不行···于是就想了一个折中的这个变量，选中的所有值都给它给它给它！
+&emsp;所以我绑定了一个方法，当选择的值发生变化，就会执行里面的动作：
+1、先给select绑定方法，传递事件： @change=&ldquo;change_selected_center_or_edge_hosts($event)&rdquo; 2、之后定义执行动作：
+change_selected_center_or_edge_hosts(e) { this.form.center_or_edge_hosts = this.selected_center_or_edge_hosts.map(x =&gt; { return x.public_ip }) // 生成数组 }  这里就很明显了，我把选中的item数组中的public_ip取出来，赋值给了form表单里的原本该传的数组。
+处理预览 &emsp;至于预览，在select外层包裹一个popover + table的组件就可以了，但是这样的话一定要记得在select上添加这个属性： slot=&ldquo;reference&rdquo; 不然你别想再看到你的select选择器了！
+提交请求后的清空处理 &emsp;当执行了onSubmit之后，正常只要将this.form置空就行了，但是由于有selected_center_or_edge_hosts的存在，
+&emsp;所以我们也要将它置空，而这个需求其实还会要求当一个form中的radio-group切换时，这个select的备选选项数组也要变，所以在切换radio的时候，它的change方法里，也要置空selected_center_or_edge_hosts，不然你休想提交正确的信息了！
+vue代码 &lt;el-form-item label=&quot;填坑的文本标题&quot; prop=&quot;center_or_edge_hosts&quot; &gt; &lt;el-popover placement=&quot;top-start&quot; trigger=&quot;hover&quot; width=&quot;800&quot; &gt; &lt;el-table :data=&quot;selected_center_or_edge_hosts&quot;&gt; &lt;el-table-column width=&quot;50&quot; property=&quot;id&quot; label=&quot;id&quot; /&gt; .
+      
+      <p>
+        <a href="https://drcoooper.gitee.io/2019/12/vue-element-ui%E4%B8%8B%E6%8B%89%E6%A1%86%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/" class="postShorten-excerpt_link link">阅读全文</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
           
             
   
