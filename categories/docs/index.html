@@ -302,11 +302,11 @@ export default { // -1失败 0未启动 1运行中 2运行完成 3记录不存�
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
       
-        起因 &emsp;原本并不需要考虑这种形式，但是无奈和我配合的后端测开提供的接口数据shi的1B。
+        起因 &emsp;原本并不需要考虑这种形式，但是无奈后端提供的接口数据并没有描述相关的配置项。
 需求是在一个form中的select被选择后（具体数据是一个IP地址），以popover的形式显示包含这个IP地址的对象的全部信息。众所周知，select中的option备选项是一个数组，比如我在created()阶段收到的数组元素之一如下：
 { host_name: &quot;第一台测试服务器&quot;, host_type: 0, id: 1, location: &quot;香港&quot;, private_ip: &quot;10.78.100.5&quot;, public_ip: &quot;100.100.100.100:9527&quot; }  处理选择 &emsp;那么很显然，在option标签中，使用v-for取出item就可以渲染出这些备选项，而select组件已经为我们绑定了表单数据，在之前定义的:value=&ldquo;item.public_ip&rdquo;就代表填充到表单里的值,是我要的IP地址。
 &emsp;但是数据预览的需求是，不仅要看到IP地址，还要看到host_name、host_type、id这些json数组对象中的其他信息，
-&emsp;我们伟大的后端哥坚决不想提供映射的配置信息，所以我···用到了： :value=&ldquo;item&rdquo; 可是这里要注意，此时的item是一个对象，那么在外层的select中，要添加这个属性 value-key=&ldquo;public_ip&rdquo; 值应该是item对象里的唯一值，不然你连编译都别想过~
+&emsp;可是并没有提供映射的配置信息，所以我···用到了： :value=&ldquo;item&rdquo; 可是这里要注意，此时的item是一个对象，那么在外层的select中，要添加这个属性 value-key=&ldquo;public_ip&rdquo; 值应该是item对象里的唯一值，不然你连编译都别想过~
 &emsp;那么现在点击了选项后，select会把数据绑定在我定义的中间变量里 selected_center_or_edge_hosts &emsp;本来这个变量应该是直接在form表单变量中的数组就可以了，但是为了存下所有的item信息，并且提交表单的时候，
 后端哥也懒得处理解析json中的IP地址&mdash;总之就是让我多解析一步都不行···
 &emsp;于是就想了一个折中的这个变量，选中的所有值都给它给它给它！
