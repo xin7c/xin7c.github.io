@@ -6,10 +6,21 @@
     <description>Recent content in Posts on cc的后花园</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 13 Dec 2019 11:51:04 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 27 Dec 2019 14:39:15 +0800</lastBuildDate>
     
 	<atom:link href="https://drcoooper.gitee.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vue Vuesocketio</title>
+      <link>https://drcoooper.gitee.io/2019/12/vue-vuesocketio/</link>
+      <pubDate>Fri, 27 Dec 2019 14:39:15 +0800</pubDate>
+      
+      <guid>https://drcoooper.gitee.io/2019/12/vue-vuesocketio/</guid>
+      <description>VueSocketio的前端实现与大坑 前端实现 首先，如果全局初始化socket实例的话，在main.js中声明即可。 以下是在具体vue组件中使用的情况：
+import VueSocketio from &#39;vue-socket.io&#39; import Vue from &#39;vue&#39; Vue.use(new VueSocketio({ debug: true, // connection: &#39;ws://10.60.82.83/lptslog&#39;, connection: req_url_us_ws + &#39;/lptslog&#39;, options: { // path: &#39;/lptslog&#39;, autoConnect: false, transports: [&#39;websocket&#39;, &#39;xhr-polling&#39;, &#39;jsonp-polling&#39;] } }))  这个Vue-Socket.io官方文档并没有提到*transports*是干啥的,它给的例子是：
+import Vue from &#39;vue&#39; import store from &#39;./store&#39; import App from &#39;./App.vue&#39; import VueSocketIO from &#39;vue-socket.io&#39; Vue.use(new VueSocketIO({ debug: true, connection: &#39;http://metinseylan.com:1992&#39;, vuex: { store, actionPrefix: &#39;SOCKET_&#39;, mutationPrefix: &#39;SOCKET_&#39; }, options: { path: &amp;quot;/my-app/&amp;quot; } //Optional options })) new Vue({ router, store, render: h =&amp;gt; h(App) }).</description>
+    </item>
     
     <item>
       <title>vue过滤器之样式绑定</title>

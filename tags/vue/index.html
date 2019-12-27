@@ -215,6 +215,64 @@
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/12/vue-vuesocketio/">
+          Vue Vuesocketio
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-12-27T14:39:15&#43;08:00">
+        
+  十二月 27, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
+    
+  
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      
+        VueSocketio的前端实现与大坑 前端实现 首先，如果全局初始化socket实例的话，在main.js中声明即可。 以下是在具体vue组件中使用的情况：
+import VueSocketio from 'vue-socket.io' import Vue from 'vue' Vue.use(new VueSocketio({ debug: true, // connection: 'ws://10.60.82.83/lptslog', connection: req_url_us_ws + '/lptslog', options: { // path: '/lptslog', autoConnect: false, transports: ['websocket', 'xhr-polling', 'jsonp-polling'] } }))  这个Vue-Socket.io官方文档并没有提到*transports*是干啥的,它给的例子是：
+import Vue from 'vue' import store from './store' import App from './App.vue' import VueSocketIO from 'vue-socket.io' Vue.use(new VueSocketIO({ debug: true, connection: 'http://metinseylan.com:1992', vuex: { store, actionPrefix: 'SOCKET_', mutationPrefix: 'SOCKET_' }, options: { path: &quot;/my-app/&quot; } //Optional options })) new Vue({ router, store, render: h =&gt; h(App) }).
+      
+      <p>
+        <a href="https://drcoooper.gitee.io/2019/12/vue-vuesocketio/" class="postShorten-excerpt_link link">阅读全文</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+              
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/12/vue%E8%BF%87%E6%BB%A4%E5%99%A8%E4%B9%8B%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/">
           vue过滤器之样式绑定
         </a>

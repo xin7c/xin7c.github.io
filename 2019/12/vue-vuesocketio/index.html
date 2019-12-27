@@ -8,41 +8,33 @@
 <meta name="generator" content="Hugo 0.59.0 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Hsu cc">
 <meta name="keywords" content="odin">
-<meta name="description" content="需求 &emsp;业务有个很常用的场景是渲染一个结果列表页时，后端返回的状态码一般只能是数字
-&emsp;但我们在table中渲染的时候只渲染数字显然并不能很直观的反馈给使用者，所以结合tag的type属性绑定，就能配合过滤器来实现颜色标识和文本映射，体验明显更好~
-vue代码 首先vue实例中定义过滤器~
-export default { // -1失败 0未启动 1运行中 2运行完成 3记录不存在 filters: { statusFilter(status) { const statusMap = { &#39;-1&#39;: &#39;失败&#39;, &#39;0&#39;: &#39;未启动&#39;, &#39;1&#39;: &#39;运行中&#39;, &#39;2&#39;: &#39;运行完成&#39;, &#39;3&#39;: &#39;记录不存在&#39; } return statusMap[status] }, typeFilter(status) { const statusMap = { &#39;-1&#39;: &#39;danger&#39;, &#39;0&#39;: &#39;&#39;, &#39;1&#39;: &#39;success&#39;, &#39;2&#39;: &#39;info&#39;, &#39;3&#39;: &#39;warning&#39; } return statusMap[status] } }, }  模板代码 之后在模板里使用就好啦！
-&lt;el-table-column label=&quot;状态&quot; prop=&quot;status&quot; width=&quot;100&quot; &gt; &lt;template slot-scope=&quot;scope&quot;&gt; &lt;el-tag :type=&quot;scope.">
+<meta name="description" content="VueSocketio的前端实现与大坑 前端实现 首先，如果全局初始化socket实例的话，在main.js中声明即可。 以下是在具体vue组件中使用的情况：
+import VueSocketio from &#39;vue-socket.io&#39; import Vue from &#39;vue&#39; Vue.use(new VueSocketio({ debug: true, // connection: &#39;ws://10.60.82.83/lptslog&#39;, connection: req_url_us_ws &#43; &#39;/lptslog&#39;, options: { // path: &#39;/lptslog&#39;, autoConnect: false, transports: [&#39;websocket&#39;, &#39;xhr-polling&#39;, &#39;jsonp-polling&#39;] } }))  这个Vue-Socket.io官方文档并没有提到*transports*是干啥的,它给的例子是：
+import Vue from &#39;vue&#39; import store from &#39;./store&#39; import App from &#39;./App.vue&#39; import VueSocketIO from &#39;vue-socket.io&#39; Vue.use(new VueSocketIO({ debug: true, connection: &#39;http://metinseylan.com:1992&#39;, vuex: { store, actionPrefix: &#39;SOCKET_&#39;, mutationPrefix: &#39;SOCKET_&#39; }, options: { path: &quot;/my-app/&quot; } //Optional options })) new Vue({ router, store, render: h =&gt; h(App) }).">
 
 
-<meta property="og:description" content="需求 &emsp;业务有个很常用的场景是渲染一个结果列表页时，后端返回的状态码一般只能是数字
-&emsp;但我们在table中渲染的时候只渲染数字显然并不能很直观的反馈给使用者，所以结合tag的type属性绑定，就能配合过滤器来实现颜色标识和文本映射，体验明显更好~
-vue代码 首先vue实例中定义过滤器~
-export default { // -1失败 0未启动 1运行中 2运行完成 3记录不存在 filters: { statusFilter(status) { const statusMap = { &#39;-1&#39;: &#39;失败&#39;, &#39;0&#39;: &#39;未启动&#39;, &#39;1&#39;: &#39;运行中&#39;, &#39;2&#39;: &#39;运行完成&#39;, &#39;3&#39;: &#39;记录不存在&#39; } return statusMap[status] }, typeFilter(status) { const statusMap = { &#39;-1&#39;: &#39;danger&#39;, &#39;0&#39;: &#39;&#39;, &#39;1&#39;: &#39;success&#39;, &#39;2&#39;: &#39;info&#39;, &#39;3&#39;: &#39;warning&#39; } return statusMap[status] } }, }  模板代码 之后在模板里使用就好啦！
-&lt;el-table-column label=&quot;状态&quot; prop=&quot;status&quot; width=&quot;100&quot; &gt; &lt;template slot-scope=&quot;scope&quot;&gt; &lt;el-tag :type=&quot;scope.">
+<meta property="og:description" content="VueSocketio的前端实现与大坑 前端实现 首先，如果全局初始化socket实例的话，在main.js中声明即可。 以下是在具体vue组件中使用的情况：
+import VueSocketio from &#39;vue-socket.io&#39; import Vue from &#39;vue&#39; Vue.use(new VueSocketio({ debug: true, // connection: &#39;ws://10.60.82.83/lptslog&#39;, connection: req_url_us_ws &#43; &#39;/lptslog&#39;, options: { // path: &#39;/lptslog&#39;, autoConnect: false, transports: [&#39;websocket&#39;, &#39;xhr-polling&#39;, &#39;jsonp-polling&#39;] } }))  这个Vue-Socket.io官方文档并没有提到*transports*是干啥的,它给的例子是：
+import Vue from &#39;vue&#39; import store from &#39;./store&#39; import App from &#39;./App.vue&#39; import VueSocketIO from &#39;vue-socket.io&#39; Vue.use(new VueSocketIO({ debug: true, connection: &#39;http://metinseylan.com:1992&#39;, vuex: { store, actionPrefix: &#39;SOCKET_&#39;, mutationPrefix: &#39;SOCKET_&#39; }, options: { path: &quot;/my-app/&quot; } //Optional options })) new Vue({ router, store, render: h =&gt; h(App) }).">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue过滤器之样式绑定">
-<meta name="twitter:title" content="vue过滤器之样式绑定">
-<meta property="og:url" content="https://drcoooper.gitee.io/2019/12/vue%E8%BF%87%E6%BB%A4%E5%99%A8%E4%B9%8B%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/">
-<meta property="twitter:url" content="https://drcoooper.gitee.io/2019/12/vue%E8%BF%87%E6%BB%A4%E5%99%A8%E4%B9%8B%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/">
+<meta property="og:title" content="Vue Vuesocketio">
+<meta name="twitter:title" content="Vue Vuesocketio">
+<meta property="og:url" content="https://drcoooper.gitee.io/2019/12/vue-vuesocketio/">
+<meta property="twitter:url" content="https://drcoooper.gitee.io/2019/12/vue-vuesocketio/">
 <meta property="og:site_name" content="cc的后花园">
-<meta property="og:description" content="需求 &emsp;业务有个很常用的场景是渲染一个结果列表页时，后端返回的状态码一般只能是数字
-&emsp;但我们在table中渲染的时候只渲染数字显然并不能很直观的反馈给使用者，所以结合tag的type属性绑定，就能配合过滤器来实现颜色标识和文本映射，体验明显更好~
-vue代码 首先vue实例中定义过滤器~
-export default { // -1失败 0未启动 1运行中 2运行完成 3记录不存在 filters: { statusFilter(status) { const statusMap = { &#39;-1&#39;: &#39;失败&#39;, &#39;0&#39;: &#39;未启动&#39;, &#39;1&#39;: &#39;运行中&#39;, &#39;2&#39;: &#39;运行完成&#39;, &#39;3&#39;: &#39;记录不存在&#39; } return statusMap[status] }, typeFilter(status) { const statusMap = { &#39;-1&#39;: &#39;danger&#39;, &#39;0&#39;: &#39;&#39;, &#39;1&#39;: &#39;success&#39;, &#39;2&#39;: &#39;info&#39;, &#39;3&#39;: &#39;warning&#39; } return statusMap[status] } }, }  模板代码 之后在模板里使用就好啦！
-&lt;el-table-column label=&quot;状态&quot; prop=&quot;status&quot; width=&quot;100&quot; &gt; &lt;template slot-scope=&quot;scope&quot;&gt; &lt;el-tag :type=&quot;scope.">
-<meta name="twitter:description" content="需求 &emsp;业务有个很常用的场景是渲染一个结果列表页时，后端返回的状态码一般只能是数字
-&emsp;但我们在table中渲染的时候只渲染数字显然并不能很直观的反馈给使用者，所以结合tag的type属性绑定，就能配合过滤器来实现颜色标识和文本映射，体验明显更好~
-vue代码 首先vue实例中定义过滤器~
-export default { // -1失败 0未启动 1运行中 2运行完成 3记录不存在 filters: { statusFilter(status) { const statusMap = { &#39;-1&#39;: &#39;失败&#39;, &#39;0&#39;: &#39;未启动&#39;, &#39;1&#39;: &#39;运行中&#39;, &#39;2&#39;: &#39;运行完成&#39;, &#39;3&#39;: &#39;记录不存在&#39; } return statusMap[status] }, typeFilter(status) { const statusMap = { &#39;-1&#39;: &#39;danger&#39;, &#39;0&#39;: &#39;&#39;, &#39;1&#39;: &#39;success&#39;, &#39;2&#39;: &#39;info&#39;, &#39;3&#39;: &#39;warning&#39; } return statusMap[status] } }, }  模板代码 之后在模板里使用就好啦！
-&lt;el-table-column label=&quot;状态&quot; prop=&quot;status&quot; width=&quot;100&quot; &gt; &lt;template slot-scope=&quot;scope&quot;&gt; &lt;el-tag :type=&quot;scope.">
+<meta property="og:description" content="VueSocketio的前端实现与大坑 前端实现 首先，如果全局初始化socket实例的话，在main.js中声明即可。 以下是在具体vue组件中使用的情况：
+import VueSocketio from &#39;vue-socket.io&#39; import Vue from &#39;vue&#39; Vue.use(new VueSocketio({ debug: true, // connection: &#39;ws://10.60.82.83/lptslog&#39;, connection: req_url_us_ws &#43; &#39;/lptslog&#39;, options: { // path: &#39;/lptslog&#39;, autoConnect: false, transports: [&#39;websocket&#39;, &#39;xhr-polling&#39;, &#39;jsonp-polling&#39;] } }))  这个Vue-Socket.io官方文档并没有提到*transports*是干啥的,它给的例子是：
+import Vue from &#39;vue&#39; import store from &#39;./store&#39; import App from &#39;./App.vue&#39; import VueSocketIO from &#39;vue-socket.io&#39; Vue.use(new VueSocketIO({ debug: true, connection: &#39;http://metinseylan.com:1992&#39;, vuex: { store, actionPrefix: &#39;SOCKET_&#39;, mutationPrefix: &#39;SOCKET_&#39; }, options: { path: &quot;/my-app/&quot; } //Optional options })) new Vue({ router, store, render: h =&gt; h(App) }).">
+<meta name="twitter:description" content="VueSocketio的前端实现与大坑 前端实现 首先，如果全局初始化socket实例的话，在main.js中声明即可。 以下是在具体vue组件中使用的情况：
+import VueSocketio from &#39;vue-socket.io&#39; import Vue from &#39;vue&#39; Vue.use(new VueSocketio({ debug: true, // connection: &#39;ws://10.60.82.83/lptslog&#39;, connection: req_url_us_ws &#43; &#39;/lptslog&#39;, options: { // path: &#39;/lptslog&#39;, autoConnect: false, transports: [&#39;websocket&#39;, &#39;xhr-polling&#39;, &#39;jsonp-polling&#39;] } }))  这个Vue-Socket.io官方文档并没有提到*transports*是干啥的,它给的例子是：
+import Vue from &#39;vue&#39; import store from &#39;./store&#39; import App from &#39;./App.vue&#39; import VueSocketIO from &#39;vue-socket.io&#39; Vue.use(new VueSocketIO({ debug: true, connection: &#39;http://metinseylan.com:1992&#39;, vuex: { store, actionPrefix: &#39;SOCKET_&#39;, mutationPrefix: &#39;SOCKET_&#39; }, options: { path: &quot;/my-app/&quot; } //Optional options })) new Vue({ router, store, render: h =&gt; h(App) }).">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-12-13T11:51:04">
+    <meta property="article:published_time" content="2019-12-27T14:39:15">
   
   
-    <meta property="article:modified_time" content="2019-12-13T11:51:04">
+    <meta property="article:modified_time" content="2019-12-27T14:39:15">
   
   
   
@@ -75,14 +67,14 @@ export default { // -1失败 0未启动 1运行中 2运行完成 3记录不存�
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=640">
 
 
-    <title>vue过滤器之样式绑定</title>
+    <title>Vue Vuesocketio</title>
 
     <link rel="icon" href="https://drcoooper.gitee.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://drcoooper.gitee.io/2019/12/vue%E8%BF%87%E6%BB%A4%E5%99%A8%E4%B9%8B%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/">
+    <link rel="canonical" href="https://drcoooper.gitee.io/2019/12/vue-vuesocketio/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -232,15 +224,15 @@ export default { // -1失败 0未启动 1运行中 2运行完成 3记录不存�
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      vue过滤器之样式绑定
+      Vue Vuesocketio
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-12-13T11:51:04&#43;08:00">
+      <time itemprop="datePublished" datetime="2019-12-27T14:39:15&#43;08:00">
         
-  十二月 13, 2019
+  十二月 27, 2019
 
       </time>
     
@@ -261,57 +253,203 @@ export default { // -1失败 0未启动 1运行中 2运行完成 3记录不存�
             <div class="main-content-wrap">
               
 
-<h3 id="需求">需求</h3>
+<h1 id="vuesocketio的前端实现与大坑">VueSocketio的前端实现与大坑</h1>
 
-<p>&emsp;业务有个很常用的场景是渲染一个结果列表页时，后端返回的状态码一般只能是数字<br />
-&emsp;但我们在table中渲染的时候只渲染数字显然并不能很直观的反馈给使用者，所以结合tag的type属性绑定，就能配合过滤器来实现颜色标识和文本映射，体验明显更好~</p>
+<h3 id="前端实现">前端实现</h3>
 
-<h3 id="vue代码">vue代码</h3>
+<p>首先，如果全局初始化socket实例的话，在main.js中声明即可。
+以下是在具体vue组件中使用的情况：</p>
 
-<p>首先vue实例中定义过滤器~</p>
+<pre><code class="language-javascript">import VueSocketio from 'vue-socket.io'
+import Vue from 'vue'
 
-<pre><code class="language-javascript">export default {
-  // -1失败 0未启动 1运行中 2运行完成 3记录不存在
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        '-1': '失败',
-        '0': '未启动',
-        '1': '运行中',
-        '2': '运行完成',
-        '3': '记录不存在'
-      }
-      return statusMap[status]
-    },
-    typeFilter(status) {
-      const statusMap = {
-        '-1': 'danger',
-        '0': '',
-        '1': 'success',
-        '2': 'info',
-        '3': 'warning'
-      }
-      return statusMap[status]
-    }
-  },
+Vue.use(new VueSocketio({
+  debug: true,
+  // connection: 'ws://10.60.82.83/lptslog',
+  connection: req_url_us_ws + '/lptslog',
+  options: {
+    // path: '/lptslog',
+    autoConnect: false,
+    transports: ['websocket', 'xhr-polling', 'jsonp-polling']
   }
+}))
 </code></pre>
 
-<h3 id="模板代码">模板代码</h3>
+<p>这个<a href="https://github.com/MetinSeylan/Vue-Socket.io">Vue-Socket.io官方文档</a>并没有提到*transports*是干啥的,它给的例子是：</p>
 
-<p>之后在模板里使用就好啦！</p>
+<pre><code class="language-javascript">import Vue from 'vue'
+import store from './store'
+import App from './App.vue'
+import VueSocketIO from 'vue-socket.io'
 
-<pre><code class="language-javascript">      &lt;el-table-column
-        label=&quot;状态&quot;
-        prop=&quot;status&quot;
-        width=&quot;100&quot;
-      &gt;
-        &lt;template slot-scope=&quot;scope&quot;&gt;
-          &lt;el-tag :type=&quot;scope.row.status | typeFilter&quot;&gt;
-            {{ scope.row.status | statusFilter }}
-          &lt;/el-tag&gt;
-        &lt;/template&gt;
-      &lt;/el-table-column&gt;
+Vue.use(new VueSocketIO({
+    debug: true,
+    connection: 'http://metinseylan.com:1992',
+    vuex: {
+        store,
+        actionPrefix: 'SOCKET_',
+        mutationPrefix: 'SOCKET_'
+    },
+    options: { path: &quot;/my-app/&quot; } //Optional options
+}))
+
+new Vue({
+    router,
+    store,
+    render: h =&gt; h(App)
+}).$mount('#app')
+</code></pre>
+
+<p>你说说看，哪里提到*transports*了？<br />
+而我本地的vue项目启动后，也可以和flask后端的socketio正常连接和通信，然而当我部署到测试服务器的docker中后，完全不能够建立连接，一直在报400 Bad Request,我尝试调整nginx无数次，但是完全不好使，直到无意间加上了这个*transports*参数！！！<br />
+原来这个库依赖SocketIO，而这个SocketIO实例化是需要*transports*的！！！
+<a href="https://socket.io/docs/client-api/">https://socket.io/docs/client-api/</a></p>
+
+<pre><code class="language-javascript">// With websocket transport only
+// By default, a long-polling connection is established first, then upgraded to “better” transports (like WebSocket). If you like to live dangerously, this part can be skipped:
+
+const socket = io({
+  transports: ['websocket']
+});
+
+// on reconnection, reset the transports option, as the Websocket
+// connection may have failed (caused by proxy, firewall, browser, ...)
+socket.on('reconnect_attempt', () =&gt; {
+  socket.io.opts.transports = ['polling', 'websocket'];
+});
+</code></pre>
+
+<p>这尼玛不写明白了谁知道啊！！！</p>
+
+<h3 id="关于nginx配置和dockerfile">关于nginx配置和dockerfile</h3>
+
+<p>vue项目部署到docker上时，为了保险起见和能够灵活配置，步骤如下：</p>
+
+<pre><code class="language-nginx">server {
+    listen       80;
+    server_name  localhost;
+
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+
+        try_files $uri $uri/ /index.html;
+        # add_header Access-Control-Allow-Origin &quot;*&quot;;
+        # proxy_http_version 1.1;
+        # proxy_set_header Upgrade $http_upgrade;
+        # proxy_set_header Connection &quot;upgrade&quot;;
+    }
+
+    #error_page  404              /404.html;
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+
+    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+    #
+    #location ~ \.php$ {
+    #    proxy_pass   http://127.0.0.1;
+    #}
+
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    #
+    #location ~ \.php$ {
+    #    root           html;
+    #    fastcgi_pass   127.0.0.1:9000;
+    #    fastcgi_index  index.php;
+    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+    #    include        fastcgi_params;
+    #}
+
+    # deny access to .htaccess files, if Apache's document root
+    # concurs with nginx's one
+    #
+    #location ~ /\.ht {
+    #    deny  all;
+    #}
+}
+</code></pre>
+
+<p>其实很简单，就是从docker官网nginx镜像中扒一个基础配置出来，每次部署docker时挂载进去，dockerfile如下：</p>
+
+<pre><code class="language-conf">FROM daocloud.io/nginx
+COPY dist/ /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]
+</code></pre>
+
+<p>在服务器部署时使用的shell脚本如下：</p>
+
+<pre><code class="language-sh">updatedocker.sh
+#!/bin/bash
+echo '停止容器 - 删除容器 - 删除镜像'
+docker stop dist_nginx_1 &amp;&amp; docker rm dist_nginx_1 &amp;&amp; docker rmi dist_nginx
+echo '构建容器 - 启动容器'
+docker build -t dist_nginx . &amp;&amp; docker run -d -p 80:80 -v /home/odindist/default.conf:/etc/nginx/conf.d/default.conf --name dist_nginx_1 dist_nginx
+</code></pre>
+
+<p>本地vue项目build后在odindist目录(git上传到服务器的目录)下执行脚本：</p>
+
+<pre><code class="language-sh">cp -rf ../dist/ ./dist/ &amp;&amp; cp -f ../src/assets/favicon.ico ./dist/favicon.ico
+</code></pre>
+
+<p>用来复制dist文件和更新网站ico</p>
+
+<h3 id="flask部署dockerfile">flask部署dockerfile</h3>
+
+<pre><code class="language-docker">FROM base_docker:v1
+MAINTAINER xxx@xxx.com
+COPY . /home/odin/
+WORKDIR /home/odin
+RUN pip install -r requirements.txt
+EXPOSE 8888
+ENV FLASK_CONFIG prod
+ENTRYPOINT [&quot;gunicorn&quot;,&quot;--config&quot;,&quot;/home/odin/gunicorn_config.py&quot;,&quot;manage:app&quot;]
+</code></pre>
+
+<h3 id="flask-socket-io">flask-socket.io</h3>
+
+<pre><code class="language-python"># odin-ws/raw/master/application/__init__.py
+import os
+import logging
+from flask import Flask
+from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
+from flask_socketio import SocketIO
+# from flask_sockets import Sockets
+from utils.log import MyLogging
+import eventlet
+# eventlet.monkey_patch()
+
+app = Flask(__name__)
+app.config.from_object(&quot;config.{}&quot;.format(os.getenv('FLASK_CONFIG') or &quot;dev&quot;))
+db = SQLAlchemy(app)
+CORS(app)
+socketio = SocketIO(app, cors_allowed_origins='*', async_mode='eventlet', engineio_logger=True)
+
+# 生成自定义日志对象
+my_logging = MyLogging()
+stdout_handler = my_logging.get_stdout_handler()
+file_handler_info = my_logging.get_file_handler(&quot;log/app_output_info.log&quot;, logging.INFO)
+file_handler_error = my_logging.get_file_handler(&quot;log/app_output_error.log&quot;, logging.ERROR)
+file_handler_warning = my_logging.get_file_handler(&quot;log/app_output_warning.log&quot;, logging.WARNING)
+
+# 清空默认日志对象
+app.logger.handlers.clear()
+# 设置全局日志等级
+app.logger.setLevel(logging.DEBUG)
+# 添加自定义日志对象
+app.logger.addHandler(stdout_handler)
+app.logger.addHandler(file_handler_info)
+app.logger.addHandler(file_handler_error)
+app.logger.addHandler(file_handler_warning)
 </code></pre>
 
               
@@ -340,7 +478,7 @@ export default { // -1失败 0未启动 1运行中 2运行完成 3记录不存�
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2019/12/vue-vuesocketio/" data-tooltip="Vue Vuesocketio">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -348,7 +486,7 @@ export default { // -1失败 0未启动 1运行中 2运行完成 3记录不存�
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2019/12/vue-element-ui%E4%B8%8B%E6%8B%89%E6%A1%86%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/" data-tooltip="vue-element-ui下拉框返回对象">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2019/12/vue%E8%BF%87%E6%BB%A4%E5%99%A8%E4%B9%8B%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/" data-tooltip="vue过滤器之样式绑定">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -408,7 +546,7 @@ export default { // -1失败 0未启动 1运行中 2运行完成 3记录不存�
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2019/12/vue-vuesocketio/" data-tooltip="Vue Vuesocketio">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -416,7 +554,7 @@ export default { // -1失败 0未启动 1运行中 2运行完成 3记录不存�
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2019/12/vue-element-ui%E4%B8%8B%E6%8B%89%E6%A1%86%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/" data-tooltip="vue-element-ui下拉框返回对象">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2019/12/vue%E8%BF%87%E6%BB%A4%E5%99%A8%E4%B9%8B%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/" data-tooltip="vue过滤器之样式绑定">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -544,9 +682,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/drcoooper.gitee.io\/2019\/12\/vue%E8%BF%87%E6%BB%A4%E5%99%A8%E4%B9%8B%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A\/';
+          this.page.url = 'https:\/\/drcoooper.gitee.io\/2019\/12\/vue-vuesocketio\/';
           
-            this.page.identifier = '\/2019\/12\/vue%E8%BF%87%E6%BB%A4%E5%99%A8%E4%B9%8B%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A\/'
+            this.page.identifier = '\/2019\/12\/vue-vuesocketio\/'
           
         };
         (function() {
