@@ -13,10 +13,10 @@
 
 <meta property="og:description" content="Hugo tranquilpeak theme demo">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Posts">
-<meta name="twitter:title" content="Posts">
-<meta property="og:url" content="https://drcoooper.gitee.io/post/">
-<meta property="twitter:url" content="https://drcoooper.gitee.io/post/">
+<meta property="og:title" content="subcategory">
+<meta name="twitter:title" content="subcategory">
+<meta property="og:url" content="https://drcoooper.gitee.io/categories/subcategory/">
+<meta property="twitter:url" content="https://drcoooper.gitee.io/categories/subcategory/">
 <meta property="og:site_name" content="cc的后花园">
 <meta property="og:description" content="Hugo tranquilpeak theme demo">
 <meta name="twitter:description" content="Hugo tranquilpeak theme demo">
@@ -39,16 +39,16 @@
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=640">
 
 
-    <title>Posts</title>
+    <title>subcategory</title>
 
     <link rel="icon" href="https://drcoooper.gitee.io/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://drcoooper.gitee.io/post/index.xml">
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://drcoooper.gitee.io/categories/subcategory/index.xml">
     
 
     
 
-    <link rel="canonical" href="https://drcoooper.gitee.io/post/">
+    <link rel="canonical" href="https://drcoooper.gitee.io/categories/subcategory/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -187,16 +187,18 @@
 </nav>
 
       
+        
 
+      
       <div id="main" data-behavior="1"
         class="
                hasCoverMetaIn
                ">
-        <section class="postShorten-group main-content-wrap">
-          
-          
-          
+        
+          <section class="postShorten-group main-content-wrap">
             
+            
+              
   
     
       
@@ -213,16 +215,16 @@
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/10/jenkins/">
-          Jenkins
+        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/12/h5ai/">
+          H5ai
         </a>
       </h1>
       
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-10-28T10:13:54&#43;08:00">
+      <time itemprop="datePublished" datetime="2019-12-30T10:33:30&#43;08:00">
         
-  十月 28, 2019
+  十二月 30, 2019
 
       </time>
     
@@ -231,7 +233,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/category">category</a>, 
+    
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/subcategory">subcategory</a>
     
   
 
@@ -240,12 +244,15 @@
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
       
-        重要命令 解决报告样式问题执行： System.setProperty(&ldquo;hudson.model.DirectoryBrowserSupport.CSP&rdquo;, &ldquo;&rdquo;) println(Jenkins.instance.pluginManager.plugins)
-mvn向jmeter传递参数的实际命令： pom文件中要添加：
-&lt;!--设置报告生成的路径--&gt; &lt;properties&gt; &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt; &lt;jmeter.result.jtl.dir&gt;${project.build.directory}\jmeter\results&lt;/jmeter.result.jtl.dir&gt; &lt;jmeter.result.html.dir&gt;${project.build.directory}\jmeter\html&lt;/jmeter.result.html.dir&gt; &lt;performancetest.threadCount&gt;1&lt;/performancetest.threadCount&gt; &lt;performancetest.loopCount&gt;1&lt;/performancetest.loopCount&gt; &lt;performancetest.key&gt;1&lt;/performancetest.key&gt; &lt;/properties&gt;  &lt;!--执行配置文件--&gt; &lt;profiles&gt; &lt;profile&gt; &lt;id&gt;jenkins&lt;/id&gt; &lt;!--&lt;properties&gt;--&gt; &lt;!--&lt;performancetest.threadCount&gt;1&lt;/performancetest.threadCount&gt;--&gt; &lt;!--&lt;performancetest.loopCount&gt;1&lt;/performancetest.loopCount&gt;--&gt; &lt;!--&lt;performancetest.key&gt;1&lt;/performancetest.key&gt;--&gt; &lt;!--&lt;/properties&gt;--&gt; &lt;/profile&gt; &lt;/profiles&gt; &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;com.lazerycode.jmeter&lt;/groupId&gt; &lt;artifactId&gt;jmeter-maven-plugin&lt;/artifactId&gt; &lt;version&gt;2.5.0&lt;/version&gt; &lt;configuration&gt; &lt;!-- 设置jmeter生成结果文件格式--&gt; &lt;resultsFileFormat&gt;xml&lt;/resultsFileFormat&gt; &lt;!-- 设置忽略失败是否停止运行--&gt; &lt;ignoreResultFailures&gt;true&lt;/ignoreResultFailures&gt; &lt;!--设置结果是否有时间戳--&gt; &lt;testResultsTimestamp&gt;true&lt;/testResultsTimestamp&gt; &lt;testFilesIncluded&gt; &lt;!-- //指定运行的jmeter脚本 --&gt; &lt;jMeterTestFile&gt;*.jmx&lt;/jMeterTestFile&gt; &lt;/testFilesIncluded&gt; &lt;!-- 指定jtl生成目录 --&gt; &lt;resultsDirectory&gt;${jmeter.result.jtl.dir}&lt;/resultsDirectory&gt; &lt;propertiesUser&gt; &lt;threadCount&gt;${performancetest.threadCount}&lt;/threadCount&gt; &lt;loopCount&gt;${performancetest.loopCount}&lt;/loopCount&gt; &lt;key&gt;${performancetest.key}&lt;/key&gt; &lt;/propertiesUser&gt; &lt;/configuration&gt; &lt;executions&gt; &lt;execution&gt; &lt;id&gt;jmeter-tests&lt;/id&gt; &lt;!--脚本所在的文件夹 --&gt; &lt;goals&gt; &lt;goal&gt;jmeter&lt;/goal&gt; &lt;/goals&gt; &lt;/execution&gt; &lt;/executions&gt; &lt;/plugin&gt; &lt;plugin&gt; &lt;!
+        h5ai安装和配置 h5ai官网
+h5ai Github
+环境要求  nginx或者Apache，我的环境是mac + nginx； php，mac用户直接brew install php即可； 目录结构如下
+DOC_ROOT ├─ _h5ai ├─ your files └─ and folders   ### nginx配置文件 mac本机用brew安装nginx后，默认配置文件地址为：
+/usr/local/etc/nginx/nginx.conf  修改默认配置：
+#user nobody; worker_processes 1; #error_log logs/error.log; #error_log logs/error.log notice; #error_log logs/error.log info; #pid logs/nginx.pid; events { worker_connections 1024; } http { include mime.types; default_type application/octet-stream; #log_format main '$remote_addr - $remote_user [$time_local] &quot;$request&quot; ' # '$status $body_bytes_sent &quot;$http_referer&quot; ' # '&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;'; #access_log logs/access.
       
       <p>
-        <a href="https://drcoooper.gitee.io/2019/10/jenkins/" class="postShorten-excerpt_link link">阅读全文</a>
+        <a href="https://drcoooper.gitee.io/2019/12/h5ai/" class="postShorten-excerpt_link link">阅读全文</a>
         
       </p>
     </div>
@@ -253,146 +260,11 @@ mvn向jmeter传递参数的实际命令： pom文件中要添加：
   
 </article>
 
-          
             
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/10/odin/">
-          Odin
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2019-10-28T10:11:51&#43;08:00">
-        
-  十月 28, 2019
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-         起源 Odin平台起源于cm测试团队的不开源行为 三人分工为1前端，2后端在原来基础上进行了升级。 本项目基于vue-element-admin二次开发，先后破解了登录权限、侧边栏、axios请求拦截等操作。 
-      
-      <p>
-        <a href="https://drcoooper.gitee.io/2019/10/odin/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
             
-  
-    
-      
+
+          </section>
         
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/10/govendor/">
-          Govendor
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2019-10-28T09:56:42&#43;08:00">
-        
-  十月 28, 2019
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        安装govendor go get -u -v github.com/kardianos/govendor
-运行 govendor 检测安装结果
-govendor
-初始化 govendor init
-收集依赖包 go add +external
-安装部署govendor项目 进入git clone完成后的项目目录下
-govendor sync
-不过貌似也不需要，只要vendor目录在项目目录下即可
-      
-      <p>
-        <a href="https://drcoooper.gitee.io/2019/10/govendor/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
-          
-  <div class="pagination-bar">
-    <ul class="pagination">
-      
-        
-          <li class="pagination-prev">
-            <a class="btn btn--default btn--small" href="https://drcoooper.gitee.io/post/">
-              <i class="fa fa-angle-left text-base icon-mr"></i>
-              <span>上一页</span>
-            </a>
-          </li>
-        
-        
-      
-      <li class="pagination-number">第 2 页 共 2 页</li>
-    </ul>
-  </div>
-
-
-        </section>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2019 Hsu cc. All Rights Reserved

@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.59.0 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Hsu cc">
+<meta name="keywords" content="h5ai">
+<meta name="description" content="h5ai安装和配置 h5ai官网
+h5ai Github
+环境要求  nginx或者Apache，我的环境是mac &#43; nginx； php，mac用户直接brew install php即可； 目录结构如下
+DOC_ROOT ├─ _h5ai ├─ your files └─ and folders   ### nginx配置文件 mac本机用brew安装nginx后，默认配置文件地址为：
+/usr/local/etc/nginx/nginx.conf  修改默认配置：
+#user nobody; worker_processes 1; #error_log logs/error.log; #error_log logs/error.log notice; #error_log logs/error.log info; #pid logs/nginx.pid; events { worker_connections 1024; } http { include mime.types; default_type application/octet-stream; #log_format main &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39; # &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39; # &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;; #access_log logs/access.">
+
+
+<meta property="og:description" content="h5ai安装和配置 h5ai官网
+h5ai Github
+环境要求  nginx或者Apache，我的环境是mac &#43; nginx； php，mac用户直接brew install php即可； 目录结构如下
+DOC_ROOT ├─ _h5ai ├─ your files └─ and folders   ### nginx配置文件 mac本机用brew安装nginx后，默认配置文件地址为：
+/usr/local/etc/nginx/nginx.conf  修改默认配置：
+#user nobody; worker_processes 1; #error_log logs/error.log; #error_log logs/error.log notice; #error_log logs/error.log info; #pid logs/nginx.pid; events { worker_connections 1024; } http { include mime.types; default_type application/octet-stream; #log_format main &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39; # &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39; # &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;; #access_log logs/access.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="H5ai">
+<meta name="twitter:title" content="H5ai">
+<meta property="og:url" content="https://drcoooper.gitee.io/2019/12/h5ai/">
+<meta property="twitter:url" content="https://drcoooper.gitee.io/2019/12/h5ai/">
+<meta property="og:site_name" content="cc的后花园">
+<meta property="og:description" content="h5ai安装和配置 h5ai官网
+h5ai Github
+环境要求  nginx或者Apache，我的环境是mac &#43; nginx； php，mac用户直接brew install php即可； 目录结构如下
+DOC_ROOT ├─ _h5ai ├─ your files └─ and folders   ### nginx配置文件 mac本机用brew安装nginx后，默认配置文件地址为：
+/usr/local/etc/nginx/nginx.conf  修改默认配置：
+#user nobody; worker_processes 1; #error_log logs/error.log; #error_log logs/error.log notice; #error_log logs/error.log info; #pid logs/nginx.pid; events { worker_connections 1024; } http { include mime.types; default_type application/octet-stream; #log_format main &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39; # &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39; # &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;; #access_log logs/access.">
+<meta name="twitter:description" content="h5ai安装和配置 h5ai官网
+h5ai Github
+环境要求  nginx或者Apache，我的环境是mac &#43; nginx； php，mac用户直接brew install php即可； 目录结构如下
+DOC_ROOT ├─ _h5ai ├─ your files └─ and folders   ### nginx配置文件 mac本机用brew安装nginx后，默认配置文件地址为：
+/usr/local/etc/nginx/nginx.conf  修改默认配置：
+#user nobody; worker_processes 1; #error_log logs/error.log; #error_log logs/error.log notice; #error_log logs/error.log info; #pid logs/nginx.pid; events { worker_connections 1024; } http { include mime.types; default_type application/octet-stream; #log_format main &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39; # &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39; # &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;; #access_log logs/access.">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-12-30T10:33:30">
+  
+  
+    <meta property="article:modified_time" content="2019-12-30T10:33:30">
+  
+  
+  
+    
+      <meta property="article:section" content="category">
+    
+      <meta property="article:section" content="subcategory">
+    
+  
+  
+    
+      <meta property="article:tag" content="docs">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=640">
+
+
+    <title>H5ai</title>
+
+    <link rel="icon" href="https://drcoooper.gitee.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://drcoooper.gitee.io/2019/12/h5ai/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://drcoooper.gitee.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://drcoooper.gitee.io/">cc的后花园</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://drcoooper.gitee.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://drcoooper.gitee.io/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">Hsu cc</h4>
+        
+          <h5 class="sidebar-profile-bio">参见你们的领主 <strong>cc</strong></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://drcoooper.gitee.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://drcoooper.gitee.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://drcoooper.gitee.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://drcoooper.gitee.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://drcoooper.gitee.io/#docs">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-anchor"></i>
+      
+      <span class="sidebar-button-desc">Docs</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://drcoooper.gitee.io/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/psf/requests" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      H5ai
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-12-30T10:33:30&#43;08:00">
+        
+  十二月 30, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/category">category</a>, 
+    
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/subcategory">subcategory</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<h1 id="h5ai安装和配置">h5ai安装和配置</h1>
+
+<p><a href="https://larsjung.de/h5ai/">h5ai官网</a><br />
+<a href="https://github.com/lrsjng/h5ai">h5ai Github</a></p>
+
+<h3 id="环境要求">环境要求</h3>
+
+<ul>
+<li>nginx或者Apache，我的环境是mac + nginx；</li>
+<li>php，mac用户直接brew install php即可；</li>
+
+<li><p>目录结构如下</p>
+
+<pre><code class="language-shell">DOC_ROOT
+├─ _h5ai
+├─ your files
+└─ and folders
+</code></pre></li>
+</ul>
+
+<p>### nginx配置文件
+ mac本机用brew安装nginx后，默认配置文件地址为：</p>
+
+<pre><code class="language-shell"> /usr/local/etc/nginx/nginx.conf
+</code></pre>
+
+<p>修改默认配置：</p>
+
+<pre><code class="language-nginx">
+#user  nobody;
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    #log_format  main  '$remote_addr - $remote_user [$time_local] &quot;$request&quot; '
+    #                  '$status $body_bytes_sent &quot;$http_referer&quot; '
+    #                  '&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;';
+
+    #access_log  logs/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    server {
+        listen       8080;
+        server_name  localhost;
+        root   html;
+        index  index.html  index.php  /_h5ai/public/index.php;
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        #location / {
+        #    root   html;
+        #    index  index.html index.htm;
+        #}
+        location ~ \.php(.*)$ {
+        #location ~ [^/]\.php(/|$) {
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        fastcgi_split_path_info  ^((?U).+\.php)(/?.+)$;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        fastcgi_param  PATH_INFO  $fastcgi_path_info;
+        fastcgi_param  PATH_TRANSLATED  $document_root$fastcgi_path_info;
+        include        fastcgi_params;
+    }
+
+        #error_page  404              /404.html;
+
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+
+        # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+        #
+        #location ~ \.php$ {
+        #    proxy_pass   http://127.0.0.1;
+        #}
+
+        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+        #
+        #location ~ \.php$ {
+        #    root           html;
+        #    fastcgi_pass   127.0.0.1:9000;
+        #    fastcgi_index  index.php;
+        #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+        #    include        fastcgi_params;
+        #}
+
+        # deny access to .htaccess files, if Apache's document root
+        # concurs with nginx's one
+        #
+        #location ~ /\.ht {
+        #    deny  all;
+        #}
+    }
+
+
+    # another virtual host using mix of IP-, name-, and port-based configuration
+    #
+    #server {
+    #    listen       8000;
+    #    listen       somename:8080;
+    #    server_name  somename  alias  another.alias;
+
+    #    location / {
+    #        root   html;
+    #        index  index.html index.htm;
+    #    }
+    #}
+
+
+    # HTTPS server
+    #
+    #server {
+    #    listen       443 ssl;
+    #    server_name  localhost;
+
+    #    ssl_certificate      cert.pem;
+    #    ssl_certificate_key  cert.key;
+
+    #    ssl_session_cache    shared:SSL:1m;
+    #    ssl_session_timeout  5m;
+
+    #    ssl_ciphers  HIGH:!aNULL:!MD5;
+    #    ssl_prefer_server_ciphers  on;
+
+    #    location / {
+    #        root   html;
+    #        index  index.html index.htm;
+    #    }
+    #}
+    include servers/*;
+}
+
+</code></pre>
+
+<p>其实都是默认的，只是添加了server块里的</p>
+
+<pre><code class="language-nginx">index  index.html  index.php  /_h5ai/public/index.php;
+</code></pre>
+
+<p>下面添加了一个location：</p>
+
+<pre><code class="language-nginx">location ~ \.php(.*)$ {
+       #location ~ [^/]\.php(/|$) {
+       fastcgi_pass   127.0.0.1:9000;
+       fastcgi_index  index.php;
+       fastcgi_split_path_info  ^((?U).+\.php)(/?.+)$;
+       fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+       fastcgi_param  PATH_INFO  $fastcgi_path_info;
+       fastcgi_param  PATH_TRANSLATED  $document_root$fastcgi_path_info;
+       include        fastcgi_params;
+   }
+</code></pre>
+
+<p>因为如果不对php文件类型做处理，你打开<a href="http://localhost:8080的时候会一直下载php文件···">http://localhost:8080的时候会一直下载php文件···</a></p>
+
+<h3 id="其他配置">其他配置</h3>
+
+<p>关于其他配置，查看官方文档就好了，应该只是修改json之类的配置文件即可啦~</p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://drcoooper.gitee.io/tags/docs/">docs</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2019/12/vue-vuesocketio/" data-tooltip="Vue Vuesocketio">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Hsu cc. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2019/12/vue-vuesocketio/" data-tooltip="Vue Vuesocketio">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">Hsu cc</h4>
+    
+      <div id="about-card-bio">参见你们的领主 <strong>cc</strong></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        打杂的
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        北京
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://drcoooper.gitee.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://drcoooper.gitee.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/drcoooper.gitee.io\/2019\/12\/h5ai\/';
+          
+            this.page.identifier = '\/2019\/12\/h5ai\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

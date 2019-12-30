@@ -6,10 +6,24 @@
     <description>Recent content in docs on cc的后花园</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Dec 2019 14:39:15 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 30 Dec 2019 10:33:30 +0800</lastBuildDate>
     
 	<atom:link href="https://drcoooper.gitee.io/tags/docs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>H5ai</title>
+      <link>https://drcoooper.gitee.io/2019/12/h5ai/</link>
+      <pubDate>Mon, 30 Dec 2019 10:33:30 +0800</pubDate>
+      
+      <guid>https://drcoooper.gitee.io/2019/12/h5ai/</guid>
+      <description>h5ai安装和配置 h5ai官网
+h5ai Github
+环境要求  nginx或者Apache，我的环境是mac + nginx； php，mac用户直接brew install php即可； 目录结构如下
+DOC_ROOT ├─ _h5ai ├─ your files └─ and folders   ### nginx配置文件 mac本机用brew安装nginx后，默认配置文件地址为：
+/usr/local/etc/nginx/nginx.conf  修改默认配置：
+#user nobody; worker_processes 1; #error_log logs/error.log; #error_log logs/error.log notice; #error_log logs/error.log info; #pid logs/nginx.pid; events { worker_connections 1024; } http { include mime.types; default_type application/octet-stream; #log_format main &#39;$remote_addr - $remote_user [$time_local] &amp;quot;$request&amp;quot; &#39; # &#39;$status $body_bytes_sent &amp;quot;$http_referer&amp;quot; &#39; # &#39;&amp;quot;$http_user_agent&amp;quot; &amp;quot;$http_x_forwarded_for&amp;quot;&#39;; #access_log logs/access.</description>
+    </item>
     
     <item>
       <title>Vue Vuesocketio</title>
