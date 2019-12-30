@@ -280,6 +280,67 @@ handleLaunch(task_id) { this.launchLoading = task_id // 启动 var data = { task
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/12/h5ai/">
+          H5ai
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-12-30T10:33:30&#43;08:00">
+        
+  十二月 30, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
+    
+  
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      
+        h5ai安装和配置 h5ai官网
+h5ai Github
+环境要求  nginx或者Apache，我的环境是mac + nginx； php，mac用户直接brew install php即可； 目录结构如下
+DOC_ROOT ├─ _h5ai ├─ your files └─ and folders   nginx配置文件 mac本机用brew安装nginx后，默认配置文件地址为：
+/usr/local/etc/nginx/nginx.conf  修改默认配置：
+#user nobody; worker_processes 1; #error_log logs/error.log; #error_log logs/error.log notice; #error_log logs/error.log info; #pid logs/nginx.pid; events { worker_connections 1024; } http { include mime.types; default_type application/octet-stream; #log_format main '$remote_addr - $remote_user [$time_local] &quot;$request&quot; ' # '$status $body_bytes_sent &quot;$http_referer&quot; ' # '&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;'; #access_log logs/access.
+      
+      <p>
+        <a href="https://drcoooper.gitee.io/2019/12/h5ai/" class="postShorten-excerpt_link link">阅读全文</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+              
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/12/vue-vuesocketio/">
           Vue Vuesocketio
         </a>
@@ -556,65 +617,6 @@ vue代码 &lt;el-form-item label=&quot;填坑的文本标题&quot; prop=&quot;ce
       
       <p>
         <a href="https://drcoooper.gitee.io/2019/10/adb/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-            
-              
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/10/jmeter/">
-          Jmeter
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2019-10-28T10:17:05&#43;08:00">
-        
-  十月 28, 2019
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        下载jmeter最新版  https://jmeter.apache.org/download_jmeter.cgi
- 修改配置文件 vim apache-jmeter-5.1.1/bin/jmeter.properties   找到server.rmi.ssl.disable 这行，去掉前的#，并且把它的值由默认的False改为true
-找到remote_hosts 这行，去掉前面的#，并且把它的值由默认的127.0.0.1改为10.0.11.200:1099(这是负载机的内网IP)
- 以下为jmeter5.1的例子  257 # Remote Hosts - comma delimited 258 remote_hosts=10.0.11.200:1099 259 #remote_hosts=localhost:1099,localhost:2010 260 261 # RMI port to be used by the server (must start rmiregistry with same port) 262 #server_port=1099 263 264 # To change the port to (say) 1234: 265 # On the server(s) 266 set server_port=1234 267 start rmiregistry with port 1234  Q &amp; A 自己机器上看不到响应信息怎么办？ 修改配置如下：
-      
-      <p>
-        <a href="https://drcoooper.gitee.io/2019/10/jmeter/" class="postShorten-excerpt_link link">阅读全文</a>
         
       </p>
     </div>

@@ -20,23 +20,5 @@
       <description></description>
     </item>
     
-    <item>
-      <title>category</title>
-      <link>https://drcoooper.gitee.io/categories/category/</link>
-      <pubDate>Mon, 30 Dec 2019 10:33:30 +0800</pubDate>
-      
-      <guid>https://drcoooper.gitee.io/categories/category/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>subcategory</title>
-      <link>https://drcoooper.gitee.io/categories/subcategory/</link>
-      <pubDate>Mon, 30 Dec 2019 10:33:30 +0800</pubDate>
-      
-      <guid>https://drcoooper.gitee.io/categories/subcategory/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>
