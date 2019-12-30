@@ -247,7 +247,7 @@
 &lt;el-table-column label=&quot;操作&quot;&gt; &lt;template slot-scope=&quot;scope&quot;&gt; &lt;el-button size=&quot;mini&quot; type=&quot;success&quot; :loading=&quot;launchLoading === scope.row.task_id&quot; @click=&quot;handleLaunch(scope.row.task_id)&quot; &gt;启动&lt;/el-button&gt; &lt;el-button size=&quot;mini&quot; type=&quot;danger&quot; :loading=&quot;stopLoading === scope.row.task_id&quot; @click=&quot;handleStop(scope.row.task_id)&quot; &gt;停止&lt;/el-button&gt; &lt;el-button size=&quot;mini&quot; type=&quot;warning&quot; plain @click=&quot;handleCopy(scope.row.task_id), goAdd()&quot; &gt;复制&lt;/el-button&gt; &lt;/template&gt; &lt;/el-table-column&gt;  这里的操作是：按下这一行的按钮，它会获取这一行的task_id，并作为形参传递给绑定的click方法@click=&quot;handleLaunch(scope.row.task_id)
 如果只是为了传递正确的data，其实这里已经完成了操作，但是为了用户体验，往往需要在按钮上再绑定loading状态，element官方示例如下：
 要设置为 loading 状态，只要设置loading属性为true即可。 &lt;el-button type=&quot;primary&quot; :loading=&quot;true&quot;&gt;加载中&lt;/el-button&gt;  那么只要通过控制:loading绑定的值，就可以手动控制按钮的loading效果啦！
-但是！！！如果这个按钮在table中，直接绑定的结果是点击任何一行的按钮，全部的按钮都在装圈圈，看起来极其愚蠢0.0
+但是！！！如果这个按钮在table中，直接绑定的结果是点击任何一行的按钮，全部的按钮都在转圈圈，看起来极其愚蠢0.0
 曾经我的解决方法是让后端返回的数据里，每一行都加入一个loading字段，默认是false，之后每一行中都可以获取到，那么当我按下这一行的按钮，同时修改为true就可以控制只有当前焦点的button有loading圈圈了。
 可是这样还是很蠢啊。
 后来在开发同事的启发下，el-table-column部分如前面所示，在data()中设置launchLoading布尔值，默认false，绑定的click方法如下：
