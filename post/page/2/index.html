@@ -213,6 +213,65 @@
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/10/jmeter/">
+          Jmeter
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-10-28T10:17:05&#43;08:00">
+        
+  十月 28, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
+    
+  
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      
+        下载jmeter最新版  https://jmeter.apache.org/download_jmeter.cgi
+ 修改配置文件 vim apache-jmeter-5.1.1/bin/jmeter.properties   找到server.rmi.ssl.disable 这行，去掉前的#，并且把它的值由默认的False改为true
+找到remote_hosts 这行，去掉前面的#，并且把它的值由默认的127.0.0.1改为10.0.11.200:1099(这是负载机的内网IP)
+ 以下为jmeter5.1的例子  257 # Remote Hosts - comma delimited 258 remote_hosts=10.0.11.200:1099 259 #remote_hosts=localhost:1099,localhost:2010 260 261 # RMI port to be used by the server (must start rmiregistry with same port) 262 #server_port=1099 263 264 # To change the port to (say) 1234: 265 # On the server(s) 266 set server_port=1234 267 start rmiregistry with port 1234  Q &amp; A 自己机器上看不到响应信息怎么办？ 修改配置如下：
+      
+      <p>
+        <a href="https://drcoooper.gitee.io/2019/10/jmeter/" class="postShorten-excerpt_link link">阅读全文</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+          
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/10/jenkins/">
           Jenkins
         </a>

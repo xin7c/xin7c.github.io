@@ -6,10 +6,28 @@
     <description>Recent content in Posts on cc的后花园</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Dec 2019 10:33:30 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 30 Dec 2019 14:32:56 +0800</lastBuildDate>
     
 	<atom:link href="https://drcoooper.gitee.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vue Eltablecolumn Buttonloading</title>
+      <link>https://drcoooper.gitee.io/2019/12/vue-eltablecolumn-buttonloading/</link>
+      <pubDate>Mon, 30 Dec 2019 14:32:56 +0800</pubDate>
+      
+      <guid>https://drcoooper.gitee.io/2019/12/vue-eltablecolumn-buttonloading/</guid>
+      <description>element-ui中table-column的button按钮loading状态 在我们的项目中，往往需要在一个列表页里展示全部的数据，每一行展示各种数据；
+但是由于是测试工具，所以经常需要在每一行中嵌入按钮，通过&amp;lt;template slot-scope=&amp;quot;scope&amp;quot;&amp;gt;来让每行的button获取它所在行的全部数据，从而提取这一行中的某个字段，继而发出ajax请求，column代码示例如下：
+&amp;lt;el-table-column label=&amp;quot;操作&amp;quot;&amp;gt; &amp;lt;template slot-scope=&amp;quot;scope&amp;quot;&amp;gt; &amp;lt;el-button size=&amp;quot;mini&amp;quot; type=&amp;quot;success&amp;quot; :loading=&amp;quot;launchLoading === scope.row.task_id&amp;quot; @click=&amp;quot;handleLaunch(scope.row.task_id)&amp;quot; &amp;gt;启动&amp;lt;/el-button&amp;gt; &amp;lt;el-button size=&amp;quot;mini&amp;quot; type=&amp;quot;danger&amp;quot; :loading=&amp;quot;stopLoading === scope.row.task_id&amp;quot; @click=&amp;quot;handleStop(scope.row.task_id)&amp;quot; &amp;gt;停止&amp;lt;/el-button&amp;gt; &amp;lt;el-button size=&amp;quot;mini&amp;quot; type=&amp;quot;warning&amp;quot; plain @click=&amp;quot;handleCopy(scope.row.task_id), goAdd()&amp;quot; &amp;gt;复制&amp;lt;/el-button&amp;gt; &amp;lt;/template&amp;gt; &amp;lt;/el-table-column&amp;gt;  这里的操作是：按下这一行的按钮，它会获取这一行的task_id，并作为形参传递给绑定的click方法@click=&amp;quot;handleLaunch(scope.row.task_id)
+如果只是为了传递正确的data，其实这里已经完成了操作，但是为了用户体验，往往需要在按钮上再绑定loading状态，element官方示例如下：
+要设置为 loading 状态，只要设置loading属性为true即可。 &amp;lt;el-button type=&amp;quot;primary&amp;quot; :loading=&amp;quot;true&amp;quot;&amp;gt;加载中&amp;lt;/el-button&amp;gt;  那么只要通过控制:loading绑定的值，就可以手动控制按钮的loading效果啦！
+但是！！！如果这个按钮在table中，直接绑定的结果是点击任何一行的按钮，全部的按钮都在装圈圈，看起来极其愚蠢0.0
+曾经我的解决方法是让后端返回的数据里，每一行都加入一个loading字段，默认是false，之后每一行中都可以获取到，那么当我按下这一行的按钮，同时修改为true就可以控制只有当前焦点的button有loading圈圈了。
+可是这样还是很蠢啊。
+后来在开发同事的启发下，el-table-column部分如前面所示，在data()中设置launchLoading布尔值，默认false，绑定的click方法如下：
+handleLaunch(task_id) { this.launchLoading = task_id // 启动 var data = { task_id: task_id } console.log(data) reqRtcLaunch(data).then((result) =&amp;gt; { // console.log(result) this.$message({ message: &#39;启动成功O(∩_∩)O~&#39;, type: &#39;success&#39; }) this.</description>
+    </item>
     
     <item>
       <title>H5ai</title>

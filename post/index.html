@@ -213,6 +213,71 @@
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/12/vue-eltablecolumn-buttonloading/">
+          Vue Eltablecolumn Buttonloading
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-12-30T14:32:56&#43;08:00">
+        
+  十二月 30, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
+    
+  
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      
+        element-ui中table-column的button按钮loading状态 在我们的项目中，往往需要在一个列表页里展示全部的数据，每一行展示各种数据；
+但是由于是测试工具，所以经常需要在每一行中嵌入按钮，通过&lt;template slot-scope=&quot;scope&quot;&gt;来让每行的button获取它所在行的全部数据，从而提取这一行中的某个字段，继而发出ajax请求，column代码示例如下：
+&lt;el-table-column label=&quot;操作&quot;&gt; &lt;template slot-scope=&quot;scope&quot;&gt; &lt;el-button size=&quot;mini&quot; type=&quot;success&quot; :loading=&quot;launchLoading === scope.row.task_id&quot; @click=&quot;handleLaunch(scope.row.task_id)&quot; &gt;启动&lt;/el-button&gt; &lt;el-button size=&quot;mini&quot; type=&quot;danger&quot; :loading=&quot;stopLoading === scope.row.task_id&quot; @click=&quot;handleStop(scope.row.task_id)&quot; &gt;停止&lt;/el-button&gt; &lt;el-button size=&quot;mini&quot; type=&quot;warning&quot; plain @click=&quot;handleCopy(scope.row.task_id), goAdd()&quot; &gt;复制&lt;/el-button&gt; &lt;/template&gt; &lt;/el-table-column&gt;  这里的操作是：按下这一行的按钮，它会获取这一行的task_id，并作为形参传递给绑定的click方法@click=&quot;handleLaunch(scope.row.task_id)
+如果只是为了传递正确的data，其实这里已经完成了操作，但是为了用户体验，往往需要在按钮上再绑定loading状态，element官方示例如下：
+要设置为 loading 状态，只要设置loading属性为true即可。 &lt;el-button type=&quot;primary&quot; :loading=&quot;true&quot;&gt;加载中&lt;/el-button&gt;  那么只要通过控制:loading绑定的值，就可以手动控制按钮的loading效果啦！
+但是！！！如果这个按钮在table中，直接绑定的结果是点击任何一行的按钮，全部的按钮都在装圈圈，看起来极其愚蠢0.0
+曾经我的解决方法是让后端返回的数据里，每一行都加入一个loading字段，默认是false，之后每一行中都可以获取到，那么当我按下这一行的按钮，同时修改为true就可以控制只有当前焦点的button有loading圈圈了。
+可是这样还是很蠢啊。
+后来在开发同事的启发下，el-table-column部分如前面所示，在data()中设置launchLoading布尔值，默认false，绑定的click方法如下：
+handleLaunch(task_id) { this.launchLoading = task_id // 启动 var data = { task_id: task_id } console.log(data) reqRtcLaunch(data).then((result) =&gt; { // console.log(result) this.$message({ message: '启动成功O(∩_∩)O~', type: 'success' }) this.
+      
+      <p>
+        <a href="https://drcoooper.gitee.io/2019/12/vue-eltablecolumn-buttonloading/" class="postShorten-excerpt_link link">阅读全文</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+          
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/12/h5ai/">
           H5ai
         </a>
@@ -552,65 +617,6 @@ vue代码 &lt;el-form-item label=&quot;填坑的文本标题&quot; prop=&quot;ce
       
       <p>
         <a href="https://drcoooper.gitee.io/2019/10/adb/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
-            
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/10/jmeter/">
-          Jmeter
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2019-10-28T10:17:05&#43;08:00">
-        
-  十月 28, 2019
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        下载jmeter最新版  https://jmeter.apache.org/download_jmeter.cgi
- 修改配置文件 vim apache-jmeter-5.1.1/bin/jmeter.properties   找到server.rmi.ssl.disable 这行，去掉前的#，并且把它的值由默认的False改为true
-找到remote_hosts 这行，去掉前面的#，并且把它的值由默认的127.0.0.1改为10.0.11.200:1099(这是负载机的内网IP)
- 以下为jmeter5.1的例子  257 # Remote Hosts - comma delimited 258 remote_hosts=10.0.11.200:1099 259 #remote_hosts=localhost:1099,localhost:2010 260 261 # RMI port to be used by the server (must start rmiregistry with same port) 262 #server_port=1099 263 264 # To change the port to (say) 1234: 265 # On the server(s) 266 set server_port=1234 267 start rmiregistry with port 1234  Q &amp; A 自己机器上看不到响应信息怎么办？ 修改配置如下：
-      
-      <p>
-        <a href="https://drcoooper.gitee.io/2019/10/jmeter/" class="postShorten-excerpt_link link">阅读全文</a>
         
       </p>
     </div>
