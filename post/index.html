@@ -243,7 +243,7 @@
         要命的table行内回填 我们的业务场景之一，是在一个结果列表页的结果列表中，点击任意一行row中的button，弹出抽屉或者嵌套了form表单的dialog，显然，通过&lt;template slot-scope=&quot;scope&quot;&gt;可以拿到行内数据，button代码：
 &lt;el-button size=&quot;small&quot; type=&quot;primary&quot; icon=&quot;el-icon-edit&quot; @click=&quot;handleEdit(scope.$index, scope.row)&quot; /&gt;  这里click的方法如下：
 handleEdit(index, row) { console.log(row) if (row.cron === '0 4 * * *' || row.cron === '0 4 * * 0' || row.cron === '0 4 1 * *') { this.cron_radio = row.cron } else { this.cron_radio = '' } this.post_data = row this.dialog = true },  这里的this.post_data，就是vue实例上的双向绑定的form表单数据，这段代码的作用是：经过一些业务层面的判断（if-else）后，把行内数据赋值给表单，这样就达到了编辑回填的效果，用户可以直接编辑或者重新提交，能大大节省重复操作数据的时间！
-可是我想得太天真了 当我this.post_data = row如此赋值的时候，我发现后续在form中编辑数据，table中当前行的数据也在变！！!我隐约感觉到是对象引用的问题，可是，如何解除引用？
+可是我想得太天真了 当我this.post_data = row如此赋值的时候，我发现后续在form中编辑数据，table中当前行的数据也在变！！我隐约感觉到是对象引用的问题，可是，如何解除引用？
 经过一番波折，大概有三种方法可以解决：
  将row中的每个字段分别赋值给this.post_data
  row对象转字符串再解析出来this.post_data = JSON.
