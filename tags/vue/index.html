@@ -248,7 +248,7 @@ handleEdit(index, row) { console.log(row) if (row.cron === '0 4 * * *' || row.cr
 可是我想得太天真了 当我this.post_data = row如此赋值的时候，我发现后续在form中编辑数据，table中当前行的数据也在变！！!我隐约感觉到是对象引用的问题，可是，如何解除引用？
 经过一番波折，大概有三种方法可以解决：
 - 将row中的每个字段分别赋值给this.post_data
-- row对象转字符串在解析出来this.post_data = JSON.
+ row对象转字符串再解析出来this.post_data = JSON.
       
       <p>
         <a href="https://drcoooper.gitee.io/2020/01/vue-eltable-edit/" class="postShorten-excerpt_link link">阅读全文</a>
