@@ -215,6 +215,62 @@
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/10/adb/">
+          Adb
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-10-28T10:18:05&#43;08:00">
+        
+  十月 28, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
+    
+  
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      
+        ADB命令（Android Debug Bridge） 显示系统中全部设备 adb devices 这个命令是查看当前连接的设备, 连接到计算机的android设备或者模拟器将会列出显示  安装一个apk adb install -r (APK路径) -r 代表如果apk已安装，重新安装apk并保留数据和缓存文件。apk路径则可以直接将apk文件拖进cmd窗口，记得加空格  直接卸载 adb uninstall (apk包名) 卸载 app 但保留数据和缓存文件  清除应用数据与缓存 adb shell pm clear （apk包名）  强制停止应用 adb shell am force-stop （apk包名）  重启设备 adb reboot  删除文件 adb shell cd sdcard/model/book ls rm -r 415  pull和push文件 adb push (文件路径) (想要push的路径) adb pull (文件路径) (想要pull的路径)  查看日志 adb logcat -v threadtime  过滤日志 adb logcat -v threadtime | grep (关键字)  投屏(用于电脑控制设备) 打开vysor adb shell am start -n com.
+      
+      <p>
+        <a href="https://drcoooper.gitee.io/2019/10/adb/" class="postShorten-excerpt_link link">阅读全文</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+              
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/10/jmeter/">
           Jmeter
         </a>
@@ -457,7 +513,7 @@ govendor sync
         
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2019 Hsu cc. All Rights Reserved
+    &copy; 2020 Hsu cc. All Rights Reserved
   </span>
 </footer>
 

@@ -6,10 +6,24 @@
     <description>Recent content in docs on cc的后花园</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Dec 2019 14:32:56 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 16 Jan 2020 10:45:06 +0800</lastBuildDate>
     
 	<atom:link href="https://drcoooper.gitee.io/categories/docs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vue Eltable Edit</title>
+      <link>https://drcoooper.gitee.io/2020/01/vue-eltable-edit/</link>
+      <pubDate>Thu, 16 Jan 2020 10:45:06 +0800</pubDate>
+      
+      <guid>https://drcoooper.gitee.io/2020/01/vue-eltable-edit/</guid>
+      <description>要命的table行内回填 我们的业务场景之一，是在一个结果列表页的结果列表中，点击任意一行row中的button，弹出抽屉或者嵌套了form表单的dialog，显然，通过&amp;lt;template slot-scope=&amp;quot;scope&amp;quot;&amp;gt;可以拿到行内数据，button代码：
+&amp;lt;el-button size=&amp;quot;small&amp;quot; type=&amp;quot;primary&amp;quot; icon=&amp;quot;el-icon-edit&amp;quot; @click=&amp;quot;handleEdit(scope.$index, scope.row)&amp;quot; /&amp;gt;  这里click的方法如下：
+handleEdit(index, row) { console.log(row) if (row.cron === &#39;0 4 * * *&#39; || row.cron === &#39;0 4 * * 0&#39; || row.cron === &#39;0 4 1 * *&#39;) { this.cron_radio = row.cron } else { this.cron_radio = &#39;&#39; } this.post_data = row this.dialog = true },  这里的this.post_data，就是vue实例上的双向绑定的form表单数据，这段代码的作用是：经过一些业务层面的判断（if-else）后，把行内数据赋值给表单，这样就达到了编辑回填的效果，用户可以直接编辑或者重新提交，能大大节省重复操作数据的时间！
+可是我想得太天真了 当我this.post_data = row如此赋值的时候，我发现后续在form中编辑数据，table中当前行的数据也在变！！!我隐约感觉到是对象引用的问题，可是，如何解除引用？
+经过一番波折，大概有三种方法可以解决：
+- 将row中的每个字段分别赋值给this.post_data - row对象转字符串在解析出来this.post_data = JSON.</description>
+    </item>
     
     <item>
       <title>Vue Eltablecolumn Buttonloading</title>
