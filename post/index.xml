@@ -6,10 +6,25 @@
     <description>Recent content in Posts on cc的后花园</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Jan 2020 10:45:06 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 21 Jan 2020 14:13:08 +0800</lastBuildDate>
     
 	<atom:link href="https://drcoooper.gitee.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vue Global Reload</title>
+      <link>https://drcoooper.gitee.io/2020/01/vue-global-reload/</link>
+      <pubDate>Tue, 21 Jan 2020 14:13:08 +0800</pubDate>
+      
+      <guid>https://drcoooper.gitee.io/2020/01/vue-global-reload/</guid>
+      <description>vue-admin-element的全局按钮添加 有天业务测试来找我，说希望在列表页加一个刷新按钮-。-
+其实这个页面的各个生命周期钩子里都加了刷新操作的回调函数，除此之外，table-row中的全部button也绑定了相同的方法&amp;mdash;为的就是希望实时刷新结果（恨不能挂个websocket上去)
+所以我很诧异，为啥还要单独添加一个独立于各种区块的按钮呢？她说就觉得方便···
+众所周知，我是一个爱惜页面整洁性的人，所以我准备加一个全局刷新按钮，就在odin后台的顶部！
+同时也因为这个项目的侧边栏渲染是基于比如oom模块：
+src/router/modules/oom.js中的
+import Layout from &#39;@/layout&#39; const oomRouter = { path: &#39;/oom&#39;, component: Layout, redirect: &#39;/oom/index&#39;, name: &#39;oom自动化分析&#39;, // hidden: true, meta: { title: &#39;oom自动化分析&#39;, icon: &#39;tree-table&#39;, roles: [&#39;admin&#39;] // affix: true }, children: [ { path: &#39;index&#39;, component: () =&amp;gt; import(&#39;@/views/oom/index&#39;), name: &#39;oom-index&#39;, // hidden: true, meta: { title: &#39;管理首页&#39;, icon: &#39;guide&#39;, noCache: true } }, { path: &#39;list&#39;, component: () =&amp;gt; import(&#39;@/views/oom/list&#39;), name: &#39;oom-list&#39;, // hidden: true, meta: { title: &#39;任务列表&#39;, icon: &#39;nested&#39;, noCache: true } } ] } export default oomRouter  所以我明显需要在Layout中添加元素和方法，而进去发现它是以组件的方式使用Navbar的，所以在Navbar.</description>
+    </item>
     
     <item>
       <title>Vue Eltable Edit</title>

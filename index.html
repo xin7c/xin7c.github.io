@@ -212,6 +212,68 @@
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="https://drcoooper.gitee.io/2020/01/vue-global-reload/">
+          Vue Global Reload
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-01-21T14:13:08&#43;08:00">
+        
+  一月 21, 2020
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
+    
+  
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      
+        vue-admin-element的全局按钮添加 有天业务测试来找我，说希望在列表页加一个刷新按钮-。-
+其实这个页面的各个生命周期钩子里都加了刷新操作的回调函数，除此之外，table-row中的全部button也绑定了相同的方法&mdash;为的就是希望实时刷新结果（恨不能挂个websocket上去)
+所以我很诧异，为啥还要单独添加一个独立于各种区块的按钮呢？她说就觉得方便···
+众所周知，我是一个爱惜页面整洁性的人，所以我准备加一个全局刷新按钮，就在odin后台的顶部！
+同时也因为这个项目的侧边栏渲染是基于比如oom模块：
+src/router/modules/oom.js中的
+import Layout from '@/layout' const oomRouter = { path: '/oom', component: Layout, redirect: '/oom/index', name: 'oom自动化分析', // hidden: true, meta: { title: 'oom自动化分析', icon: 'tree-table', roles: ['admin'] // affix: true }, children: [ { path: 'index', component: () =&gt; import('@/views/oom/index'), name: 'oom-index', // hidden: true, meta: { title: '管理首页', icon: 'guide', noCache: true } }, { path: 'list', component: () =&gt; import('@/views/oom/list'), name: 'oom-list', // hidden: true, meta: { title: '任务列表', icon: 'nested', noCache: true } } ] } export default oomRouter  所以我明显需要在Layout中添加元素和方法，而进去发现它是以组件的方式使用Navbar的，所以在Navbar.
+      
+      <p>
+        <a href="https://drcoooper.gitee.io/2020/01/vue-global-reload/" class="postShorten-excerpt_link link">阅读全文</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+          
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="https://drcoooper.gitee.io/2020/01/vue-eltable-edit/">
           Vue Eltable Edit
         </a>
@@ -564,62 +626,6 @@ vue代码 &lt;el-form-item label=&quot;填坑的文本标题&quot; prop=&quot;ce
       
       <p>
         <a href="https://drcoooper.gitee.io/2019/12/vue-element-ui%E4%B8%8B%E6%8B%89%E6%A1%86%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
-            
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/10/flutter/">
-          Flutter
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2019-10-28T10:30:55&#43;08:00">
-        
-  十月 28, 2019
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        起步：安装 安装
-      
-      <p>
-        <a href="https://drcoooper.gitee.io/2019/10/flutter/" class="postShorten-excerpt_link link">阅读全文</a>
         
       </p>
     </div>

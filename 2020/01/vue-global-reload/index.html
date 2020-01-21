@@ -8,49 +8,49 @@
 <meta name="generator" content="Hugo 0.59.0 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Hsu cc">
 <meta name="keywords" content="odin">
-<meta name="description" content="要命的table行内回填 我们的业务场景之一，是在一个结果列表页的结果列表中，点击任意一行row中的button，弹出抽屉或者嵌套了form表单的dialog，显然，通过&lt;template slot-scope=&quot;scope&quot;&gt;可以拿到行内数据，button代码：
-&lt;el-button size=&quot;small&quot; type=&quot;primary&quot; icon=&quot;el-icon-edit&quot; @click=&quot;handleEdit(scope.$index, scope.row)&quot; /&gt;  这里click的方法如下：
-handleEdit(index, row) { console.log(row) if (row.cron === &#39;0 4 * * *&#39; || row.cron === &#39;0 4 * * 0&#39; || row.cron === &#39;0 4 1 * *&#39;) { this.cron_radio = row.cron } else { this.cron_radio = &#39;&#39; } this.post_data = row this.dialog = true },  这里的this.post_data，就是vue实例上的双向绑定的form表单数据，这段代码的作用是：经过一些业务层面的判断（if-else）后，把行内数据赋值给表单，这样就达到了编辑回填的效果，用户可以直接编辑或者重新提交，能大大节省重复操作数据的时间！
-可是我想得太天真了 当我this.post_data = row如此赋值的时候，我发现后续在form中编辑数据，table中当前行的数据也在变！！我隐约感觉到是对象引用的问题，可是，如何解除引用？
-经过一番波折，大概有三种方法可以解决：
- 将row中的每个字段分别赋值给this.post_data
- row对象转字符串再解析出来this.post_data = JSON.">
+<meta name="description" content="vue-admin-element的全局按钮添加 有天业务测试来找我，说希望在列表页加一个刷新按钮-。-
+其实这个页面的各个生命周期钩子里都加了刷新操作的回调函数，除此之外，table-row中的全部button也绑定了相同的方法&mdash;为的就是希望实时刷新结果（恨不能挂个websocket上去)
+所以我很诧异，为啥还要单独添加一个独立于各种区块的按钮呢？她说就觉得方便···
+众所周知，我是一个爱惜页面整洁性的人，所以我准备加一个全局刷新按钮，就在odin后台的顶部！
+同时也因为这个项目的侧边栏渲染是基于比如oom模块：
+src/router/modules/oom.js中的
+import Layout from &#39;@/layout&#39; const oomRouter = { path: &#39;/oom&#39;, component: Layout, redirect: &#39;/oom/index&#39;, name: &#39;oom自动化分析&#39;, // hidden: true, meta: { title: &#39;oom自动化分析&#39;, icon: &#39;tree-table&#39;, roles: [&#39;admin&#39;] // affix: true }, children: [ { path: &#39;index&#39;, component: () =&gt; import(&#39;@/views/oom/index&#39;), name: &#39;oom-index&#39;, // hidden: true, meta: { title: &#39;管理首页&#39;, icon: &#39;guide&#39;, noCache: true } }, { path: &#39;list&#39;, component: () =&gt; import(&#39;@/views/oom/list&#39;), name: &#39;oom-list&#39;, // hidden: true, meta: { title: &#39;任务列表&#39;, icon: &#39;nested&#39;, noCache: true } } ] } export default oomRouter  所以我明显需要在Layout中添加元素和方法，而进去发现它是以组件的方式使用Navbar的，所以在Navbar.">
 
 
-<meta property="og:description" content="要命的table行内回填 我们的业务场景之一，是在一个结果列表页的结果列表中，点击任意一行row中的button，弹出抽屉或者嵌套了form表单的dialog，显然，通过&lt;template slot-scope=&quot;scope&quot;&gt;可以拿到行内数据，button代码：
-&lt;el-button size=&quot;small&quot; type=&quot;primary&quot; icon=&quot;el-icon-edit&quot; @click=&quot;handleEdit(scope.$index, scope.row)&quot; /&gt;  这里click的方法如下：
-handleEdit(index, row) { console.log(row) if (row.cron === &#39;0 4 * * *&#39; || row.cron === &#39;0 4 * * 0&#39; || row.cron === &#39;0 4 1 * *&#39;) { this.cron_radio = row.cron } else { this.cron_radio = &#39;&#39; } this.post_data = row this.dialog = true },  这里的this.post_data，就是vue实例上的双向绑定的form表单数据，这段代码的作用是：经过一些业务层面的判断（if-else）后，把行内数据赋值给表单，这样就达到了编辑回填的效果，用户可以直接编辑或者重新提交，能大大节省重复操作数据的时间！
-可是我想得太天真了 当我this.post_data = row如此赋值的时候，我发现后续在form中编辑数据，table中当前行的数据也在变！！我隐约感觉到是对象引用的问题，可是，如何解除引用？
-经过一番波折，大概有三种方法可以解决：
- 将row中的每个字段分别赋值给this.post_data
- row对象转字符串再解析出来this.post_data = JSON.">
+<meta property="og:description" content="vue-admin-element的全局按钮添加 有天业务测试来找我，说希望在列表页加一个刷新按钮-。-
+其实这个页面的各个生命周期钩子里都加了刷新操作的回调函数，除此之外，table-row中的全部button也绑定了相同的方法&mdash;为的就是希望实时刷新结果（恨不能挂个websocket上去)
+所以我很诧异，为啥还要单独添加一个独立于各种区块的按钮呢？她说就觉得方便···
+众所周知，我是一个爱惜页面整洁性的人，所以我准备加一个全局刷新按钮，就在odin后台的顶部！
+同时也因为这个项目的侧边栏渲染是基于比如oom模块：
+src/router/modules/oom.js中的
+import Layout from &#39;@/layout&#39; const oomRouter = { path: &#39;/oom&#39;, component: Layout, redirect: &#39;/oom/index&#39;, name: &#39;oom自动化分析&#39;, // hidden: true, meta: { title: &#39;oom自动化分析&#39;, icon: &#39;tree-table&#39;, roles: [&#39;admin&#39;] // affix: true }, children: [ { path: &#39;index&#39;, component: () =&gt; import(&#39;@/views/oom/index&#39;), name: &#39;oom-index&#39;, // hidden: true, meta: { title: &#39;管理首页&#39;, icon: &#39;guide&#39;, noCache: true } }, { path: &#39;list&#39;, component: () =&gt; import(&#39;@/views/oom/list&#39;), name: &#39;oom-list&#39;, // hidden: true, meta: { title: &#39;任务列表&#39;, icon: &#39;nested&#39;, noCache: true } } ] } export default oomRouter  所以我明显需要在Layout中添加元素和方法，而进去发现它是以组件的方式使用Navbar的，所以在Navbar.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue Eltable Edit">
-<meta name="twitter:title" content="Vue Eltable Edit">
-<meta property="og:url" content="https://drcoooper.gitee.io/2020/01/vue-eltable-edit/">
-<meta property="twitter:url" content="https://drcoooper.gitee.io/2020/01/vue-eltable-edit/">
+<meta property="og:title" content="Vue Global Reload">
+<meta name="twitter:title" content="Vue Global Reload">
+<meta property="og:url" content="https://drcoooper.gitee.io/2020/01/vue-global-reload/">
+<meta property="twitter:url" content="https://drcoooper.gitee.io/2020/01/vue-global-reload/">
 <meta property="og:site_name" content="cc的后花园">
-<meta property="og:description" content="要命的table行内回填 我们的业务场景之一，是在一个结果列表页的结果列表中，点击任意一行row中的button，弹出抽屉或者嵌套了form表单的dialog，显然，通过&lt;template slot-scope=&quot;scope&quot;&gt;可以拿到行内数据，button代码：
-&lt;el-button size=&quot;small&quot; type=&quot;primary&quot; icon=&quot;el-icon-edit&quot; @click=&quot;handleEdit(scope.$index, scope.row)&quot; /&gt;  这里click的方法如下：
-handleEdit(index, row) { console.log(row) if (row.cron === &#39;0 4 * * *&#39; || row.cron === &#39;0 4 * * 0&#39; || row.cron === &#39;0 4 1 * *&#39;) { this.cron_radio = row.cron } else { this.cron_radio = &#39;&#39; } this.post_data = row this.dialog = true },  这里的this.post_data，就是vue实例上的双向绑定的form表单数据，这段代码的作用是：经过一些业务层面的判断（if-else）后，把行内数据赋值给表单，这样就达到了编辑回填的效果，用户可以直接编辑或者重新提交，能大大节省重复操作数据的时间！
-可是我想得太天真了 当我this.post_data = row如此赋值的时候，我发现后续在form中编辑数据，table中当前行的数据也在变！！我隐约感觉到是对象引用的问题，可是，如何解除引用？
-经过一番波折，大概有三种方法可以解决：
- 将row中的每个字段分别赋值给this.post_data
- row对象转字符串再解析出来this.post_data = JSON.">
-<meta name="twitter:description" content="要命的table行内回填 我们的业务场景之一，是在一个结果列表页的结果列表中，点击任意一行row中的button，弹出抽屉或者嵌套了form表单的dialog，显然，通过&lt;template slot-scope=&quot;scope&quot;&gt;可以拿到行内数据，button代码：
-&lt;el-button size=&quot;small&quot; type=&quot;primary&quot; icon=&quot;el-icon-edit&quot; @click=&quot;handleEdit(scope.$index, scope.row)&quot; /&gt;  这里click的方法如下：
-handleEdit(index, row) { console.log(row) if (row.cron === &#39;0 4 * * *&#39; || row.cron === &#39;0 4 * * 0&#39; || row.cron === &#39;0 4 1 * *&#39;) { this.cron_radio = row.cron } else { this.cron_radio = &#39;&#39; } this.post_data = row this.dialog = true },  这里的this.post_data，就是vue实例上的双向绑定的form表单数据，这段代码的作用是：经过一些业务层面的判断（if-else）后，把行内数据赋值给表单，这样就达到了编辑回填的效果，用户可以直接编辑或者重新提交，能大大节省重复操作数据的时间！
-可是我想得太天真了 当我this.post_data = row如此赋值的时候，我发现后续在form中编辑数据，table中当前行的数据也在变！！我隐约感觉到是对象引用的问题，可是，如何解除引用？
-经过一番波折，大概有三种方法可以解决：
- 将row中的每个字段分别赋值给this.post_data
- row对象转字符串再解析出来this.post_data = JSON.">
+<meta property="og:description" content="vue-admin-element的全局按钮添加 有天业务测试来找我，说希望在列表页加一个刷新按钮-。-
+其实这个页面的各个生命周期钩子里都加了刷新操作的回调函数，除此之外，table-row中的全部button也绑定了相同的方法&mdash;为的就是希望实时刷新结果（恨不能挂个websocket上去)
+所以我很诧异，为啥还要单独添加一个独立于各种区块的按钮呢？她说就觉得方便···
+众所周知，我是一个爱惜页面整洁性的人，所以我准备加一个全局刷新按钮，就在odin后台的顶部！
+同时也因为这个项目的侧边栏渲染是基于比如oom模块：
+src/router/modules/oom.js中的
+import Layout from &#39;@/layout&#39; const oomRouter = { path: &#39;/oom&#39;, component: Layout, redirect: &#39;/oom/index&#39;, name: &#39;oom自动化分析&#39;, // hidden: true, meta: { title: &#39;oom自动化分析&#39;, icon: &#39;tree-table&#39;, roles: [&#39;admin&#39;] // affix: true }, children: [ { path: &#39;index&#39;, component: () =&gt; import(&#39;@/views/oom/index&#39;), name: &#39;oom-index&#39;, // hidden: true, meta: { title: &#39;管理首页&#39;, icon: &#39;guide&#39;, noCache: true } }, { path: &#39;list&#39;, component: () =&gt; import(&#39;@/views/oom/list&#39;), name: &#39;oom-list&#39;, // hidden: true, meta: { title: &#39;任务列表&#39;, icon: &#39;nested&#39;, noCache: true } } ] } export default oomRouter  所以我明显需要在Layout中添加元素和方法，而进去发现它是以组件的方式使用Navbar的，所以在Navbar.">
+<meta name="twitter:description" content="vue-admin-element的全局按钮添加 有天业务测试来找我，说希望在列表页加一个刷新按钮-。-
+其实这个页面的各个生命周期钩子里都加了刷新操作的回调函数，除此之外，table-row中的全部button也绑定了相同的方法&mdash;为的就是希望实时刷新结果（恨不能挂个websocket上去)
+所以我很诧异，为啥还要单独添加一个独立于各种区块的按钮呢？她说就觉得方便···
+众所周知，我是一个爱惜页面整洁性的人，所以我准备加一个全局刷新按钮，就在odin后台的顶部！
+同时也因为这个项目的侧边栏渲染是基于比如oom模块：
+src/router/modules/oom.js中的
+import Layout from &#39;@/layout&#39; const oomRouter = { path: &#39;/oom&#39;, component: Layout, redirect: &#39;/oom/index&#39;, name: &#39;oom自动化分析&#39;, // hidden: true, meta: { title: &#39;oom自动化分析&#39;, icon: &#39;tree-table&#39;, roles: [&#39;admin&#39;] // affix: true }, children: [ { path: &#39;index&#39;, component: () =&gt; import(&#39;@/views/oom/index&#39;), name: &#39;oom-index&#39;, // hidden: true, meta: { title: &#39;管理首页&#39;, icon: &#39;guide&#39;, noCache: true } }, { path: &#39;list&#39;, component: () =&gt; import(&#39;@/views/oom/list&#39;), name: &#39;oom-list&#39;, // hidden: true, meta: { title: &#39;任务列表&#39;, icon: &#39;nested&#39;, noCache: true } } ] } export default oomRouter  所以我明显需要在Layout中添加元素和方法，而进去发现它是以组件的方式使用Navbar的，所以在Navbar.">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2020-01-16T10:45:06">
+    <meta property="article:published_time" content="2020-01-21T14:13:08">
   
   
-    <meta property="article:modified_time" content="2020-01-16T10:45:06">
+    <meta property="article:modified_time" content="2020-01-21T14:13:08">
   
   
   
@@ -83,14 +83,14 @@ handleEdit(index, row) { console.log(row) if (row.cron === &#39;0 4 * * *&#39; |
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=640">
 
 
-    <title>Vue Eltable Edit</title>
+    <title>Vue Global Reload</title>
 
     <link rel="icon" href="https://drcoooper.gitee.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://drcoooper.gitee.io/2020/01/vue-eltable-edit/">
+    <link rel="canonical" href="https://drcoooper.gitee.io/2020/01/vue-global-reload/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -240,15 +240,15 @@ handleEdit(index, row) { console.log(row) if (row.cron === &#39;0 4 * * *&#39; |
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Vue Eltable Edit
+      Vue Global Reload
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2020-01-16T10:45:06&#43;08:00">
+      <time itemprop="datePublished" datetime="2020-01-21T14:13:08&#43;08:00">
         
-  一月 16, 2020
+  一月 21, 2020
 
       </time>
     
@@ -269,48 +269,124 @@ handleEdit(index, row) { console.log(row) if (row.cron === &#39;0 4 * * *&#39; |
             <div class="main-content-wrap">
               
 
-<h1 id="要命的table行内回填">要命的table行内回填</h1>
+<h1 id="vue-admin-element的全局按钮添加">vue-admin-element的全局按钮添加</h1>
 
-<p>我们的业务场景之一，是在一个结果列表页的结果列表中，点击任意一行row中的button，弹出抽屉或者嵌套了form表单的dialog，显然，通过<code>&lt;template slot-scope=&quot;scope&quot;&gt;</code>可以拿到行内数据，button代码：</p>
+<p>有天业务测试来找我，说希望在列表页加一个刷新按钮-。-<br />
+其实这个页面的各个生命周期钩子里都加了刷新操作的回调函数，除此之外，table-row中的全部button也绑定了相同的方法&mdash;为的就是希望实时刷新结果（恨不能挂个websocket上去)<br />
+所以我很诧异，为啥还要单独添加一个独立于各种区块的按钮呢？她说就觉得方便···<br />
+众所周知，我是一个爱惜页面整洁性的人，所以我准备加一个全局刷新按钮，就在odin后台的顶部！<br />
+同时也因为这个项目的侧边栏渲染是基于比如oom模块：<br />
+<code>src/router/modules/oom.js</code>中的</p>
 
-<pre><code class="language-js">&lt;el-button
-          size=&quot;small&quot;
-          type=&quot;primary&quot;
-          icon=&quot;el-icon-edit&quot;
-          @click=&quot;handleEdit(scope.$index, scope.row)&quot;
-        /&gt;
-</code></pre>
+<pre><code class="language-js">import Layout from '@/layout'
 
-<p>这里click的方法如下：</p>
-
-<pre><code class="language-js">handleEdit(index, row) {
-      console.log(row)
-      if (row.cron === '0 4 * * *' || row.cron === '0 4 * * 0' || row.cron === '0 4 1 * *') {
-        this.cron_radio = row.cron
-      } else {
-        this.cron_radio = ''
-      }
-      this.post_data = row
-      this.dialog = true
+const oomRouter = {
+  path: '/oom',
+  component: Layout,
+  redirect: '/oom/index',
+  name: 'oom自动化分析',
+  // hidden: true,
+  meta: {
+    title: 'oom自动化分析',
+    icon: 'tree-table',
+    roles: ['admin']
+    // affix: true
+  },
+  children: [
+    {
+      path: 'index',
+      component: () =&gt; import('@/views/oom/index'),
+      name: 'oom-index',
+      // hidden: true,
+      meta: { title: '管理首页', icon: 'guide', noCache: true }
     },
+    {
+      path: 'list',
+      component: () =&gt; import('@/views/oom/list'),
+      name: 'oom-list',
+      // hidden: true,
+      meta: { title: '任务列表', icon: 'nested', noCache: true }
+    }
+  ]
+}
+export default oomRouter
+
 </code></pre>
 
-<p>这里的this.post_data，就是vue实例上的双向绑定的form表单数据，这段代码的作用是：经过一些业务层面的判断（if-else）后，把行内数据赋值给表单，这样就达到了编辑回填的效果，用户可以直接编辑或者重新提交，能大大节省重复操作数据的时间！</p>
+<p>所以我明显需要在Layout中添加元素和方法，而进去发现它是以组件的方式使用Navbar的，所以在<code>Navbar.vue</code>中的</p>
 
-<h3 id="可是我想得太天真了">可是我想得太天真了</h3>
+<pre><code class="language-js">    &lt;div class=&quot;right-menu&quot;&gt;
+      &lt;template v-if=&quot;device!=='mobile'&quot;&gt;
+        &lt;search
+          id=&quot;header-search&quot;
+          class=&quot;right-menu-item&quot;
+        /&gt;
+        &lt;div
+          class=&quot;right-menu-item hover-effect&quot;
+          style=&quot;font-size: 22px;&quot;
+          @click.stop=&quot;refresh()&quot;
+        &gt;&lt;i class=&quot;el-icon-refresh&quot; /&gt;&lt;/div&gt;
+        .
+        .
+        .
+</code></pre>
 
-<p>当我<code>this.post_data = row</code>如此赋值的时候，我发现后续在form中编辑数据，table中当前行的数据也在变！！我隐约感觉到是对象引用的问题，可是，<code>如何解除引用？</code><br />
-经过一番波折，大概有三种方法可以解决：</p>
+<p>之后注入依赖，最后加入我的刷新图标，并绑定了<code>refresh()</code>方法</p>
 
-<ul>
-<li><p>将row中的每个字段分别赋值给<code>this.post_data</code></p></li>
+<pre><code class="language-js">export default {
+  inject: ['reload'],
+  .
+  .
+  .
+  methods: {
+    refresh() {
+      // this.$router.go(0)
+      this.reload()
+    }
+    .
+    .
+    .
+</code></pre>
 
-<li><p>row对象转字符串再解析出来<code>this.post_data = JSON.parse(JSON.stringify(row))</code></p></li>
+<p>这里的<code>this.reload()</code>需要用到<code>provide / inject</code>的知识了，简单来说就是<code>provide / inject这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。</code>！！！<br />
+那么我要在哪个祖先组件中注入呢？显然是<code>App.vue</code></p>
 
-<li><p><code>{...row}</code></p></li>
-</ul>
+<pre><code class="language-js">&lt;template&gt;
+  &lt;div id=&quot;app&quot;&gt;
+    &lt;router-view v-if=&quot;isRouterAlive&quot; /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
 
-<p>至此，问题解决~</p>
+&lt;script&gt;
+export default {
+  name: 'App',
+  provide() {
+    return {
+      reload: this.reload
+    }
+  },
+  data() {
+    return {
+      isRouterAlive: true
+    }
+  },
+  methods: {
+    reload() {
+      this.isRouterAlive = false
+      this.$nextTick(() =&gt; {
+        this.isRouterAlive = true
+      })
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+
+<p><code>reload</code>方法只是触发了一下<code>&lt;router-view v-if=&quot;isRouterAlive&quot; /&gt;</code>的隐藏与显示的切换，但是这样就可以触发vue的重新渲染，并且不会整体刷新，也会重新触发生命周期函数，这样就实现了全局按钮的刷新操作啦！！！</p>
+
+<h3 id="参考链接">参考链接</h3>
+
+<p><a href="https://www.jb51.net/article/151984.htm">vue项目刷新当前页面的三种方法</a></p>
 
               
             </div>
@@ -338,7 +414,7 @@ handleEdit(index, row) { console.log(row) if (row.cron === &#39;0 4 * * *&#39; |
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/01/vue-global-reload/" data-tooltip="Vue Global Reload">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -346,7 +422,7 @@ handleEdit(index, row) { console.log(row) if (row.cron === &#39;0 4 * * *&#39; |
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2019/12/vue-eltablecolumn-buttonloading/" data-tooltip="Vue Eltablecolumn Buttonloading">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/01/vue-eltable-edit/" data-tooltip="Vue Eltable Edit">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -406,7 +482,7 @@ handleEdit(index, row) { console.log(row) if (row.cron === &#39;0 4 * * *&#39; |
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/01/vue-global-reload/" data-tooltip="Vue Global Reload">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -414,7 +490,7 @@ handleEdit(index, row) { console.log(row) if (row.cron === &#39;0 4 * * *&#39; |
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2019/12/vue-eltablecolumn-buttonloading/" data-tooltip="Vue Eltablecolumn Buttonloading">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/01/vue-eltable-edit/" data-tooltip="Vue Eltable Edit">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -542,9 +618,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/drcoooper.gitee.io\/2020\/01\/vue-eltable-edit\/';
+          this.page.url = 'https:\/\/drcoooper.gitee.io\/2020\/01\/vue-global-reload\/';
           
-            this.page.identifier = '\/2020\/01\/vue-eltable-edit\/'
+            this.page.identifier = '\/2020\/01\/vue-global-reload\/'
           
         };
         (function() {
