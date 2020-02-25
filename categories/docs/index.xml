@@ -6,10 +6,33 @@
     <description>Recent content in docs on cc的后花园</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 21 Jan 2020 14:13:08 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 25 Feb 2020 12:19:00 +0800</lastBuildDate>
     
 	<atom:link href="https://drcoooper.gitee.io/categories/docs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Redis Docker Config</title>
+      <link>https://drcoooper.gitee.io/2020/02/redis-docker-config/</link>
+      <pubDate>Tue, 25 Feb 2020 12:19:00 +0800</pubDate>
+      
+      <guid>https://drcoooper.gitee.io/2020/02/redis-docker-config/</guid>
+      <description>Redis-Docker-Ubuntu启动容器命令 docker run -d --name redis1 -p 16379:6379 -v /Users/${yourname}/xcredis/docker_data:/data 44d36d2c2374 --appendonly yes --appendfsync everysec  注意挂载目录，冒号前面是宿主机，后面是docker内部
+设置密码 --requirepass &amp;quot;mypassword&amp;quot;
+挂载外部配置和数据安装 1.创建目录和配置文件redis.conf mkdir /docker
+mkdir /docker/redis
+mkdir /docker/redis/conf
+mkdir /docker/redis/data
+创建redis.conf配置文件 touch /docker/redis/conf/redis.conf
+redis.conf文件内容自行添加：
+切记注释掉：#daemonize yes 否则无法启动容器
+重要话说三遍：注释掉#daemonize yes，注释掉#daemonize yes，注释掉#daemonize yes
+2.创建启动容器，加载配置文件并持久化数据 docker run -d --privileged=true -p 6379:6379 -v /docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /docker/redis/data:/data --name redistest2 redis:4.0 redis-server /etc/redis/redis.conf --appendonly yes  参数说明： --privileged=true：容器内的root拥有真正root权限，否则容器内root只是外部普通用户权限
+-v /docker/redis/conf/redis.conf:/etc/redis/redis.conf：映射配置文件
+-v /docker/redis/data:/data：映射数据目录
+redis-server /etc/redis/redis.conf：指定配置文件启动redis-server进程
+--appendonly yes：开启数据持久化</description>
+    </item>
     
     <item>
       <title>Vue Global Reload</title>

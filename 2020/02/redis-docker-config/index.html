@@ -7,50 +7,82 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.59.0 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Hsu cc">
-<meta name="keywords" content="odin">
-<meta name="description" content="vue-admin-element的全局按钮添加 有天业务测试来找我，说希望在列表页加一个刷新按钮-。-
-其实这个页面的各个生命周期钩子里都加了刷新操作的回调函数，除此之外，table-row中的全部button也绑定了相同的方法&mdash;为的就是希望实时刷新结果（恨不能挂个websocket上去)
-所以我很诧异，为啥还要单独添加一个独立于各种区块的按钮呢？她说就觉得方便···
-众所周知，我是一个爱惜页面整洁性的人，所以我准备加一个全局刷新按钮，就在odin后台的顶部！
-同时也因为这个项目的侧边栏渲染是基于比如oom模块：
-src/router/modules/oom.js中的
-import Layout from &#39;@/layout&#39; const oomRouter = { path: &#39;/oom&#39;, component: Layout, redirect: &#39;/oom/index&#39;, name: &#39;oom自动化分析&#39;, // hidden: true, meta: { title: &#39;oom自动化分析&#39;, icon: &#39;tree-table&#39;, roles: [&#39;admin&#39;] // affix: true }, children: [ { path: &#39;index&#39;, component: () =&gt; import(&#39;@/views/oom/index&#39;), name: &#39;oom-index&#39;, // hidden: true, meta: { title: &#39;管理首页&#39;, icon: &#39;guide&#39;, noCache: true } }, { path: &#39;list&#39;, component: () =&gt; import(&#39;@/views/oom/list&#39;), name: &#39;oom-list&#39;, // hidden: true, meta: { title: &#39;任务列表&#39;, icon: &#39;nested&#39;, noCache: true } } ] } export default oomRouter  所以我明显需要在Layout中添加元素和方法，而进去发现它是以组件的方式使用Navbar的，所以在Navbar.">
+<meta name="keywords" content="redis">
+<meta name="description" content="Redis-Docker-Ubuntu启动容器命令 docker run -d --name redis1 -p 16379:6379 -v /Users/${yourname}/xcredis/docker_data:/data 44d36d2c2374 --appendonly yes --appendfsync everysec  注意挂载目录，冒号前面是宿主机，后面是docker内部
+设置密码 --requirepass &quot;mypassword&quot;
+挂载外部配置和数据安装 1.创建目录和配置文件redis.conf mkdir /docker
+mkdir /docker/redis
+mkdir /docker/redis/conf
+mkdir /docker/redis/data
+创建redis.conf配置文件 touch /docker/redis/conf/redis.conf
+redis.conf文件内容自行添加：
+切记注释掉：#daemonize yes 否则无法启动容器
+重要话说三遍：注释掉#daemonize yes，注释掉#daemonize yes，注释掉#daemonize yes
+2.创建启动容器，加载配置文件并持久化数据 docker run -d --privileged=true -p 6379:6379 -v /docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /docker/redis/data:/data --name redistest2 redis:4.0 redis-server /etc/redis/redis.conf --appendonly yes  参数说明： --privileged=true：容器内的root拥有真正root权限，否则容器内root只是外部普通用户权限
+-v /docker/redis/conf/redis.conf:/etc/redis/redis.conf：映射配置文件
+-v /docker/redis/data:/data：映射数据目录
+redis-server /etc/redis/redis.conf：指定配置文件启动redis-server进程
+--appendonly yes：开启数据持久化">
 
 
-<meta property="og:description" content="vue-admin-element的全局按钮添加 有天业务测试来找我，说希望在列表页加一个刷新按钮-。-
-其实这个页面的各个生命周期钩子里都加了刷新操作的回调函数，除此之外，table-row中的全部button也绑定了相同的方法&mdash;为的就是希望实时刷新结果（恨不能挂个websocket上去)
-所以我很诧异，为啥还要单独添加一个独立于各种区块的按钮呢？她说就觉得方便···
-众所周知，我是一个爱惜页面整洁性的人，所以我准备加一个全局刷新按钮，就在odin后台的顶部！
-同时也因为这个项目的侧边栏渲染是基于比如oom模块：
-src/router/modules/oom.js中的
-import Layout from &#39;@/layout&#39; const oomRouter = { path: &#39;/oom&#39;, component: Layout, redirect: &#39;/oom/index&#39;, name: &#39;oom自动化分析&#39;, // hidden: true, meta: { title: &#39;oom自动化分析&#39;, icon: &#39;tree-table&#39;, roles: [&#39;admin&#39;] // affix: true }, children: [ { path: &#39;index&#39;, component: () =&gt; import(&#39;@/views/oom/index&#39;), name: &#39;oom-index&#39;, // hidden: true, meta: { title: &#39;管理首页&#39;, icon: &#39;guide&#39;, noCache: true } }, { path: &#39;list&#39;, component: () =&gt; import(&#39;@/views/oom/list&#39;), name: &#39;oom-list&#39;, // hidden: true, meta: { title: &#39;任务列表&#39;, icon: &#39;nested&#39;, noCache: true } } ] } export default oomRouter  所以我明显需要在Layout中添加元素和方法，而进去发现它是以组件的方式使用Navbar的，所以在Navbar.">
+<meta property="og:description" content="Redis-Docker-Ubuntu启动容器命令 docker run -d --name redis1 -p 16379:6379 -v /Users/${yourname}/xcredis/docker_data:/data 44d36d2c2374 --appendonly yes --appendfsync everysec  注意挂载目录，冒号前面是宿主机，后面是docker内部
+设置密码 --requirepass &quot;mypassword&quot;
+挂载外部配置和数据安装 1.创建目录和配置文件redis.conf mkdir /docker
+mkdir /docker/redis
+mkdir /docker/redis/conf
+mkdir /docker/redis/data
+创建redis.conf配置文件 touch /docker/redis/conf/redis.conf
+redis.conf文件内容自行添加：
+切记注释掉：#daemonize yes 否则无法启动容器
+重要话说三遍：注释掉#daemonize yes，注释掉#daemonize yes，注释掉#daemonize yes
+2.创建启动容器，加载配置文件并持久化数据 docker run -d --privileged=true -p 6379:6379 -v /docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /docker/redis/data:/data --name redistest2 redis:4.0 redis-server /etc/redis/redis.conf --appendonly yes  参数说明： --privileged=true：容器内的root拥有真正root权限，否则容器内root只是外部普通用户权限
+-v /docker/redis/conf/redis.conf:/etc/redis/redis.conf：映射配置文件
+-v /docker/redis/data:/data：映射数据目录
+redis-server /etc/redis/redis.conf：指定配置文件启动redis-server进程
+--appendonly yes：开启数据持久化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue Global Reload">
-<meta name="twitter:title" content="Vue Global Reload">
-<meta property="og:url" content="https://drcoooper.gitee.io/2020/01/vue-global-reload/">
-<meta property="twitter:url" content="https://drcoooper.gitee.io/2020/01/vue-global-reload/">
+<meta property="og:title" content="Redis Docker Config">
+<meta name="twitter:title" content="Redis Docker Config">
+<meta property="og:url" content="https://drcoooper.gitee.io/2020/02/redis-docker-config/">
+<meta property="twitter:url" content="https://drcoooper.gitee.io/2020/02/redis-docker-config/">
 <meta property="og:site_name" content="cc的后花园">
-<meta property="og:description" content="vue-admin-element的全局按钮添加 有天业务测试来找我，说希望在列表页加一个刷新按钮-。-
-其实这个页面的各个生命周期钩子里都加了刷新操作的回调函数，除此之外，table-row中的全部button也绑定了相同的方法&mdash;为的就是希望实时刷新结果（恨不能挂个websocket上去)
-所以我很诧异，为啥还要单独添加一个独立于各种区块的按钮呢？她说就觉得方便···
-众所周知，我是一个爱惜页面整洁性的人，所以我准备加一个全局刷新按钮，就在odin后台的顶部！
-同时也因为这个项目的侧边栏渲染是基于比如oom模块：
-src/router/modules/oom.js中的
-import Layout from &#39;@/layout&#39; const oomRouter = { path: &#39;/oom&#39;, component: Layout, redirect: &#39;/oom/index&#39;, name: &#39;oom自动化分析&#39;, // hidden: true, meta: { title: &#39;oom自动化分析&#39;, icon: &#39;tree-table&#39;, roles: [&#39;admin&#39;] // affix: true }, children: [ { path: &#39;index&#39;, component: () =&gt; import(&#39;@/views/oom/index&#39;), name: &#39;oom-index&#39;, // hidden: true, meta: { title: &#39;管理首页&#39;, icon: &#39;guide&#39;, noCache: true } }, { path: &#39;list&#39;, component: () =&gt; import(&#39;@/views/oom/list&#39;), name: &#39;oom-list&#39;, // hidden: true, meta: { title: &#39;任务列表&#39;, icon: &#39;nested&#39;, noCache: true } } ] } export default oomRouter  所以我明显需要在Layout中添加元素和方法，而进去发现它是以组件的方式使用Navbar的，所以在Navbar.">
-<meta name="twitter:description" content="vue-admin-element的全局按钮添加 有天业务测试来找我，说希望在列表页加一个刷新按钮-。-
-其实这个页面的各个生命周期钩子里都加了刷新操作的回调函数，除此之外，table-row中的全部button也绑定了相同的方法&mdash;为的就是希望实时刷新结果（恨不能挂个websocket上去)
-所以我很诧异，为啥还要单独添加一个独立于各种区块的按钮呢？她说就觉得方便···
-众所周知，我是一个爱惜页面整洁性的人，所以我准备加一个全局刷新按钮，就在odin后台的顶部！
-同时也因为这个项目的侧边栏渲染是基于比如oom模块：
-src/router/modules/oom.js中的
-import Layout from &#39;@/layout&#39; const oomRouter = { path: &#39;/oom&#39;, component: Layout, redirect: &#39;/oom/index&#39;, name: &#39;oom自动化分析&#39;, // hidden: true, meta: { title: &#39;oom自动化分析&#39;, icon: &#39;tree-table&#39;, roles: [&#39;admin&#39;] // affix: true }, children: [ { path: &#39;index&#39;, component: () =&gt; import(&#39;@/views/oom/index&#39;), name: &#39;oom-index&#39;, // hidden: true, meta: { title: &#39;管理首页&#39;, icon: &#39;guide&#39;, noCache: true } }, { path: &#39;list&#39;, component: () =&gt; import(&#39;@/views/oom/list&#39;), name: &#39;oom-list&#39;, // hidden: true, meta: { title: &#39;任务列表&#39;, icon: &#39;nested&#39;, noCache: true } } ] } export default oomRouter  所以我明显需要在Layout中添加元素和方法，而进去发现它是以组件的方式使用Navbar的，所以在Navbar.">
+<meta property="og:description" content="Redis-Docker-Ubuntu启动容器命令 docker run -d --name redis1 -p 16379:6379 -v /Users/${yourname}/xcredis/docker_data:/data 44d36d2c2374 --appendonly yes --appendfsync everysec  注意挂载目录，冒号前面是宿主机，后面是docker内部
+设置密码 --requirepass &quot;mypassword&quot;
+挂载外部配置和数据安装 1.创建目录和配置文件redis.conf mkdir /docker
+mkdir /docker/redis
+mkdir /docker/redis/conf
+mkdir /docker/redis/data
+创建redis.conf配置文件 touch /docker/redis/conf/redis.conf
+redis.conf文件内容自行添加：
+切记注释掉：#daemonize yes 否则无法启动容器
+重要话说三遍：注释掉#daemonize yes，注释掉#daemonize yes，注释掉#daemonize yes
+2.创建启动容器，加载配置文件并持久化数据 docker run -d --privileged=true -p 6379:6379 -v /docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /docker/redis/data:/data --name redistest2 redis:4.0 redis-server /etc/redis/redis.conf --appendonly yes  参数说明： --privileged=true：容器内的root拥有真正root权限，否则容器内root只是外部普通用户权限
+-v /docker/redis/conf/redis.conf:/etc/redis/redis.conf：映射配置文件
+-v /docker/redis/data:/data：映射数据目录
+redis-server /etc/redis/redis.conf：指定配置文件启动redis-server进程
+--appendonly yes：开启数据持久化">
+<meta name="twitter:description" content="Redis-Docker-Ubuntu启动容器命令 docker run -d --name redis1 -p 16379:6379 -v /Users/${yourname}/xcredis/docker_data:/data 44d36d2c2374 --appendonly yes --appendfsync everysec  注意挂载目录，冒号前面是宿主机，后面是docker内部
+设置密码 --requirepass &quot;mypassword&quot;
+挂载外部配置和数据安装 1.创建目录和配置文件redis.conf mkdir /docker
+mkdir /docker/redis
+mkdir /docker/redis/conf
+mkdir /docker/redis/data
+创建redis.conf配置文件 touch /docker/redis/conf/redis.conf
+redis.conf文件内容自行添加：
+切记注释掉：#daemonize yes 否则无法启动容器
+重要话说三遍：注释掉#daemonize yes，注释掉#daemonize yes，注释掉#daemonize yes
+2.创建启动容器，加载配置文件并持久化数据 docker run -d --privileged=true -p 6379:6379 -v /docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /docker/redis/data:/data --name redistest2 redis:4.0 redis-server /etc/redis/redis.conf --appendonly yes  参数说明： --privileged=true：容器内的root拥有真正root权限，否则容器内root只是外部普通用户权限
+-v /docker/redis/conf/redis.conf:/etc/redis/redis.conf：映射配置文件
+-v /docker/redis/data:/data：映射数据目录
+redis-server /etc/redis/redis.conf：指定配置文件启动redis-server进程
+--appendonly yes：开启数据持久化">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2020-01-21T14:13:08">
+    <meta property="article:published_time" content="2020-02-25T12:19:00">
   
   
-    <meta property="article:modified_time" content="2020-01-21T14:13:08">
+    <meta property="article:modified_time" content="2020-02-25T12:19:00">
   
   
   
@@ -62,7 +94,7 @@ import Layout from &#39;@/layout&#39; const oomRouter = { path: &#39;/oom&#39;, 
     
       <meta property="article:tag" content="docs">
     
-      <meta property="article:tag" content="vue">
+      <meta property="article:tag" content="redis">
     
   
 
@@ -83,14 +115,14 @@ import Layout from &#39;@/layout&#39; const oomRouter = { path: &#39;/oom&#39;, 
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=640">
 
 
-    <title>Vue Global Reload</title>
+    <title>Redis Docker Config</title>
 
     <link rel="icon" href="https://drcoooper.gitee.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://drcoooper.gitee.io/2020/01/vue-global-reload/">
+    <link rel="canonical" href="https://drcoooper.gitee.io/2020/02/redis-docker-config/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -240,15 +272,15 @@ import Layout from &#39;@/layout&#39; const oomRouter = { path: &#39;/oom&#39;, 
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Vue Global Reload
+      Redis Docker Config
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2020-01-21T14:13:08&#43;08:00">
+      <time itemprop="datePublished" datetime="2020-02-25T12:19:00&#43;08:00">
         
-  一月 21, 2020
+  二月 25, 2020
 
       </time>
     
@@ -269,124 +301,112 @@ import Layout from &#39;@/layout&#39; const oomRouter = { path: &#39;/oom&#39;, 
             <div class="main-content-wrap">
               
 
-<h1 id="vue-admin-element的全局按钮添加">vue-admin-element的全局按钮添加</h1>
+<h1 id="redis-docker-ubuntu启动容器命令">Redis-Docker-Ubuntu启动容器命令</h1>
 
-<p>有天业务测试来找我，说希望在列表页加一个刷新按钮-。-<br />
-其实这个页面的各个生命周期钩子里都加了刷新操作的回调函数，除此之外，table-row中的全部button也绑定了相同的方法&mdash;为的就是希望实时刷新结果（恨不能挂个websocket上去)<br />
-所以我很诧异，为啥还要单独添加一个独立于各种区块的按钮呢？她说就觉得方便···<br />
-众所周知，我是一个爱惜页面整洁性的人，所以我准备加一个全局刷新按钮，就在odin后台的顶部！<br />
-同时也因为这个项目的侧边栏渲染是基于比如oom模块：<br />
-<code>src/router/modules/oom.js</code>中的</p>
-
-<pre><code class="language-js">import Layout from '@/layout'
-
-const oomRouter = {
-  path: '/oom',
-  component: Layout,
-  redirect: '/oom/index',
-  name: 'oom自动化分析',
-  // hidden: true,
-  meta: {
-    title: 'oom自动化分析',
-    icon: 'tree-table',
-    roles: ['admin']
-    // affix: true
-  },
-  children: [
-    {
-      path: 'index',
-      component: () =&gt; import('@/views/oom/index'),
-      name: 'oom-index',
-      // hidden: true,
-      meta: { title: '管理首页', icon: 'guide', noCache: true }
-    },
-    {
-      path: 'list',
-      component: () =&gt; import('@/views/oom/list'),
-      name: 'oom-list',
-      // hidden: true,
-      meta: { title: '任务列表', icon: 'nested', noCache: true }
-    }
-  ]
-}
-export default oomRouter
-
+<pre><code class="language-shell">docker run -d --name redis1 -p 16379:6379 -v /Users/${yourname}/xcredis/docker_data:/data 44d36d2c2374 --appendonly yes --appendfsync everysec
 </code></pre>
 
-<p>所以我明显需要在Layout中添加元素和方法，而进去发现它是以组件的方式使用Navbar的，所以在<code>Navbar.vue</code>中的</p>
+<p>注意挂载目录，冒号前面是宿主机，后面是docker内部</p>
 
-<pre><code class="language-js">    &lt;div class=&quot;right-menu&quot;&gt;
-      &lt;template v-if=&quot;device!=='mobile'&quot;&gt;
-        &lt;search
-          id=&quot;header-search&quot;
-          class=&quot;right-menu-item&quot;
-        /&gt;
-        &lt;div
-          class=&quot;right-menu-item hover-effect&quot;
-          style=&quot;font-size: 22px;&quot;
-          @click.stop=&quot;refresh()&quot;
-        &gt;&lt;i class=&quot;el-icon-refresh&quot; /&gt;&lt;/div&gt;
-        .
-        .
-        .
+<h3 id="设置密码">设置密码</h3>
+
+<p><code>--requirepass &quot;mypassword&quot;</code></p>
+
+<h3 id="挂载外部配置和数据安装">挂载外部配置和数据安装</h3>
+
+<h4 id="1-创建目录和配置文件redis-conf">1.创建目录和配置文件redis.conf</h4>
+
+<p>mkdir /docker<br />
+mkdir /docker/redis<br />
+mkdir /docker/redis/conf<br />
+mkdir /docker/redis/data</p>
+
+<h5 id="创建redis-conf配置文件">创建redis.conf配置文件</h5>
+
+<p>touch /docker/redis/conf/redis.conf<br />
+redis.conf文件内容自行添加：</p>
+
+<p>切记注释掉：#daemonize yes 否则无法启动容器</p>
+
+<p>重要话说三遍：注释掉#daemonize yes，注释掉#daemonize yes，注释掉#daemonize yes</p>
+
+<h4 id="2-创建启动容器-加载配置文件并持久化数据">2.创建启动容器，加载配置文件并持久化数据</h4>
+
+<pre><code class="language-shell">docker run -d --privileged=true -p 6379:6379 -v /docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /docker/redis/data:/data --name redistest2 redis:4.0 redis-server /etc/redis/redis.conf --appendonly yes
 </code></pre>
 
-<p>之后注入依赖，最后加入我的刷新图标，并绑定了<code>refresh()</code>方法</p>
+<h3 id="参数说明">参数说明：</h3>
 
-<pre><code class="language-js">export default {
-  inject: ['reload'],
-  .
-  .
-  .
-  methods: {
-    refresh() {
-      // this.$router.go(0)
-      this.reload()
-    }
-    .
-    .
-    .
+<p><code>--privileged=true</code>：容器内的root拥有真正root权限，否则容器内root只是外部普通用户权限</p>
+
+<p><code>-v /docker/redis/conf/redis.conf:/etc/redis/redis.conf</code>：映射配置文件</p>
+
+<p><code>-v /docker/redis/data:/data</code>：映射数据目录</p>
+
+<p><code>redis-server /etc/redis/redis.conf</code>：指定配置文件启动redis-server进程</p>
+
+<p><code>--appendonly yes</code>：开启数据持久化</p>
+
+<h3 id="其他redis配置选项-选自某篇技术博客">其他redis配置选项(选自某篇技术博客)</h3>
+
+<p>appendonly yes  #开启AOF模式 原文1<br />
+appendfilename &ldquo;appendonly.aof&rdquo; #保存数据的AOF文件名称 原文1</p>
+
+<p>appendfsync always<br />
+appendfsync everysec    #fsync模式    原文2<br />
+appendfsync no<br />
+no-appendfsync-on-rewrite no    #原文3<br />
+auto-aof-rewrite-percentage 100<br />
+auto-aof-rewrite-min-size 64mb  #原文4<br />
+aof-load-truncated yes  #原文5</p>
+
+<h1 id="redis客户端连接-shell">redis客户端连接（shell）</h1>
+
+<pre><code class="language-shell">redis-cli -h 192.168.124.14 -a redis
 </code></pre>
 
-<p>这里的<code>this.reload()</code>需要用到<code>provide / inject</code>的知识了，简单来说就是<code>provide / inject这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。</code>！！！<br />
-那么我要在哪个祖先组件中注入呢？显然是<code>App.vue</code></p>
+<h1 id="redis客户端连接-py">redis客户端连接（py）</h1>
 
-<pre><code class="language-js">&lt;template&gt;
-  &lt;div id=&quot;app&quot;&gt;
-    &lt;router-view v-if=&quot;isRouterAlive&quot; /&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
+<pre><code class="language-python">import time
+import redis
+from redis import ConnectionPool
 
-&lt;script&gt;
-export default {
-  name: 'App',
-  provide() {
-    return {
-      reload: this.reload
-    }
-  },
-  data() {
-    return {
-      isRouterAlive: true
-    }
-  },
-  methods: {
-    reload() {
-      this.isRouterAlive = false
-      this.$nextTick(() =&gt; {
-        this.isRouterAlive = true
-      })
-    }
-  }
-}
-&lt;/script&gt;
+class RedisPy(object):
+    def __init__(self):
+        pool = ConnectionPool(host='127.0.0.1', port=36379, max_connections=100)
+        self.conn = redis.Redis(connection_pool=pool)
+
+    def get_keys(self):
+        keys = self.conn.keys(&quot;*&quot;)
+        print(keys)
+
+    def set_string(self):
+        r = self.conn.set(&quot;name&quot;, &quot;uname&quot;)
+        print(r)
+
+    def get_string(self):
+        r = self.conn.get(&quot;name&quot;)
+        print(r)
+
+    def r_push(self):
+        r = self.conn.rpush(&quot;list1&quot;, 100, 200, 300)
+        print(r)
+
+    def b_l_pop(self):
+        r = self.conn.blpop(&quot;list1&quot;, 100)
+        print(r)
+
+if __name__ == '__main__':
+    rp = RedisPy()
+    # rp.get_keys()
+    # rp.set_string()
+    # rp.get_string()
+    # rp.r_push()
+    while True:
+        time.sleep(3)
+        rp.b_l_pop()
+
 </code></pre>
-
-<p><code>reload</code>方法只是触发了一下<code>&lt;router-view v-if=&quot;isRouterAlive&quot; /&gt;</code>的隐藏与显示的切换，但是这样就可以触发vue的重新渲染，并且不会整体刷新，也会重新触发生命周期函数，这样就实现了全局按钮的刷新操作啦！！！</p>
-
-<h3 id="参考链接">参考链接</h3>
-
-<p><a href="https://www.jb51.net/article/151984.htm">vue项目刷新当前页面的三种方法</a></p>
 
               
             </div>
@@ -401,7 +421,7 @@ export default {
                     
   <a class="tag tag--primary tag--small" href="https://drcoooper.gitee.io/tags/docs/">docs</a>
 
-  <a class="tag tag--primary tag--small" href="https://drcoooper.gitee.io/tags/vue/">vue</a>
+  <a class="tag tag--primary tag--small" href="https://drcoooper.gitee.io/tags/redis/">redis</a>
 
                   </div>
                 
@@ -414,7 +434,7 @@ export default {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/02/redis-docker-config/" data-tooltip="Redis Docker Config">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -422,7 +442,7 @@ export default {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/01/vue-eltable-edit/" data-tooltip="Vue Eltable Edit">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/01/vue-global-reload/" data-tooltip="Vue Global Reload">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -482,7 +502,7 @@ export default {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/02/redis-docker-config/" data-tooltip="Redis Docker Config">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -490,7 +510,7 @@ export default {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/01/vue-eltable-edit/" data-tooltip="Vue Eltable Edit">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/01/vue-global-reload/" data-tooltip="Vue Global Reload">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -618,9 +638,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/drcoooper.gitee.io\/2020\/01\/vue-global-reload\/';
+          this.page.url = 'https:\/\/drcoooper.gitee.io\/2020\/02\/redis-docker-config\/';
           
-            this.page.identifier = '\/2020\/01\/vue-global-reload\/'
+            this.page.identifier = '\/2020\/02\/redis-docker-config\/'
           
         };
         (function() {
