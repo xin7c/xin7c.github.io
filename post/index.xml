@@ -6,10 +6,19 @@
     <description>Recent content in Posts on cc的后花园</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Feb 2020 12:19:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 18 Mar 2020 18:41:20 +0800</lastBuildDate>
     
 	<atom:link href="https://drcoooper.gitee.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vue Iframe Jenkins</title>
+      <link>https://drcoooper.gitee.io/2020/03/vue-iframe-jenkins/</link>
+      <pubDate>Wed, 18 Mar 2020 18:41:20 +0800</pubDate>
+      
+      <guid>https://drcoooper.gitee.io/2020/03/vue-iframe-jenkins/</guid>
+      <description>vue页面内嵌iframe vue代码 &amp;lt;template&amp;gt; &amp;lt;div&amp;gt; &amp;lt;iframe id=&amp;quot;tpd&amp;quot; src=&amp;quot;https://Jenkins.com/&amp;quot; frameborder=&amp;quot;0&amp;quot; width=&amp;quot;100%&amp;quot; height=&amp;quot;100%&amp;quot; style=&amp;quot;position:absolute;&amp;quot; /&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/template&amp;gt; &amp;lt;script&amp;gt; export default { data() { return { } }, mounted() { /** * iframe-宽高自适应显示 */ function changeMobsfIframe() { const tpd = document.getElementById(&#39;tpd&#39;) const deviceWidth = document.body.clientWidth const deviceHeight = document.body.clientHeight tpd.style.width = (Number(deviceWidth) - 100) + &#39;px&#39; // 数字是页面布局宽度差值 tpd.style.height = (Number(deviceHeight) - 100) + &#39;px&#39; // 数字是页面布局高度差 } changeMobsfIframe() window.onresize = function() { changeMobsfIframe() } } } &amp;lt;/script&amp;gt; &amp;lt;style&amp;gt; &amp;lt;/style&amp;gt;  jenkins需要设置一下 jenkins：XFrame Filter Plugin 进入http://10.</description>
+    </item>
     
     <item>
       <title>Redis Docker Config</title>

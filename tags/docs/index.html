@@ -215,6 +215,62 @@
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="https://drcoooper.gitee.io/2020/03/vue-iframe-jenkins/">
+          Vue Iframe Jenkins
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-03-18T18:41:20&#43;08:00">
+        
+  三月 18, 2020
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
+    
+  
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      
+        vue页面内嵌iframe vue代码 &lt;template&gt; &lt;div&gt; &lt;iframe id=&quot;tpd&quot; src=&quot;https://Jenkins.com/&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot; style=&quot;position:absolute;&quot; /&gt; &lt;/div&gt; &lt;/template&gt; &lt;script&gt; export default { data() { return { } }, mounted() { /** * iframe-宽高自适应显示 */ function changeMobsfIframe() { const tpd = document.getElementById('tpd') const deviceWidth = document.body.clientWidth const deviceHeight = document.body.clientHeight tpd.style.width = (Number(deviceWidth) - 100) + 'px' // 数字是页面布局宽度差值 tpd.style.height = (Number(deviceHeight) - 100) + 'px' // 数字是页面布局高度差 } changeMobsfIframe() window.onresize = function() { changeMobsfIframe() } } } &lt;/script&gt; &lt;style&gt; &lt;/style&gt;  jenkins需要设置一下 jenkins：XFrame Filter Plugin 进入http://10.
+      
+      <p>
+        <a href="https://drcoooper.gitee.io/2020/03/vue-iframe-jenkins/" class="postShorten-excerpt_link link">阅读全文</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+              
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="https://drcoooper.gitee.io/2020/02/redis-docker-config/">
           Redis Docker Config
         </a>
@@ -576,66 +632,6 @@ import Vue from 'vue' import store from './store' import App from './App.vue' im
 </article>
 
             
-              
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/12/vue%E8%BF%87%E6%BB%A4%E5%99%A8%E4%B9%8B%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/">
-          vue过滤器之样式绑定
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2019-12-13T11:51:04&#43;08:00">
-        
-  十二月 13, 2019
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        需求 &emsp;业务有个很常用的场景是渲染一个结果列表页时，后端返回的状态码一般只能是数字
-&emsp;但我们在table中渲染的时候只渲染数字显然并不能很直观的反馈给使用者，所以结合tag的type属性绑定，就能配合过滤器来实现颜色标识和文本映射，体验明显更好~
-vue代码 首先vue实例中定义过滤器~
-export default { // -1失败 0未启动 1运行中 2运行完成 3记录不存在 filters: { statusFilter(status) { const statusMap = { '-1': '失败', '0': '未启动', '1': '运行中', '2': '运行完成', '3': '记录不存在' } return statusMap[status] }, typeFilter(status) { const statusMap = { '-1': 'danger', '0': '', '1': 'success', '2': 'info', '3': 'warning' } return statusMap[status] } }, }  模板代码 之后在模板里使用就好啦！
-&lt;el-table-column label=&quot;状态&quot; prop=&quot;status&quot; width=&quot;100&quot; &gt; &lt;template slot-scope=&quot;scope&quot;&gt; &lt;el-tag :type=&quot;scope.
-      
-      <p>
-        <a href="https://drcoooper.gitee.io/2019/12/vue%E8%BF%87%E6%BB%A4%E5%99%A8%E4%B9%8B%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-            
             
   <div class="pagination-bar">
     <ul class="pagination">
@@ -650,7 +646,7 @@ export default { // -1失败 0未启动 1运行中 2运行完成 3记录不存�
           </li>
         
       
-      <li class="pagination-number">第 1 页 共 2 页</li>
+      <li class="pagination-number">第 1 页 共 3 页</li>
     </ul>
   </div>
 

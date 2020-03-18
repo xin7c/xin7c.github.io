@@ -7,82 +7,26 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.59.0 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Hsu cc">
-<meta name="keywords" content="redis">
-<meta name="description" content="Redis-Docker-Ubuntu启动容器命令 docker run -d --name redis1 -p 16379:6379 -v /Users/${yourname}/xcredis/docker_data:/data 44d36d2c2374 --appendonly yes --appendfsync everysec  注意挂载目录，冒号前面是宿主机，后面是docker内部
-设置密码 --requirepass &quot;mypassword&quot;
-挂载外部配置和数据安装 1.创建目录和配置文件redis.conf mkdir /docker
-mkdir /docker/redis
-mkdir /docker/redis/conf
-mkdir /docker/redis/data
-创建redis.conf配置文件 touch /docker/redis/conf/redis.conf
-redis.conf文件内容自行添加：
-切记注释掉：#daemonize yes 否则无法启动容器
-重要话说三遍：注释掉#daemonize yes，注释掉#daemonize yes，注释掉#daemonize yes
-2.创建启动容器，加载配置文件并持久化数据 docker run -d --privileged=true -p 6379:6379 -v /docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /docker/redis/data:/data --name redistest2 redis:4.0 redis-server /etc/redis/redis.conf --appendonly yes  参数说明： --privileged=true：容器内的root拥有真正root权限，否则容器内root只是外部普通用户权限
--v /docker/redis/conf/redis.conf:/etc/redis/redis.conf：映射配置文件
--v /docker/redis/data:/data：映射数据目录
-redis-server /etc/redis/redis.conf：指定配置文件启动redis-server进程
---appendonly yes：开启数据持久化">
+<meta name="keywords" content="odin">
+<meta name="description" content="vue页面内嵌iframe vue代码 &lt;template&gt; &lt;div&gt; &lt;iframe id=&quot;tpd&quot; src=&quot;https://Jenkins.com/&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot; style=&quot;position:absolute;&quot; /&gt; &lt;/div&gt; &lt;/template&gt; &lt;script&gt; export default { data() { return { } }, mounted() { /** * iframe-宽高自适应显示 */ function changeMobsfIframe() { const tpd = document.getElementById(&#39;tpd&#39;) const deviceWidth = document.body.clientWidth const deviceHeight = document.body.clientHeight tpd.style.width = (Number(deviceWidth) - 100) &#43; &#39;px&#39; // 数字是页面布局宽度差值 tpd.style.height = (Number(deviceHeight) - 100) &#43; &#39;px&#39; // 数字是页面布局高度差 } changeMobsfIframe() window.onresize = function() { changeMobsfIframe() } } } &lt;/script&gt; &lt;style&gt; &lt;/style&gt;  jenkins需要设置一下 jenkins：XFrame Filter Plugin 进入http://10.">
 
 
-<meta property="og:description" content="Redis-Docker-Ubuntu启动容器命令 docker run -d --name redis1 -p 16379:6379 -v /Users/${yourname}/xcredis/docker_data:/data 44d36d2c2374 --appendonly yes --appendfsync everysec  注意挂载目录，冒号前面是宿主机，后面是docker内部
-设置密码 --requirepass &quot;mypassword&quot;
-挂载外部配置和数据安装 1.创建目录和配置文件redis.conf mkdir /docker
-mkdir /docker/redis
-mkdir /docker/redis/conf
-mkdir /docker/redis/data
-创建redis.conf配置文件 touch /docker/redis/conf/redis.conf
-redis.conf文件内容自行添加：
-切记注释掉：#daemonize yes 否则无法启动容器
-重要话说三遍：注释掉#daemonize yes，注释掉#daemonize yes，注释掉#daemonize yes
-2.创建启动容器，加载配置文件并持久化数据 docker run -d --privileged=true -p 6379:6379 -v /docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /docker/redis/data:/data --name redistest2 redis:4.0 redis-server /etc/redis/redis.conf --appendonly yes  参数说明： --privileged=true：容器内的root拥有真正root权限，否则容器内root只是外部普通用户权限
--v /docker/redis/conf/redis.conf:/etc/redis/redis.conf：映射配置文件
--v /docker/redis/data:/data：映射数据目录
-redis-server /etc/redis/redis.conf：指定配置文件启动redis-server进程
---appendonly yes：开启数据持久化">
+<meta property="og:description" content="vue页面内嵌iframe vue代码 &lt;template&gt; &lt;div&gt; &lt;iframe id=&quot;tpd&quot; src=&quot;https://Jenkins.com/&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot; style=&quot;position:absolute;&quot; /&gt; &lt;/div&gt; &lt;/template&gt; &lt;script&gt; export default { data() { return { } }, mounted() { /** * iframe-宽高自适应显示 */ function changeMobsfIframe() { const tpd = document.getElementById(&#39;tpd&#39;) const deviceWidth = document.body.clientWidth const deviceHeight = document.body.clientHeight tpd.style.width = (Number(deviceWidth) - 100) &#43; &#39;px&#39; // 数字是页面布局宽度差值 tpd.style.height = (Number(deviceHeight) - 100) &#43; &#39;px&#39; // 数字是页面布局高度差 } changeMobsfIframe() window.onresize = function() { changeMobsfIframe() } } } &lt;/script&gt; &lt;style&gt; &lt;/style&gt;  jenkins需要设置一下 jenkins：XFrame Filter Plugin 进入http://10.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis Docker Config">
-<meta name="twitter:title" content="Redis Docker Config">
-<meta property="og:url" content="https://drcoooper.gitee.io/2020/02/redis-docker-config/">
-<meta property="twitter:url" content="https://drcoooper.gitee.io/2020/02/redis-docker-config/">
+<meta property="og:title" content="Vue Iframe Jenkins">
+<meta name="twitter:title" content="Vue Iframe Jenkins">
+<meta property="og:url" content="https://drcoooper.gitee.io/2020/03/vue-iframe-jenkins/">
+<meta property="twitter:url" content="https://drcoooper.gitee.io/2020/03/vue-iframe-jenkins/">
 <meta property="og:site_name" content="cc的后花园">
-<meta property="og:description" content="Redis-Docker-Ubuntu启动容器命令 docker run -d --name redis1 -p 16379:6379 -v /Users/${yourname}/xcredis/docker_data:/data 44d36d2c2374 --appendonly yes --appendfsync everysec  注意挂载目录，冒号前面是宿主机，后面是docker内部
-设置密码 --requirepass &quot;mypassword&quot;
-挂载外部配置和数据安装 1.创建目录和配置文件redis.conf mkdir /docker
-mkdir /docker/redis
-mkdir /docker/redis/conf
-mkdir /docker/redis/data
-创建redis.conf配置文件 touch /docker/redis/conf/redis.conf
-redis.conf文件内容自行添加：
-切记注释掉：#daemonize yes 否则无法启动容器
-重要话说三遍：注释掉#daemonize yes，注释掉#daemonize yes，注释掉#daemonize yes
-2.创建启动容器，加载配置文件并持久化数据 docker run -d --privileged=true -p 6379:6379 -v /docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /docker/redis/data:/data --name redistest2 redis:4.0 redis-server /etc/redis/redis.conf --appendonly yes  参数说明： --privileged=true：容器内的root拥有真正root权限，否则容器内root只是外部普通用户权限
--v /docker/redis/conf/redis.conf:/etc/redis/redis.conf：映射配置文件
--v /docker/redis/data:/data：映射数据目录
-redis-server /etc/redis/redis.conf：指定配置文件启动redis-server进程
---appendonly yes：开启数据持久化">
-<meta name="twitter:description" content="Redis-Docker-Ubuntu启动容器命令 docker run -d --name redis1 -p 16379:6379 -v /Users/${yourname}/xcredis/docker_data:/data 44d36d2c2374 --appendonly yes --appendfsync everysec  注意挂载目录，冒号前面是宿主机，后面是docker内部
-设置密码 --requirepass &quot;mypassword&quot;
-挂载外部配置和数据安装 1.创建目录和配置文件redis.conf mkdir /docker
-mkdir /docker/redis
-mkdir /docker/redis/conf
-mkdir /docker/redis/data
-创建redis.conf配置文件 touch /docker/redis/conf/redis.conf
-redis.conf文件内容自行添加：
-切记注释掉：#daemonize yes 否则无法启动容器
-重要话说三遍：注释掉#daemonize yes，注释掉#daemonize yes，注释掉#daemonize yes
-2.创建启动容器，加载配置文件并持久化数据 docker run -d --privileged=true -p 6379:6379 -v /docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /docker/redis/data:/data --name redistest2 redis:4.0 redis-server /etc/redis/redis.conf --appendonly yes  参数说明： --privileged=true：容器内的root拥有真正root权限，否则容器内root只是外部普通用户权限
--v /docker/redis/conf/redis.conf:/etc/redis/redis.conf：映射配置文件
--v /docker/redis/data:/data：映射数据目录
-redis-server /etc/redis/redis.conf：指定配置文件启动redis-server进程
---appendonly yes：开启数据持久化">
+<meta property="og:description" content="vue页面内嵌iframe vue代码 &lt;template&gt; &lt;div&gt; &lt;iframe id=&quot;tpd&quot; src=&quot;https://Jenkins.com/&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot; style=&quot;position:absolute;&quot; /&gt; &lt;/div&gt; &lt;/template&gt; &lt;script&gt; export default { data() { return { } }, mounted() { /** * iframe-宽高自适应显示 */ function changeMobsfIframe() { const tpd = document.getElementById(&#39;tpd&#39;) const deviceWidth = document.body.clientWidth const deviceHeight = document.body.clientHeight tpd.style.width = (Number(deviceWidth) - 100) &#43; &#39;px&#39; // 数字是页面布局宽度差值 tpd.style.height = (Number(deviceHeight) - 100) &#43; &#39;px&#39; // 数字是页面布局高度差 } changeMobsfIframe() window.onresize = function() { changeMobsfIframe() } } } &lt;/script&gt; &lt;style&gt; &lt;/style&gt;  jenkins需要设置一下 jenkins：XFrame Filter Plugin 进入http://10.">
+<meta name="twitter:description" content="vue页面内嵌iframe vue代码 &lt;template&gt; &lt;div&gt; &lt;iframe id=&quot;tpd&quot; src=&quot;https://Jenkins.com/&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot; style=&quot;position:absolute;&quot; /&gt; &lt;/div&gt; &lt;/template&gt; &lt;script&gt; export default { data() { return { } }, mounted() { /** * iframe-宽高自适应显示 */ function changeMobsfIframe() { const tpd = document.getElementById(&#39;tpd&#39;) const deviceWidth = document.body.clientWidth const deviceHeight = document.body.clientHeight tpd.style.width = (Number(deviceWidth) - 100) &#43; &#39;px&#39; // 数字是页面布局宽度差值 tpd.style.height = (Number(deviceHeight) - 100) &#43; &#39;px&#39; // 数字是页面布局高度差 } changeMobsfIframe() window.onresize = function() { changeMobsfIframe() } } } &lt;/script&gt; &lt;style&gt; &lt;/style&gt;  jenkins需要设置一下 jenkins：XFrame Filter Plugin 进入http://10.">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2020-02-25T12:19:00">
+    <meta property="article:published_time" content="2020-03-18T18:41:20">
   
   
-    <meta property="article:modified_time" content="2020-02-25T12:19:00">
+    <meta property="article:modified_time" content="2020-03-18T18:41:20">
   
   
   
@@ -94,7 +38,7 @@ redis-server /etc/redis/redis.conf：指定配置文件启动redis-server进程
     
       <meta property="article:tag" content="docs">
     
-      <meta property="article:tag" content="redis">
+      <meta property="article:tag" content="vue">
     
   
 
@@ -115,14 +59,14 @@ redis-server /etc/redis/redis.conf：指定配置文件启动redis-server进程
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=640">
 
 
-    <title>Redis Docker Config</title>
+    <title>Vue Iframe Jenkins</title>
 
     <link rel="icon" href="https://drcoooper.gitee.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://drcoooper.gitee.io/2020/02/redis-docker-config/">
+    <link rel="canonical" href="https://drcoooper.gitee.io/2020/03/vue-iframe-jenkins/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -272,15 +216,15 @@ redis-server /etc/redis/redis.conf：指定配置文件启动redis-server进程
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Redis Docker Config
+      Vue Iframe Jenkins
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2020-02-25T12:19:00&#43;08:00">
+      <time itemprop="datePublished" datetime="2020-03-18T18:41:20&#43;08:00">
         
-  二月 25, 2020
+  三月 18, 2020
 
       </time>
     
@@ -301,112 +245,61 @@ redis-server /etc/redis/redis.conf：指定配置文件启动redis-server进程
             <div class="main-content-wrap">
               
 
-<h1 id="redis-docker-ubuntu启动容器命令">Redis-Docker-Ubuntu启动容器命令</h1>
+<h1 id="vue页面内嵌iframe">vue页面内嵌iframe</h1>
 
-<pre><code class="language-shell">docker run -d --name redis1 -p 16379:6379 -v /Users/${yourname}/xcredis/docker_data:/data 44d36d2c2374 --appendonly yes --appendfsync everysec
-</code></pre>
+<h4 id="vue代码">vue代码</h4>
 
-<p>注意挂载目录，冒号前面是宿主机，后面是docker内部</p>
+<pre><code class="language-js">&lt;template&gt;
+  &lt;div&gt;
+    &lt;iframe
+      id=&quot;tpd&quot;
+      src=&quot;https://Jenkins.com/&quot;
+      frameborder=&quot;0&quot;
+      width=&quot;100%&quot;
+      height=&quot;100%&quot;
+      style=&quot;position:absolute;&quot;
+    /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
 
-<h3 id="设置密码">设置密码</h3>
+&lt;script&gt;
+export default {
+  data() {
+    return {
+    }
+  },
+  mounted() {
+    /**
+      * iframe-宽高自适应显示
+      */
+    function changeMobsfIframe() {
+      const tpd = document.getElementById('tpd')
+      const deviceWidth = document.body.clientWidth
+      const deviceHeight = document.body.clientHeight
+      tpd.style.width = (Number(deviceWidth) - 100) + 'px' // 数字是页面布局宽度差值
+      tpd.style.height = (Number(deviceHeight) - 100) + 'px' // 数字是页面布局高度差
+    }
+    changeMobsfIframe()
+    window.onresize = function() {
+      changeMobsfIframe()
+    }
+  }
+}
+&lt;/script&gt;
 
-<p><code>--requirepass &quot;mypassword&quot;</code></p>
-
-<h3 id="挂载外部配置和数据安装">挂载外部配置和数据安装</h3>
-
-<h4 id="1-创建目录和配置文件redis-conf">1.创建目录和配置文件redis.conf</h4>
-
-<p>mkdir /docker<br />
-mkdir /docker/redis<br />
-mkdir /docker/redis/conf<br />
-mkdir /docker/redis/data</p>
-
-<h5 id="创建redis-conf配置文件">创建redis.conf配置文件</h5>
-
-<p>touch /docker/redis/conf/redis.conf<br />
-redis.conf文件内容自行添加：</p>
-
-<p>切记注释掉：#daemonize yes 否则无法启动容器</p>
-
-<p>重要话说三遍：注释掉#daemonize yes，注释掉#daemonize yes，注释掉#daemonize yes</p>
-
-<h4 id="2-创建启动容器-加载配置文件并持久化数据">2.创建启动容器，加载配置文件并持久化数据</h4>
-
-<pre><code class="language-shell">docker run -d --privileged=true -p 6379:6379 -v /docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /docker/redis/data:/data --name redistest2 redis:4.0 redis-server /etc/redis/redis.conf --appendonly yes
-</code></pre>
-
-<h3 id="参数说明">参数说明：</h3>
-
-<p><code>--privileged=true</code>：容器内的root拥有真正root权限，否则容器内root只是外部普通用户权限</p>
-
-<p><code>-v /docker/redis/conf/redis.conf:/etc/redis/redis.conf</code>：映射配置文件</p>
-
-<p><code>-v /docker/redis/data:/data</code>：映射数据目录</p>
-
-<p><code>redis-server /etc/redis/redis.conf</code>：指定配置文件启动redis-server进程</p>
-
-<p><code>--appendonly yes</code>：开启数据持久化</p>
-
-<h3 id="其他redis配置选项-选自某篇技术博客">其他redis配置选项(选自某篇技术博客)</h3>
-
-<p>appendonly yes  #开启AOF模式 原文1<br />
-appendfilename &ldquo;appendonly.aof&rdquo; #保存数据的AOF文件名称 原文1</p>
-
-<p>appendfsync always<br />
-appendfsync everysec    #fsync模式    原文2<br />
-appendfsync no<br />
-no-appendfsync-on-rewrite no    #原文3<br />
-auto-aof-rewrite-percentage 100<br />
-auto-aof-rewrite-min-size 64mb  #原文4<br />
-aof-load-truncated yes  #原文5</p>
-
-<h1 id="redis客户端连接-shell">redis客户端连接（shell）</h1>
-
-<pre><code class="language-shell">redis-cli -h 192.168.124.14 -a redis
-</code></pre>
-
-<h1 id="redis客户端连接-py">redis客户端连接（py）</h1>
-
-<pre><code class="language-python">import time
-import redis
-from redis import ConnectionPool
-
-class RedisPy(object):
-    def __init__(self):
-        pool = ConnectionPool(host='127.0.0.1', port=36379, max_connections=100)
-        self.conn = redis.Redis(connection_pool=pool)
-
-    def get_keys(self):
-        keys = self.conn.keys(&quot;*&quot;)
-        print(keys)
-
-    def set_string(self):
-        r = self.conn.set(&quot;name&quot;, &quot;uname&quot;)
-        print(r)
-
-    def get_string(self):
-        r = self.conn.get(&quot;name&quot;)
-        print(r)
-
-    def r_push(self):
-        r = self.conn.rpush(&quot;list1&quot;, 100, 200, 300)
-        print(r)
-
-    def b_l_pop(self):
-        r = self.conn.blpop(&quot;list1&quot;, 100)
-        print(r)
-
-if __name__ == '__main__':
-    rp = RedisPy()
-    # rp.get_keys()
-    # rp.set_string()
-    # rp.get_string()
-    # rp.r_push()
-    while True:
-        time.sleep(3)
-        rp.b_l_pop()
+&lt;style&gt;
+&lt;/style&gt;
 
 </code></pre>
+
+<h4 id="jenkins需要设置一下">jenkins需要设置一下</h4>
+
+<pre><code class="language-shell">jenkins：XFrame Filter Plugin 
+进入http://10.60.102.67:8080/configure
+安装后设置：ALLOWALL
+</code></pre>
+
+<p>之后就可以了，要不然iframe区域会显示人家把你拒绝了，很心酸。</p>
 
               
             </div>
@@ -421,7 +314,7 @@ if __name__ == '__main__':
                     
   <a class="tag tag--primary tag--small" href="https://drcoooper.gitee.io/tags/docs/">docs</a>
 
-  <a class="tag tag--primary tag--small" href="https://drcoooper.gitee.io/tags/redis/">redis</a>
+  <a class="tag tag--primary tag--small" href="https://drcoooper.gitee.io/tags/vue/">vue</a>
 
                   </div>
                 
@@ -434,7 +327,7 @@ if __name__ == '__main__':
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/03/vue-iframe-jenkins/" data-tooltip="Vue Iframe Jenkins">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -442,7 +335,7 @@ if __name__ == '__main__':
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/01/vue-global-reload/" data-tooltip="Vue Global Reload">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/02/redis-docker-config/" data-tooltip="Redis Docker Config">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -502,7 +395,7 @@ if __name__ == '__main__':
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/03/vue-iframe-jenkins/" data-tooltip="Vue Iframe Jenkins">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -510,7 +403,7 @@ if __name__ == '__main__':
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/01/vue-global-reload/" data-tooltip="Vue Global Reload">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/02/redis-docker-config/" data-tooltip="Redis Docker Config">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -638,9 +531,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/drcoooper.gitee.io\/2020\/02\/redis-docker-config\/';
+          this.page.url = 'https:\/\/drcoooper.gitee.io\/2020\/03\/vue-iframe-jenkins\/';
           
-            this.page.identifier = '\/2020\/02\/redis-docker-config\/'
+            this.page.identifier = '\/2020\/03\/vue-iframe-jenkins\/'
           
         };
         (function() {

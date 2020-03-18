@@ -4,27 +4,42 @@
   
   <url>
     <loc>https://drcoooper.gitee.io/categories/</loc>
-    <lastmod>2020-02-25T12:19:00+08:00</lastmod>
+    <lastmod>2020-03-18T18:41:20+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://drcoooper.gitee.io/</loc>
-    <lastmod>2020-02-25T12:19:00+08:00</lastmod>
+    <lastmod>2020-03-18T18:41:20+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://drcoooper.gitee.io/categories/docs/</loc>
-    <lastmod>2020-02-25T12:19:00+08:00</lastmod>
+    <lastmod>2020-03-18T18:41:20+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://drcoooper.gitee.io/tags/docs/</loc>
-    <lastmod>2020-02-25T12:19:00+08:00</lastmod>
+    <lastmod>2020-03-18T18:41:20+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://drcoooper.gitee.io/post/</loc>
-    <lastmod>2020-02-25T12:19:00+08:00</lastmod>
+    <lastmod>2020-03-18T18:41:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://drcoooper.gitee.io/tags/</loc>
+    <lastmod>2020-03-18T18:41:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://drcoooper.gitee.io/tags/vue/</loc>
+    <lastmod>2020-03-18T18:41:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://drcoooper.gitee.io/2020/03/vue-iframe-jenkins/</loc>
+    <lastmod>2020-03-18T18:41:20+08:00</lastmod>
   </url>
   
   <url>
@@ -35,16 +50,6 @@
   <url>
     <loc>https://drcoooper.gitee.io/2020/02/redis-docker-config/</loc>
     <lastmod>2020-02-25T12:19:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://drcoooper.gitee.io/tags/</loc>
-    <lastmod>2020-02-25T12:19:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://drcoooper.gitee.io/tags/vue/</loc>
-    <lastmod>2020-01-21T14:13:08+08:00</lastmod>
   </url>
   
   <url>
