@@ -17,13 +17,14 @@
       <pubDate>Thu, 19 Mar 2020 10:56:29 +0800</pubDate>
       
       <guid>https://drcoooper.gitee.io/2020/03/docker-nginx-supervisord/</guid>
-      <description>Ling的同事对于go服务的部署使用了k8s+安装supervisor的方案 安装supervisor apt update &amp;amp;&amp;amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
+      <description>Ling的同事对于go服务的部署使用了k8s+安装supervisor的方案 所以我也要搞，只不过是阿里云 + docker 安装supervisor apt update &amp;amp;&amp;amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
 换源步骤 1.备份原来的源
 sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
 将以前的源备份一下，以防以后可以用的。
 2.更换源 sudo gedit /etc/apt/sources.list
 使用gedit打开文档，将里面的内容清空，再将下边的阿里源复制进去，然后点击保存关闭。
- 阿里源(或者其他源) deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe deb-src http://mirrors.</description>
+ 阿里源(或者其他源)
+deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.</description>
     </item>
     
     <item>
@@ -230,17 +231,6 @@ mvn向jmeter传递参数的实际命令： pom文件中要添加：
     </item>
     
     <item>
-      <title>About</title>
-      <link>https://drcoooper.gitee.io/about/</link>
-      <pubDate>Mon, 28 Oct 2019 10:06:30 +0800</pubDate>
-      
-      <guid>https://drcoooper.gitee.io/about/</guid>
-      <description> 前端 HTML,CSS,VUE,WebSocket,Kotlin
-后端 Python,Golang
-以上都不太熟 </description>
-    </item>
-    
-    <item>
       <title>Govendor</title>
       <link>https://drcoooper.gitee.io/2019/10/govendor/</link>
       <pubDate>Mon, 28 Oct 2019 09:56:42 +0800</pubDate>
@@ -254,6 +244,19 @@ govendor
 安装部署govendor项目 进入git clone完成后的项目目录下
 govendor sync
 不过貌似也不需要，只要vendor目录在项目目录下即可</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://drcoooper.gitee.io/about/</link>
+      <pubDate>Fri, 30 Aug 2019 10:00:00 +0800</pubDate>
+      
+      <guid>https://drcoooper.gitee.io/about/</guid>
+      <description>5年测试经理 全栈测试开发 FE HTML * CSS * ES6 * VUE * ElementUI* WebSocketIO * Kotlin * 小程序
+DB MySQl * Redis * MongoDB
+Server Python * Golang
+算法 只会冒泡快排和递归遍历二叉树，还需要继续学习
+钱给到位就拉走 擅长手撕♂程序员，团队建设，质量控制，测试人员培养</description>
     </item>
     
   </channel>

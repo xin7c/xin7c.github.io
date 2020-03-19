@@ -8,42 +8,46 @@
 <meta name="generator" content="Hugo 0.59.0 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="CooperHsu">
 <meta name="keywords" content="docker, supervisor">
-<meta name="description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 安装supervisor apt update &amp;&amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
+<meta name="description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 所以我也要搞，只不过是阿里云 &#43; docker 安装supervisor apt update &amp;&amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
 换源步骤 1.备份原来的源
 sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
 将以前的源备份一下，以防以后可以用的。
 2.更换源 sudo gedit /etc/apt/sources.list
 使用gedit打开文档，将里面的内容清空，再将下边的阿里源复制进去，然后点击保存关闭。
- 阿里源(或者其他源) deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe deb-src http://mirrors.">
+ 阿里源(或者其他源)
+deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.">
 
 
-<meta property="og:description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 安装supervisor apt update &amp;&amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
+<meta property="og:description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 所以我也要搞，只不过是阿里云 &#43; docker 安装supervisor apt update &amp;&amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
 换源步骤 1.备份原来的源
 sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
 将以前的源备份一下，以防以后可以用的。
 2.更换源 sudo gedit /etc/apt/sources.list
 使用gedit打开文档，将里面的内容清空，再将下边的阿里源复制进去，然后点击保存关闭。
- 阿里源(或者其他源) deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe deb-src http://mirrors.">
+ 阿里源(或者其他源)
+deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker Nginx Supervisord">
 <meta name="twitter:title" content="Docker Nginx Supervisord">
 <meta property="og:url" content="https://drcoooper.gitee.io/2020/03/docker-nginx-supervisord/">
 <meta property="twitter:url" content="https://drcoooper.gitee.io/2020/03/docker-nginx-supervisord/">
 <meta property="og:site_name" content="CooperHsu">
-<meta property="og:description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 安装supervisor apt update &amp;&amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
+<meta property="og:description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 所以我也要搞，只不过是阿里云 &#43; docker 安装supervisor apt update &amp;&amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
 换源步骤 1.备份原来的源
 sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
 将以前的源备份一下，以防以后可以用的。
 2.更换源 sudo gedit /etc/apt/sources.list
 使用gedit打开文档，将里面的内容清空，再将下边的阿里源复制进去，然后点击保存关闭。
- 阿里源(或者其他源) deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe deb-src http://mirrors.">
-<meta name="twitter:description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 安装supervisor apt update &amp;&amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
+ 阿里源(或者其他源)
+deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.">
+<meta name="twitter:description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 所以我也要搞，只不过是阿里云 &#43; docker 安装supervisor apt update &amp;&amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
 换源步骤 1.备份原来的源
 sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
 将以前的源备份一下，以防以后可以用的。
 2.更换源 sudo gedit /etc/apt/sources.list
 使用gedit打开文档，将里面的内容清空，再将下边的阿里源复制进去，然后点击保存关闭。
- 阿里源(或者其他源) deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe deb-src http://mirrors.">
+ 阿里源(或者其他源)
+deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.">
 <meta property="og:locale" content="zh-cn">
 
   
@@ -267,7 +271,9 @@ sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
             <div class="main-content-wrap">
               
 
-<h2 id="ling的同事对于go服务的部署使用了k8s-安装supervisor的方案">Ling的同事对于go服务的部署使用了k8s+安装supervisor的方案</h2>
+<h3 id="ling的同事对于go服务的部署使用了k8s-安装supervisor的方案">Ling的同事对于go服务的部署使用了k8s+安装supervisor的方案</h3>
+
+<h4 id="所以我也要搞-只不过是阿里云-docker">所以我也要搞，只不过是阿里云 + docker</h4>
 
 <h4 id="安装supervisor">安装supervisor</h4>
 
@@ -285,21 +291,24 @@ sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
 使用gedit打开文档，将里面的内容清空，再将下边的阿里源复制进去，然后点击保存关闭。</p>
 
 <ul>
-<li>阿里源(或者其他源)
-deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial main
-deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial main
-deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-updates main
-deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-updates main
-deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial universe
-deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial universe
-deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-updates universe
-deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-updates universe
-deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-security main
-deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-security main
-deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-security universe
-deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-security universe
-3.更新
-<code>sudo apt-get update</code></li>
+<li><p>阿里源(或者其他源)</p>
+
+<pre><code class="language-shell">deb http://mirrors.aliyun.com/ubuntu/ xenial main
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial main
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main
+deb http://mirrors.aliyun.com/ubuntu/ xenial universe
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security main
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security universe
+</code></pre>
+
+<p>3.更新
+<code>sudo apt-get update</code></p></li>
 </ul>
 
 <h4 id="生成默认配置">生成默认配置</h4>
@@ -308,7 +317,12 @@ deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ub
 
 <h4 id="启动">启动</h4>
 
-<p><code>supervisord -c /etc/supervisor/conf.d/supervisord.conf</code></p>
+<p><strong><em>如果报错</em></strong><br />
+<code>Unlinking stale socket /var/run/supervisor/supervisor.sock</code>的话：<br />
+<code>unlink /var/run/supervisor.sock</code></p>
+
+<p><strong>一般情况下直接搞就行了</strong><br />
+<code>supervisord -c /etc/supervisor/conf.d/supervisord.conf</code></p>
 
 <h4 id="nginx添加反代">nginx添加反代</h4>
 
@@ -505,6 +519,21 @@ files = /etc/supervisor/conf.d/*.conf
 
 <p><strong><em>ip看实际情况而定</em></strong><br />
 <code>http://127.0.0.1:9001</code></p>
+
+<h4 id="supervisor的客户端部分命令">supervisor的客户端部分命令</h4>
+
+<pre><code class="language-shell">supervisorctl status 查看进程运行状态
+supervisorctl start 进程名 启动进程
+supervisorctl stop 进程名 关闭进程
+supervisorctl restart 进程名 重启进程
+supervisorctl update 重新载入配置文件
+supervisorctl shutdown 关闭supervisord
+supervisorctl clear 进程名 清空进程日志
+supervisorctl 进入到交互模式下。使用help查看所有命令。
+start stop restart + all 表示启动，关闭，重启所有进程。
+</code></pre>
+
+<h4 id="不建议用github上传go文件-因为真的太慢了">不建议用github上传go文件，因为真的太慢了</h4>
 
               
             </div>
