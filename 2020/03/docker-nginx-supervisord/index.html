@@ -8,7 +8,9 @@
 <meta name="generator" content="Hugo 0.59.0 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="CooperHsu">
 <meta name="keywords" content="docker, supervisor">
-<meta name="description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 所以我也要搞，只不过是阿里云 &#43; docker 安装supervisor apt update &amp;&amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
+<meta name="description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 所以我也要搞，只不过是阿里云 &#43; docker 安装supervisor apt update &amp;&amp; apt install supervisor
+* 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS）
+* 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
 换源步骤 1.备份原来的源
 sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
 将以前的源备份一下，以防以后可以用的。
@@ -18,7 +20,9 @@ sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
 deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.">
 
 
-<meta property="og:description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 所以我也要搞，只不过是阿里云 &#43; docker 安装supervisor apt update &amp;&amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
+<meta property="og:description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 所以我也要搞，只不过是阿里云 &#43; docker 安装supervisor apt update &amp;&amp; apt install supervisor
+* 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS）
+* 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
 换源步骤 1.备份原来的源
 sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
 将以前的源备份一下，以防以后可以用的。
@@ -32,7 +36,9 @@ deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.
 <meta property="og:url" content="https://drcoooper.gitee.io/2020/03/docker-nginx-supervisord/">
 <meta property="twitter:url" content="https://drcoooper.gitee.io/2020/03/docker-nginx-supervisord/">
 <meta property="og:site_name" content="CooperHsu">
-<meta property="og:description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 所以我也要搞，只不过是阿里云 &#43; docker 安装supervisor apt update &amp;&amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
+<meta property="og:description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 所以我也要搞，只不过是阿里云 &#43; docker 安装supervisor apt update &amp;&amp; apt install supervisor
+* 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS）
+* 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
 换源步骤 1.备份原来的源
 sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
 将以前的源备份一下，以防以后可以用的。
@@ -40,7 +46,9 @@ sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
 使用gedit打开文档，将里面的内容清空，再将下边的阿里源复制进去，然后点击保存关闭。
  阿里源(或者其他源)
 deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.">
-<meta name="twitter:description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 所以我也要搞，只不过是阿里云 &#43; docker 安装supervisor apt update &amp;&amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
+<meta name="twitter:description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 所以我也要搞，只不过是阿里云 &#43; docker 安装supervisor apt update &amp;&amp; apt install supervisor
+* 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS）
+* 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
 换源步骤 1.备份原来的源
 sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
 将以前的源备份一下，以防以后可以用的。
@@ -277,8 +285,8 @@ deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.
 
 <h4 id="安装supervisor">安装supervisor</h4>
 
-<p><code>apt update &amp;&amp; apt install supervisor</code>
-* 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS）
+<p><code>apt update &amp;&amp; apt install supervisor</code><br />
+* 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS）<br />
 * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的<code>sources.list</code></p>
 
 <h5 id="换源步骤">换源步骤</h5>

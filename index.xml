@@ -17,7 +17,9 @@
       <pubDate>Thu, 19 Mar 2020 10:56:29 +0800</pubDate>
       
       <guid>https://drcoooper.gitee.io/2020/03/docker-nginx-supervisord/</guid>
-      <description>Ling的同事对于go服务的部署使用了k8s+安装supervisor的方案 所以我也要搞，只不过是阿里云 + docker 安装supervisor apt update &amp;amp;&amp;amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
+      <description>Ling的同事对于go服务的部署使用了k8s+安装supervisor的方案 所以我也要搞，只不过是阿里云 + docker 安装supervisor apt update &amp;amp;&amp;amp; apt install supervisor
+* 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS）
+* 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
 换源步骤 1.备份原来的源
 sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
 将以前的源备份一下，以防以后可以用的。
