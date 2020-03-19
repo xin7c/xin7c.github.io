@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.59.0 with theme Tranquilpeak 0.4.7-BETA">
-<meta name="author" content="Hsu cc">
+<meta name="author" content="CooperHsu">
 <meta name="keywords" content="odin">
 <meta name="description" content="vue页面内嵌iframe vue代码 &lt;template&gt; &lt;div&gt; &lt;iframe id=&quot;tpd&quot; src=&quot;https://Jenkins.com/&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot; style=&quot;position:absolute;&quot; /&gt; &lt;/div&gt; &lt;/template&gt; &lt;script&gt; export default { data() { return { } }, mounted() { /** * iframe-宽高自适应显示 */ function changeMobsfIframe() { const tpd = document.getElementById(&#39;tpd&#39;) const deviceWidth = document.body.clientWidth const deviceHeight = document.body.clientHeight tpd.style.width = (Number(deviceWidth) - 100) &#43; &#39;px&#39; // 数字是页面布局宽度差值 tpd.style.height = (Number(deviceHeight) - 100) &#43; &#39;px&#39; // 数字是页面布局高度差 } changeMobsfIframe() window.onresize = function() { changeMobsfIframe() } } } &lt;/script&gt; &lt;style&gt; &lt;/style&gt;  jenkins需要设置一下 jenkins：XFrame Filter Plugin 进入http://10.">
 
@@ -17,7 +17,7 @@
 <meta name="twitter:title" content="Vue Iframe Jenkins">
 <meta property="og:url" content="https://drcoooper.gitee.io/2020/03/vue-iframe-jenkins/">
 <meta property="twitter:url" content="https://drcoooper.gitee.io/2020/03/vue-iframe-jenkins/">
-<meta property="og:site_name" content="cc的后花园">
+<meta property="og:site_name" content="CooperHsu">
 <meta property="og:description" content="vue页面内嵌iframe vue代码 &lt;template&gt; &lt;div&gt; &lt;iframe id=&quot;tpd&quot; src=&quot;https://Jenkins.com/&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot; style=&quot;position:absolute;&quot; /&gt; &lt;/div&gt; &lt;/template&gt; &lt;script&gt; export default { data() { return { } }, mounted() { /** * iframe-宽高自适应显示 */ function changeMobsfIframe() { const tpd = document.getElementById(&#39;tpd&#39;) const deviceWidth = document.body.clientWidth const deviceHeight = document.body.clientHeight tpd.style.width = (Number(deviceWidth) - 100) &#43; &#39;px&#39; // 数字是页面布局宽度差值 tpd.style.height = (Number(deviceHeight) - 100) &#43; &#39;px&#39; // 数字是页面布局高度差 } changeMobsfIframe() window.onresize = function() { changeMobsfIframe() } } } &lt;/script&gt; &lt;style&gt; &lt;/style&gt;  jenkins需要设置一下 jenkins：XFrame Filter Plugin 进入http://10.">
 <meta name="twitter:description" content="vue页面内嵌iframe vue代码 &lt;template&gt; &lt;div&gt; &lt;iframe id=&quot;tpd&quot; src=&quot;https://Jenkins.com/&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot; style=&quot;position:absolute;&quot; /&gt; &lt;/div&gt; &lt;/template&gt; &lt;script&gt; export default { data() { return { } }, mounted() { /** * iframe-宽高自适应显示 */ function changeMobsfIframe() { const tpd = document.getElementById(&#39;tpd&#39;) const deviceWidth = document.body.clientWidth const deviceHeight = document.body.clientHeight tpd.style.width = (Number(deviceWidth) - 100) &#43; &#39;px&#39; // 数字是页面布局宽度差值 tpd.style.height = (Number(deviceHeight) - 100) &#43; &#39;px&#39; // 数字是页面布局高度差 } changeMobsfIframe() window.onresize = function() { changeMobsfIframe() } } } &lt;/script&gt; &lt;style&gt; &lt;/style&gt;  jenkins需要设置一下 jenkins：XFrame Filter Plugin 进入http://10.">
 <meta property="og:locale" content="zh-cn">
@@ -89,7 +89,7 @@
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="https://drcoooper.gitee.io/">cc的后花园</a>
+    <a class="header-title-link" href="https://drcoooper.gitee.io/">CooperHsu</a>
   </div>
   
     
@@ -113,9 +113,9 @@
         <a href="https://drcoooper.gitee.io/#about">
           <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=110" alt="作者的图片" />
         </a>
-        <h4 class="sidebar-profile-name">Hsu cc</h4>
+        <h4 class="sidebar-profile-name">CooperHsu</h4>
         
-          <h5 class="sidebar-profile-bio">参见你们的领主 <strong>cc</strong></h5>
+          <h5 class="sidebar-profile-bio"><strong>苦逼热力测绘院</strong></h5>
         
       </div>
     
@@ -327,7 +327,7 @@ export default {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/03/docker-flask-redis/" data-tooltip="Docker Flask Redis">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -382,7 +382,7 @@ export default {
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 Hsu cc. All Rights Reserved
+    &copy; 2020 CooperHsu. All Rights Reserved
   </span>
 </footer>
 
@@ -395,7 +395,7 @@ export default {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/03/docker-flask-redis/" data-tooltip="Docker Flask Redis">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -457,22 +457,22 @@ export default {
     
       <img id="about-card-picture" src="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=110" alt="作者的图片" />
     
-    <h4 id="about-card-name">Hsu cc</h4>
+    <h4 id="about-card-name">CooperHsu</h4>
     
-      <div id="about-card-bio">参见你们的领主 <strong>cc</strong></div>
+      <div id="about-card-bio"><strong>苦逼热力测绘院</strong></div>
     
     
       <div id="about-card-job">
         <i class="fa fa-briefcase"></i>
         <br/>
-        打杂的
+        测试经理*全栈测开*打杂
       </div>
     
     
       <div id="about-card-location">
         <i class="fa fa-map-marker"></i>
         <br/>
-        北京
+        望京甘道夫
       </div>
     
   </div>

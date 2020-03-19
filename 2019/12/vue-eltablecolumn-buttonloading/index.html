@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.59.0 with theme Tranquilpeak 0.4.7-BETA">
-<meta name="author" content="Hsu cc">
+<meta name="author" content="CooperHsu">
 <meta name="keywords" content="odin">
 <meta name="description" content="element-ui中table-column的button按钮loading状态 在我们的项目中，往往需要在一个列表页里展示全部的数据，每一行展示各种数据；
 但是由于是测试工具，所以经常需要在每一行中嵌入按钮，通过&lt;template slot-scope=&quot;scope&quot;&gt;来让每行的button获取它所在行的全部数据，从而提取这一行中的某个字段，继而发出ajax请求，column代码示例如下：
@@ -35,7 +35,7 @@ handleLaunch(task_id) { this.launchLoading = task_id // 启动 var data = { task
 <meta name="twitter:title" content="Vue Eltablecolumn Buttonloading">
 <meta property="og:url" content="https://drcoooper.gitee.io/2019/12/vue-eltablecolumn-buttonloading/">
 <meta property="twitter:url" content="https://drcoooper.gitee.io/2019/12/vue-eltablecolumn-buttonloading/">
-<meta property="og:site_name" content="cc的后花园">
+<meta property="og:site_name" content="CooperHsu">
 <meta property="og:description" content="element-ui中table-column的button按钮loading状态 在我们的项目中，往往需要在一个列表页里展示全部的数据，每一行展示各种数据；
 但是由于是测试工具，所以经常需要在每一行中嵌入按钮，通过&lt;template slot-scope=&quot;scope&quot;&gt;来让每行的button获取它所在行的全部数据，从而提取这一行中的某个字段，继而发出ajax请求，column代码示例如下：
 &lt;el-table-column label=&quot;操作&quot;&gt; &lt;template slot-scope=&quot;scope&quot;&gt; &lt;el-button size=&quot;mini&quot; type=&quot;success&quot; :loading=&quot;launchLoading === scope.row.task_id&quot; @click=&quot;handleLaunch(scope.row.task_id)&quot; &gt;启动&lt;/el-button&gt; &lt;el-button size=&quot;mini&quot; type=&quot;danger&quot; :loading=&quot;stopLoading === scope.row.task_id&quot; @click=&quot;handleStop(scope.row.task_id)&quot; &gt;停止&lt;/el-button&gt; &lt;el-button size=&quot;mini&quot; type=&quot;warning&quot; plain @click=&quot;handleCopy(scope.row.task_id), goAdd()&quot; &gt;复制&lt;/el-button&gt; &lt;/template&gt; &lt;/el-table-column&gt;  这里的操作是：按下这一行的按钮，它会获取这一行的task_id，并作为形参传递给绑定的click方法@click=&quot;handleLaunch(scope.row.task_id)
@@ -125,7 +125,7 @@ handleLaunch(task_id) { this.launchLoading = task_id // 启动 var data = { task
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="https://drcoooper.gitee.io/">cc的后花园</a>
+    <a class="header-title-link" href="https://drcoooper.gitee.io/">CooperHsu</a>
   </div>
   
     
@@ -149,9 +149,9 @@ handleLaunch(task_id) { this.launchLoading = task_id // 启动 var data = { task
         <a href="https://drcoooper.gitee.io/#about">
           <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=110" alt="作者的图片" />
         </a>
-        <h4 class="sidebar-profile-name">Hsu cc</h4>
+        <h4 class="sidebar-profile-name">CooperHsu</h4>
         
-          <h5 class="sidebar-profile-bio">参见你们的领主 <strong>cc</strong></h5>
+          <h5 class="sidebar-profile-bio"><strong>苦逼热力测绘院</strong></h5>
         
       </div>
     
@@ -434,7 +434,7 @@ handleLaunch(task_id) { this.launchLoading = task_id // 启动 var data = { task
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 Hsu cc. All Rights Reserved
+    &copy; 2020 CooperHsu. All Rights Reserved
   </span>
 </footer>
 
@@ -509,22 +509,22 @@ handleLaunch(task_id) { this.launchLoading = task_id // 启动 var data = { task
     
       <img id="about-card-picture" src="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=110" alt="作者的图片" />
     
-    <h4 id="about-card-name">Hsu cc</h4>
+    <h4 id="about-card-name">CooperHsu</h4>
     
-      <div id="about-card-bio">参见你们的领主 <strong>cc</strong></div>
+      <div id="about-card-bio"><strong>苦逼热力测绘院</strong></div>
     
     
       <div id="about-card-job">
         <i class="fa fa-briefcase"></i>
         <br/>
-        打杂的
+        测试经理*全栈测开*打杂
       </div>
     
     
       <div id="about-card-location">
         <i class="fa fa-map-marker"></i>
         <br/>
-        北京
+        望京甘道夫
       </div>
     
   </div>

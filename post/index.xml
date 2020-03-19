@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on cc的后花园</title>
+    <title>Posts on CooperHsu</title>
     <link>https://drcoooper.gitee.io/post/</link>
-    <description>Recent content in Posts on cc的后花园</description>
+    <description>Recent content in Posts on CooperHsu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Mar 2020 18:41:20 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 19 Mar 2020 10:24:34 +0800</lastBuildDate>
     
 	<atom:link href="https://drcoooper.gitee.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Docker Flask Redis</title>
+      <link>https://drcoooper.gitee.io/2020/03/docker-flask-redis/</link>
+      <pubDate>Thu, 19 Mar 2020 10:24:34 +0800</pubDate>
+      
+      <guid>https://drcoooper.gitee.io/2020/03/docker-flask-redis/</guid>
+      <description>flask与redis各一个container 但是flask无法通过宿主机ip:[redis port]的方式连接 基础环境情况  vue-nginx 80 odin-flask 8888 redis-server 6379  8888端口的服务会调用redis:
+class UvView(MethodView): @staticmethod def post(): &amp;quot;&amp;quot;&amp;quot; http://101.160.182.183:8888/uv :param: :return: &amp;quot;&amp;quot;&amp;quot; body = request.json redis_key = body[&amp;quot;uname&amp;quot;] rp = RedisPy(host=&amp;quot;101.160.182.183&amp;quot;, port=&amp;quot;6379&amp;quot;) rp.uv_redis(&amp;quot;uv&amp;quot;, redis_key) uv_dict = { &amp;quot;code&amp;quot;: 20000, &amp;quot;data&amp;quot;: rp.h_get() } return jsonify(uv_dict)  但是前端报500，8888端口的flask日志记录如下：
+During handling of the above exception, another exception occurred: Traceback (most recent call last): File &amp;quot;/usr/local/lib/python3.7/site-packages/flask/app.py&amp;quot;, line 2446, in wsgi_app response = self.</description>
+    </item>
     
     <item>
       <title>Vue Iframe Jenkins</title>
