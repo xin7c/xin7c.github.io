@@ -6,10 +6,25 @@
     <description>Recent content in docs on CooperHsu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 19 Mar 2020 10:24:34 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 19 Mar 2020 10:56:29 +0800</lastBuildDate>
     
 	<atom:link href="https://drcoooper.gitee.io/categories/docs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Docker Nginx Supervisord</title>
+      <link>https://drcoooper.gitee.io/2020/03/docker-nginx-supervisord/</link>
+      <pubDate>Thu, 19 Mar 2020 10:56:29 +0800</pubDate>
+      
+      <guid>https://drcoooper.gitee.io/2020/03/docker-nginx-supervisord/</guid>
+      <description>Ling的同事对于go服务的部署使用了k8s+安装supervisor的方案 安装supervisor apt update &amp;amp;&amp;amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
+换源步骤 1.备份原来的源
+sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
+将以前的源备份一下，以防以后可以用的。
+2.更换源 sudo gedit /etc/apt/sources.list
+使用gedit打开文档，将里面的内容清空，再将下边的阿里源复制进去，然后点击保存关闭。
+ 阿里源(或者其他源) deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe deb-src http://mirrors.</description>
+    </item>
     
     <item>
       <title>Docker Flask Redis</title>

@@ -213,6 +213,68 @@
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="https://drcoooper.gitee.io/2020/03/docker-nginx-supervisord/">
+          Docker Nginx Supervisord
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-03-19T10:56:29&#43;08:00">
+        
+  三月 19, 2020
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
+    
+  
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      
+        Ling的同事对于go服务的部署使用了k8s+安装supervisor的方案 安装supervisor apt update &amp;&amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
+换源步骤 1.备份原来的源
+sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
+将以前的源备份一下，以防以后可以用的。
+2.更换源 sudo gedit /etc/apt/sources.list
+使用gedit打开文档，将里面的内容清空，再将下边的阿里源复制进去，然后点击保存关闭。
+ 阿里源(或者其他源) deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe deb-src http://mirrors.
+      
+      <p>
+        <a href="https://drcoooper.gitee.io/2020/03/docker-nginx-supervisord/" class="postShorten-excerpt_link link">阅读全文</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+          
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="https://drcoooper.gitee.io/2020/03/docker-flask-redis/">
           Docker Flask Redis
         </a>
@@ -561,67 +623,6 @@ handleLaunch(task_id) { this.launchLoading = task_id // 启动 var data = { task
       
       <p>
         <a href="https://drcoooper.gitee.io/2019/12/vue-eltablecolumn-buttonloading/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
-            
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/12/h5ai/">
-          H5ai
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2019-12-30T10:33:30&#43;08:00">
-        
-  十二月 30, 2019
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        h5ai安装和配置 h5ai官网
-h5ai Github
-环境要求  nginx或者Apache，我的环境是mac + nginx； php，mac用户直接brew install php即可； 目录结构如下
-DOC_ROOT ├─ _h5ai ├─ your files └─ and folders   nginx配置文件 mac本机用brew安装nginx后，默认配置文件地址为：
-/usr/local/etc/nginx/nginx.conf  修改默认配置：
-#user nobody; worker_processes 1; #error_log logs/error.log; #error_log logs/error.log notice; #error_log logs/error.log info; #pid logs/nginx.pid; events { worker_connections 1024; } http { include mime.types; default_type application/octet-stream; #log_format main '$remote_addr - $remote_user [$time_local] &quot;$request&quot; ' # '$status $body_bytes_sent &quot;$http_referer&quot; ' # '&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;'; #access_log logs/access.
-      
-      <p>
-        <a href="https://drcoooper.gitee.io/2019/12/h5ai/" class="postShorten-excerpt_link link">阅读全文</a>
         
       </p>
     </div>

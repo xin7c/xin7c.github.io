@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.59.0 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="CooperHsu">
+<meta name="keywords" content="docker, supervisor">
+<meta name="description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 安装supervisor apt update &amp;&amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
+换源步骤 1.备份原来的源
+sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
+将以前的源备份一下，以防以后可以用的。
+2.更换源 sudo gedit /etc/apt/sources.list
+使用gedit打开文档，将里面的内容清空，再将下边的阿里源复制进去，然后点击保存关闭。
+ 阿里源(或者其他源) deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe deb-src http://mirrors.">
+
+
+<meta property="og:description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 安装supervisor apt update &amp;&amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
+换源步骤 1.备份原来的源
+sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
+将以前的源备份一下，以防以后可以用的。
+2.更换源 sudo gedit /etc/apt/sources.list
+使用gedit打开文档，将里面的内容清空，再将下边的阿里源复制进去，然后点击保存关闭。
+ 阿里源(或者其他源) deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe deb-src http://mirrors.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker Nginx Supervisord">
+<meta name="twitter:title" content="Docker Nginx Supervisord">
+<meta property="og:url" content="https://drcoooper.gitee.io/2020/03/docker-nginx-supervisord/">
+<meta property="twitter:url" content="https://drcoooper.gitee.io/2020/03/docker-nginx-supervisord/">
+<meta property="og:site_name" content="CooperHsu">
+<meta property="og:description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 安装supervisor apt update &amp;&amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
+换源步骤 1.备份原来的源
+sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
+将以前的源备份一下，以防以后可以用的。
+2.更换源 sudo gedit /etc/apt/sources.list
+使用gedit打开文档，将里面的内容清空，再将下边的阿里源复制进去，然后点击保存关闭。
+ 阿里源(或者其他源) deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe deb-src http://mirrors.">
+<meta name="twitter:description" content="Ling的同事对于go服务的部署使用了k8s&#43;安装supervisor的方案 安装supervisor apt update &amp;&amp; apt install supervisor * 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS） * 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的sources.list
+换源步骤 1.备份原来的源
+sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
+将以前的源备份一下，以防以后可以用的。
+2.更换源 sudo gedit /etc/apt/sources.list
+使用gedit打开文档，将里面的内容清空，再将下边的阿里源复制进去，然后点击保存关闭。
+ 阿里源(或者其他源) deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe deb-src http://mirrors.">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2020-03-19T10:56:29">
+  
+  
+    <meta property="article:modified_time" content="2020-03-19T10:56:29">
+  
+  
+  
+    
+      <meta property="article:section" content="docs">
+    
+  
+  
+    
+      <meta property="article:tag" content="docker">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=640">
+
+
+    <title>Docker Nginx Supervisord</title>
+
+    <link rel="icon" href="https://drcoooper.gitee.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://drcoooper.gitee.io/2020/03/docker-nginx-supervisord/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://drcoooper.gitee.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://drcoooper.gitee.io/">CooperHsu</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://drcoooper.gitee.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://drcoooper.gitee.io/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">CooperHsu</h4>
+        
+          <h5 class="sidebar-profile-bio"><strong>苦逼热力测绘院</strong></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://drcoooper.gitee.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://drcoooper.gitee.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://drcoooper.gitee.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://drcoooper.gitee.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://drcoooper.gitee.io/#docs">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-anchor"></i>
+      
+      <span class="sidebar-button-desc">Docs</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://drcoooper.gitee.io/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/psf/requests" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Docker Nginx Supervisord
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-03-19T10:56:29&#43;08:00">
+        
+  三月 19, 2020
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<h2 id="ling的同事对于go服务的部署使用了k8s-安装supervisor的方案">Ling的同事对于go服务的部署使用了k8s+安装supervisor的方案</h2>
+
+<h4 id="安装supervisor">安装supervisor</h4>
+
+<p><code>apt update &amp;&amp; apt install supervisor</code>
+* 要注意的是，docker直接pull的golang镜像启动后，没有vi、vim、nano，apt更新也超级慢（阿里云ECS）
+* 所以要熟练手动换源，但是因为不能编辑(没试过gedit)，所以需要在容器-v的宿主机路径下添加换源后的<code>sources.list</code></p>
+
+<h5 id="换源步骤">换源步骤</h5>
+
+<p>1.备份原来的源<br />
+<code>sudo cp /etc/apt/sources.list /etc/apt/sources_init.list</code><br />
+将以前的源备份一下，以防以后可以用的。<br />
+2.更换源
+<code>sudo gedit /etc/apt/sources.list</code><br />
+使用gedit打开文档，将里面的内容清空，再将下边的阿里源复制进去，然后点击保存关闭。</p>
+
+<ul>
+<li>阿里源(或者其他源)
+deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial main
+deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial main
+deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-updates main
+deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-updates main
+deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial universe
+deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial universe
+deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-updates universe
+deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-updates universe
+deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-security main
+deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-security main
+deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-security universe
+deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-security universe
+3.更新
+<code>sudo apt-get update</code></li>
+</ul>
+
+<h4 id="生成默认配置">生成默认配置</h4>
+
+<p><code>echo_supervisord_conf &gt; /etc/supervisor/conf.d/supervisord.conf</code></p>
+
+<h4 id="启动">启动</h4>
+
+<p><code>supervisord -c /etc/supervisor/conf.d/supervisord.conf</code></p>
+
+<h4 id="nginx添加反代">nginx添加反代</h4>
+
+<pre><code class="language-nginx">location /su/ {
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Forward-For $remote_addr;
+        proxy_set_header  X-real-ip $remote_addr;
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
+        add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,X-Token';
+        proxy_http_version 1.1;
+        proxy_pass    http://172.18.0.4:9001/;
+        # deny all;
+        # proxy_pass   http://127.0.0.1;
+    }
+</code></pre>
+
+<pre><code class="language-ini">[program:go]
+user=root
+command=/${你的名字}/aligo/main
+autostart=true
+autorestart=true
+startsecs=10
+stdout_logfile=/${你的名字}/log/go.log 
+stdout_logfile_maxbytes=1MB
+stdout_logfile_backups=10
+stdout_capture_maxbytes=1MB
+stderr_logfile=/${你的名字}/log/go_err.log
+stderr_logfile_maxbytes=1MB
+stderr_logfile_backups=10
+stderr_capture_maxbytes=1MB
+stopsignal=INT
+[supervisord] 
+</code></pre>
+
+<pre><code class="language-ini">; Sample supervisor config file.
+;
+; For more information on the config file, please see:
+; http://supervisord.org/configuration.html
+;
+; Notes:
+;  - Shell expansion (&quot;~&quot; or &quot;$HOME&quot;) is not supported.  Environment
+;    variables can be expanded using this syntax: &quot;%(ENV_HOME)s&quot;.
+;  - Quotes around values are not supported, except in the case of
+;    the environment= options as shown below.
+;  - Comments must have a leading space: &quot;a=b ;comment&quot; not &quot;a=b;comment&quot;.
+;  - Command will be truncated if it looks like a config file comment, e.g.
+;    &quot;command=bash -c 'foo ; bar'&quot; will truncate to &quot;command=bash -c 'foo &quot;.
+
+[unix_http_server]
+file=/var/run/supervisor.sock   ; the path to the socket file
+;chmod=0700                 ; socket file mode (default 0700)
+;chown=nobody:nogroup       ; socket file uid:gid owner
+;username=user              ; default is no username (open server)
+;password=123               ; default is no password (open server)
+
+[inet_http_server]         ; inet (TCP) server disabled by default
+port=*:9001        ; ip_address:port specifier, *:port for all iface
+;username=user              ; default is no username (open server)
+;password=123               ; default is no password (open server)
+
+[supervisord]
+logfile=/var/run/supervisor.log ; main log file; default $CWD/supervisord.log
+logfile_maxbytes=50MB        ; max main logfile bytes b4 rotation; default 50MB
+logfile_backups=10           ; # of main logfile backups; 0 means none, default 10
+loglevel=info                ; log level; default info; others: debug,warn,trace
+pidfile=/var/run/supervisor.pid ; supervisord pidfile; default supervisord.pid
+nodaemon=false               ; start in foreground if true; default false
+minfds=1024                  ; min. avail startup file descriptors; default 1024
+minprocs=200                 ; min. avail process descriptors;default 200
+;umask=022                   ; process file creation umask; default 022
+;user=chrism                 ; default is current user, required if root
+;identifier=supervisor       ; supervisord identifier, default is 'supervisor'
+;directory=/tmp              ; default is not to cd during start
+;nocleanup=true              ; don't clean up tempfiles at start; default false
+;childlogdir=/tmp            ; 'AUTO' child log dir, default $TEMP
+;environment=KEY=&quot;value&quot;     ; key value pairs to add to environment
+;strip_ansi=false            ; strip ansi escape codes in logs; def. false
+
+; The rpcinterface:supervisor section must remain in the config file for
+; RPC (supervisorctl/web interface) to work.  Additional interfaces may be
+; added by defining them in separate [rpcinterface:x] sections.
+
+[rpcinterface:supervisor]
+supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
+
+; The supervisorctl section configures how supervisorctl will connect to
+; supervisord.  configure it match the settings in either the unix_http_server
+; or inet_http_server section.
+
+[supervisorctl]
+serverurl=unix:///var/run/supervisor.sock ; use a unix:// URL  for a unix socket
+;serverurl=http://127.0.0.1:9001 ; use an http:// url to specify an inet socket
+;username=chris              ; should be same as in [*_http_server] if set
+;password=123                ; should be same as in [*_http_server] if set
+;prompt=mysupervisor         ; cmd line prompt (default &quot;supervisor&quot;)
+;history_file=~/.sc_history  ; use readline history if available
+
+; The sample program section below shows all possible program subsection values.
+; Create one or more 'real' program: sections to be able to control them under
+; supervisor.
+
+;[program:theprogramname]
+;command=/bin/cat              ; the program (relative uses PATH, can take args)
+;process_name=%(program_name)s ; process_name expr (default %(program_name)s)
+;numprocs=1                    ; number of processes copies to start (def 1)
+;directory=/tmp                ; directory to cwd to before exec (def no cwd)
+;umask=022                     ; umask for process (default None)
+;priority=999                  ; the relative start priority (default 999)
+;autostart=true                ; start at supervisord start (default: true)
+;startsecs=1                   ; # of secs prog must stay up to be running (def. 1)
+;startretries=3                ; max # of serial start failures when starting (default 3)
+;autorestart=unexpected        ; when to restart if exited after running (def: unexpected)
+;exitcodes=0,2                 ; 'expected' exit codes used with autorestart (default 0,2)
+;stopsignal=QUIT               ; signal used to kill process (default TERM)
+;stopwaitsecs=10               ; max num secs to wait b4 SIGKILL (default 10)
+;stopasgroup=false             ; send stop signal to the UNIX process group (default false)
+;killasgroup=false             ; SIGKILL the UNIX process group (def false)
+;user=chrism                   ; setuid to this UNIX account to run the program
+;redirect_stderr=true          ; redirect proc stderr to stdout (default false)
+;stdout_logfile=/a/path        ; stdout log path, NONE for none; default AUTO
+;stdout_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+;stdout_logfile_backups=10     ; # of stdout logfile backups (0 means none, default 10)
+;stdout_capture_maxbytes=1MB   ; number of bytes in 'capturemode' (default 0)
+;stdout_events_enabled=false   ; emit events on stdout writes (default false)
+;stderr_logfile=/a/path        ; stderr log path, NONE for none; default AUTO
+;stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+;stderr_logfile_backups=10     ; # of stderr logfile backups (0 means none, default 10)
+;stderr_capture_maxbytes=1MB   ; number of bytes in 'capturemode' (default 0)
+;stderr_events_enabled=false   ; emit events on stderr writes (default false)
+;environment=A=&quot;1&quot;,B=&quot;2&quot;       ; process environment additions (def no adds)
+;serverurl=AUTO                ; override serverurl computation (childutils)
+
+; The sample eventlistener section below shows all possible eventlistener
+; subsection values.  Create one or more 'real' eventlistener: sections to be
+; able to handle event notifications sent by supervisord.
+
+;[eventlistener:theeventlistenername]
+;command=/bin/eventlistener    ; the program (relative uses PATH, can take args)
+;process_name=%(program_name)s ; process_name expr (default %(program_name)s)
+;numprocs=1                    ; number of processes copies to start (def 1)
+;events=EVENT                  ; event notif. types to subscribe to (req'd)
+;buffer_size=10                ; event buffer queue size (default 10)
+;directory=/tmp                ; directory to cwd to before exec (def no cwd)
+;umask=022                     ; umask for process (default None)
+;priority=-1                   ; the relative start priority (default -1)
+;autostart=true                ; start at supervisord start (default: true)
+;startsecs=1                   ; # of secs prog must stay up to be running (def. 1)
+;startretries=3                ; max # of serial start failures when starting (default 3)
+;autorestart=unexpected        ; autorestart if exited after running (def: unexpected)
+;exitcodes=0,2                 ; 'expected' exit codes used with autorestart (default 0,2)
+;stopsignal=QUIT               ; signal used to kill process (default TERM)
+;stopwaitsecs=10               ; max num secs to wait b4 SIGKILL (default 10)
+;stopasgroup=false             ; send stop signal to the UNIX process group (default false)
+;killasgroup=false             ; SIGKILL the UNIX process group (def false)
+;user=chrism                   ; setuid to this UNIX account to run the program
+;redirect_stderr=false         ; redirect_stderr=true is not allowed for eventlisteners
+;stdout_logfile=/a/path        ; stdout log path, NONE for none; default AUTO
+;stdout_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+;stdout_logfile_backups=10     ; # of stdout logfile backups (0 means none, default 10)
+;stdout_events_enabled=false   ; emit events on stdout writes (default false)
+;stderr_logfile=/a/path        ; stderr log path, NONE for none; default AUTO
+;stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+;stderr_logfile_backups=10     ; # of stderr logfile backups (0 means none, default 10)
+;stderr_events_enabled=false   ; emit events on stderr writes (default false)
+;environment=A=&quot;1&quot;,B=&quot;2&quot;       ; process environment additions
+;serverurl=AUTO                ; override serverurl computation (childutils)
+
+; The sample group section below shows all possible group values.  Create one
+; or more 'real' group: sections to create &quot;heterogeneous&quot; process groups.
+
+;[group:thegroupname]
+;programs=progname1,progname2  ; each refers to 'x' in [program:x] definitions
+;priority=999                  ; the relative start priority (default 999)
+
+; The [include] section can just contain the &quot;files&quot; setting.  This
+; setting can list multiple files (separated by whitespace or
+; newlines).  It can also contain wildcards.  The filenames are
+; interpreted as relative to this file.  Included files *cannot*
+; include files themselves.
+
+[include]
+files = /etc/supervisor/conf.d/*.conf
+</code></pre>
+
+<h3 id="切记修改文件权限">切记修改文件权限</h3>
+
+<p><strong>粗暴一点就好</strong></p>
+
+<pre><code class="language-shell">chmod 777 /var/run/supervisor.sock
+</code></pre>
+
+<h4 id="自带的supervisor管理界面">自带的supervisor管理界面</h4>
+
+<p><strong><em>ip看实际情况而定</em></strong><br />
+<code>http://127.0.0.1:9001</code></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://drcoooper.gitee.io/tags/docker/">docker</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/03/docker-flask-redis/" data-tooltip="Docker Flask Redis">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 CooperHsu. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://drcoooper.gitee.io/2020/03/docker-flask-redis/" data-tooltip="Docker Flask Redis">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/07b1ccb20b1dbd02ff3dd02526861ef4?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">CooperHsu</h4>
+    
+      <div id="about-card-bio"><strong>苦逼热力测绘院</strong></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        测试经理*全栈测开*打杂
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        望京甘道夫
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://drcoooper.gitee.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://drcoooper.gitee.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/drcoooper.gitee.io\/2020\/03\/docker-nginx-supervisord\/';
+          
+            this.page.identifier = '\/2020\/03\/docker-nginx-supervisord\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
