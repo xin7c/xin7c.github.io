@@ -215,6 +215,65 @@
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="https://drcoooper.gitee.io/2020/03/js%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0/">
+          JS开发工具函数
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-03-26T11:11:53&#43;08:00">
+        
+  三月 26, 2020
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>, 
+    
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/js">js</a>
+    
+  
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      
+        JS开发工具函数&rdquo; 前言 转自github
+/** * @param { string } value */ export const isNoWord = value =&gt; /^[^A-Za-z]*$/g.test(value); 验证中文和数字 /** * @param { string } value */ export const isCHNAndEN = value =&gt; /^((?:[\u3400-\u4DB5\u4E00-\u9FEA\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0])|(\d))+$/g.test(value); 验证邮政编码(中国) /** * @param { string } value */ export const isPostcode = value =&gt; /^(0[1-7]|1[0-356]|2[0-7]|3[0-6]|4[0-7]|5[1-7]|6[1-7]|7[0-5]|8[013-6])\d{4}$/g.test(value); 验证微信号，6至20位，以字母开头，字母，数字，减号，下划线 /** * @param { string } value */ export const isWeChatNum = value =&gt; /^[a-zA-Z][-_a-zA-Z0-9]{5,19}$/g.test(value); ### 验证16进制颜色 /** * @param { string } value */ export const isColor16 = value =&gt; /^#?
+      
+      <p>
+        <a href="https://drcoooper.gitee.io/2020/03/js%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0/" class="postShorten-excerpt_link link">阅读全文</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+              
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="https://drcoooper.gitee.io/2020/03/docker-nginx-supervisord/">
           Docker Nginx Supervisord
         </a>
@@ -563,71 +622,6 @@ handleEdit(index, row) { console.log(row) if (row.cron === '0 4 * * *' || row.cr
       
       <p>
         <a href="https://drcoooper.gitee.io/2020/01/vue-eltable-edit/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-            
-              
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/12/vue-eltablecolumn-buttonloading/">
-          Vue Eltablecolumn Buttonloading
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2019-12-30T14:32:56&#43;08:00">
-        
-  十二月 30, 2019
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        element-ui中table-column的button按钮loading状态 在我们的项目中，往往需要在一个列表页里展示全部的数据，每一行展示各种数据；
-但是由于是测试工具，所以经常需要在每一行中嵌入按钮，通过&lt;template slot-scope=&quot;scope&quot;&gt;来让每行的button获取它所在行的全部数据，从而提取这一行中的某个字段，继而发出ajax请求，column代码示例如下：
-&lt;el-table-column label=&quot;操作&quot;&gt; &lt;template slot-scope=&quot;scope&quot;&gt; &lt;el-button size=&quot;mini&quot; type=&quot;success&quot; :loading=&quot;launchLoading === scope.row.task_id&quot; @click=&quot;handleLaunch(scope.row.task_id)&quot; &gt;启动&lt;/el-button&gt; &lt;el-button size=&quot;mini&quot; type=&quot;danger&quot; :loading=&quot;stopLoading === scope.row.task_id&quot; @click=&quot;handleStop(scope.row.task_id)&quot; &gt;停止&lt;/el-button&gt; &lt;el-button size=&quot;mini&quot; type=&quot;warning&quot; plain @click=&quot;handleCopy(scope.row.task_id), goAdd()&quot; &gt;复制&lt;/el-button&gt; &lt;/template&gt; &lt;/el-table-column&gt;  这里的操作是：按下这一行的按钮，它会获取这一行的task_id，并作为形参传递给绑定的click方法@click=&quot;handleLaunch(scope.row.task_id)
-如果只是为了传递正确的data，其实这里已经完成了操作，但是为了用户体验，往往需要在按钮上再绑定loading状态，element官方示例如下：
-要设置为 loading 状态，只要设置loading属性为true即可。 &lt;el-button type=&quot;primary&quot; :loading=&quot;true&quot;&gt;加载中&lt;/el-button&gt;  那么只要通过控制:loading绑定的值，就可以手动控制按钮的loading效果啦！
-但是！！！如果这个按钮在table中，直接绑定的结果是点击任何一行的按钮，全部的按钮都在转圈圈，看起来极其愚蠢0.0
-曾经我的解决方法是让后端返回的数据里，每一行都加入一个loading字段，默认是false，之后每一行中都可以获取到，那么当我按下这一行的按钮，同时修改为true就可以控制只有当前焦点的button有loading圈圈了。
-可是这样还是很蠢啊。
-后来在开发同事的启发下，el-table-column部分如前面所示，在data()中设置launchLoading布尔值，默认false，绑定的click方法如下：
-handleLaunch(task_id) { this.launchLoading = task_id // 启动 var data = { task_id: task_id } console.log(data) reqRtcLaunch(data).then((result) =&gt; { // console.log(result) this.$message({ message: '启动成功O(∩_∩)O~', type: 'success' }) this.
-      
-      <p>
-        <a href="https://drcoooper.gitee.io/2019/12/vue-eltablecolumn-buttonloading/" class="postShorten-excerpt_link link">阅读全文</a>
         
       </p>
     </div>

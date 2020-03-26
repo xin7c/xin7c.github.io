@@ -6,10 +6,19 @@
     <description>Recent content in Tags on CooperHsu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 19 Mar 2020 10:56:29 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 26 Mar 2020 11:11:53 +0800</lastBuildDate>
     
 	<atom:link href="https://drcoooper.gitee.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>docs</title>
+      <link>https://drcoooper.gitee.io/tags/docs/</link>
+      <pubDate>Thu, 26 Mar 2020 11:11:53 +0800</pubDate>
+      
+      <guid>https://drcoooper.gitee.io/tags/docs/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>docker</title>
@@ -17,15 +26,6 @@
       <pubDate>Thu, 19 Mar 2020 10:56:29 +0800</pubDate>
       
       <guid>https://drcoooper.gitee.io/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docs</title>
-      <link>https://drcoooper.gitee.io/tags/docs/</link>
-      <pubDate>Wed, 18 Mar 2020 18:41:20 +0800</pubDate>
-      
-      <guid>https://drcoooper.gitee.io/tags/docs/</guid>
       <description></description>
     </item>
     

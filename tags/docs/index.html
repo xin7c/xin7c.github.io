@@ -215,6 +215,65 @@
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="https://drcoooper.gitee.io/2020/03/js%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0/">
+          JS开发工具函数
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-03-26T11:11:53&#43;08:00">
+        
+  三月 26, 2020
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>, 
+    
+      <a class="category-link" href="https://drcoooper.gitee.io/categories/js">js</a>
+    
+  
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      
+        JS开发工具函数&rdquo; 前言 转自github
+/** * @param { string } value */ export const isNoWord = value =&gt; /^[^A-Za-z]*$/g.test(value); 验证中文和数字 /** * @param { string } value */ export const isCHNAndEN = value =&gt; /^((?:[\u3400-\u4DB5\u4E00-\u9FEA\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0])|(\d))+$/g.test(value); 验证邮政编码(中国) /** * @param { string } value */ export const isPostcode = value =&gt; /^(0[1-7]|1[0-356]|2[0-7]|3[0-6]|4[0-7]|5[1-7]|6[1-7]|7[0-5]|8[013-6])\d{4}$/g.test(value); 验证微信号，6至20位，以字母开头，字母，数字，减号，下划线 /** * @param { string } value */ export const isWeChatNum = value =&gt; /^[a-zA-Z][-_a-zA-Z0-9]{5,19}$/g.test(value); ### 验证16进制颜色 /** * @param { string } value */ export const isColor16 = value =&gt; /^#?
+      
+      <p>
+        <a href="https://drcoooper.gitee.io/2020/03/js%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0/" class="postShorten-excerpt_link link">阅读全文</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+              
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="https://drcoooper.gitee.io/2020/03/vue-iframe-jenkins/">
           Vue Iframe Jenkins
         </a>
@@ -566,64 +625,6 @@ DOC_ROOT ├─ _h5ai ├─ your files └─ and folders   nginx配置文件 m
       
       <p>
         <a href="https://drcoooper.gitee.io/2019/12/h5ai/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-            
-              
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://drcoooper.gitee.io/2019/12/vue-vuesocketio/">
-          Vue Vuesocketio
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2019-12-27T14:39:15&#43;08:00">
-        
-  十二月 27, 2019
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="https://drcoooper.gitee.io/categories/docs">docs</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        VueSocketio的前端实现与大坑 前端实现 首先，如果全局初始化socket实例的话，在main.js中声明即可。 以下是在具体vue组件中使用的情况：
-import VueSocketio from 'vue-socket.io' import Vue from 'vue' Vue.use(new VueSocketio({ debug: true, // connection: 'ws://10.60.82.83/lptslog', connection: req_url_us_ws + '/lptslog', options: { // path: '/lptslog', autoConnect: false, transports: ['websocket', 'xhr-polling', 'jsonp-polling'] } }))  这个Vue-Socket.io官方文档并没有提到*transports*是干啥的,它给的例子是：
-import Vue from 'vue' import store from './store' import App from './App.vue' import VueSocketIO from 'vue-socket.io' Vue.use(new VueSocketIO({ debug: true, connection: 'http://metinseylan.com:1992', vuex: { store, actionPrefix: 'SOCKET_', mutationPrefix: 'SOCKET_' }, options: { path: &quot;/my-app/&quot; } //Optional options })) new Vue({ router, store, render: h =&gt; h(App) }).
-      
-      <p>
-        <a href="https://drcoooper.gitee.io/2019/12/vue-vuesocketio/" class="postShorten-excerpt_link link">阅读全文</a>
         
       </p>
     </div>
